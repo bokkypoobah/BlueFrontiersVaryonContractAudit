@@ -61,7 +61,7 @@ contract Owned {
 
   // Functions ------------------------
 
-  function Owned() public {
+  constructor() public {
     owner = msg.sender;
     isAdmin[owner] = true;
   }
@@ -278,7 +278,9 @@ contract VaryonToken is ERC20Token {
     uint public tokensIcoCrowd   = 0;
     uint public tokensIcoOffline = 0;
     uint public tokensIcoBonus   = 0;
-    uint public tokensMinted  = 0;
+    uint public tokensMinted     = 0;
+    
+    mapping(address => uint) public balancesBonus;
   
   /* Keep track of ether received */
   
@@ -344,7 +346,7 @@ contract VaryonToken is ERC20Token {
 
   /* Initialize */
 
-  function VaryonToken() public {
+  constructor() public {
 
     // check dates
     require( atNow()           < date_ico_presale );
@@ -454,7 +456,7 @@ contract VaryonToken is ERC20Token {
     
     // register locked tokens
     if (term[idx] == 0) term[idx] = _term;
-    amnt[i] = amnt[i].add(_tokens);
+    amnt[idx] = amnt[idx].add(_tokens);
     
   }
 
@@ -512,7 +514,10 @@ contract VaryonToken is ERC20Token {
     require( !whitelist[_account], "account is whitelisted" );
     require( !blacklist[_account], "account is blacklisted" );
     if (_threshold > 0 ) require ( _threshold > _limit, "threshold not above limit" );
-    require( _term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days" );
+    if (_term > 0) {
+      require( _term > atNow(), "the locking period cannot be in the past");
+      require( _term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days" );
+    }
 
     // add to whitelist
     whitelist[_account]          = true;
@@ -522,7 +527,7 @@ contract VaryonToken is ERC20Token {
     emit Whitelisted(_account, _limit, _threshold, _term);
     
     // process contributions, if any
-    if (balancesPending[_account] > 0) processWhitelisting(_account);
+    if (atNow() < date_ico_deadline && balancesPending[_account] > 0) processWhitelisting(_account);
   }
 
   /* Blacklisting */
@@ -644,14 +649,14 @@ contract VaryonToken is ERC20Token {
   
   /* convert ether to tokens */
 
-  function ethToTokens(uint _eth) private view returns (uint tokens) {
-    tokens = _eth.mul(TOKENS_PER_ETH) / 1 ether;
+  function ethToTokens(uint _eth) private pure returns (uint tokens) {
+    tokens = _eth.mul(TOKENS_PER_ETH).mul(E6) / 1 ether;
   }
   
   /* convert tokens to ether */
   
-  function tokensToEth(uint _tokens) private view returns (uint eth) {
-    eth = _tokens.mul(1 ether) / TOKENS_PER_ETH;
+  function tokensToEth(uint _tokens) private pure returns (uint eth) {
+    eth = _tokens.mul(1 ether) / TOKENS_PER_ETH.mul(E6);
   }
   
   /* compute bonus tokens */
@@ -691,7 +696,7 @@ contract VaryonToken is ERC20Token {
     // the actual maximum depends on tokens available
     uint tokens_max = ethToTokens(msg.value);
     uint tokens = tokens_max;
-    if ( tokens_max <= tokensAvailableIco() ) tokens = tokensAvailableIco();
+    if ( tokens_max > tokensAvailableIco() ) tokens = tokensAvailableIco();
     
     // check minimum purchase amount
     uint tokens_total = balancesPending[msg.sender].add(tokens);
@@ -732,7 +737,7 @@ contract VaryonToken is ERC20Token {
     uint tokens = tokens_max;
     uint available;
     
-    if ( tokens_max <= tokensAvailableIco() ) tokens = tokensAvailableIco();
+    if ( tokens_max > tokensAvailableIco() ) tokens = tokensAvailableIco();
 
     // next we check limits and thresholds
     uint balance = balances[msg.sender];
@@ -790,6 +795,7 @@ contract VaryonToken is ERC20Token {
     
     // balances    
     balances[msg.sender] = balances[msg.sender].add(tokens_issued);
+    balancesBonus[msg.sender] = balancesBonus[msg.sender].add(tokens_bonus);
     tokensIssuedTotal = tokensIssuedTotal.add(tokens_issued);
     tokensIcoIssued = tokensIcoIssued.add(tokens);
     tokensIcoCrowd = tokensIcoCrowd.add(tokens);
@@ -801,20 +807,21 @@ contract VaryonToken is ERC20Token {
       lockAmnt[msg.sender][0] = balances[msg.sender];
     }
 
-    // return any ether if necessary
+    // register eth contribution and return any unused ether if necessary
     uint eth_contributed = msg.value;
     uint eth_returned = 0;
     if (tokens < tokens_max) {
       eth_contributed = tokensToEth(tokens);
       eth_returned = msg.value.sub(eth_contributed);
     }
-
-    // return any unused ether
+    ethContributed[msg.sender] = ethContributed[msg.sender].add(eth_contributed);
+    totalEthContributed = totalEthContributed.add(eth_contributed);
     if (eth_returned > 0) msg.sender.transfer(eth_returned);
 
     // send ether to wallet if soft cap reached
-    if ( softCapReached() && this.balance > totalEthPending ) {
-      wallet.transfer(this.balance - totalEthPending);
+    address thisAddress = this;
+    if ( softCapReached() && thisAddress.balance > totalEthPending ) {
+      wallet.transfer(thisAddress.balance - totalEthPending);
     }
     
     // log
@@ -842,7 +849,7 @@ contract VaryonToken is ERC20Token {
     // the actual maximum depends on tokens available
     uint tokens_max = balancesPending[_account];
     tokens = tokens_max;
-    if ( tokens_max <= tokensAvailableIco() ) tokens = tokensAvailableIco();
+    if ( tokens_max > tokensAvailableIco() ) tokens = tokensAvailableIco();
 
     // next we check limits and thresholds
     //
@@ -898,6 +905,7 @@ contract VaryonToken is ERC20Token {
 
     // process tokens issued
     balances[_account] = tokens_issued;
+    balancesBonus[_account] = tokens_bonus;
     tokensIssuedTotal = tokensIssuedTotal.add(tokens_issued);
     tokensIcoIssued = tokensIcoIssued.add(tokens);
     tokensIcoCrowd = tokensIcoCrowd.add(tokens);
@@ -921,8 +929,9 @@ contract VaryonToken is ERC20Token {
     if (eth_to_return > 0) _account.transfer(eth_to_return);
 
     // send ether to wallet if soft cap reached
-    if ( softCapReached() && this.balance > totalEthPending ) {
-      wallet.transfer(this.balance - totalEthPending);
+    address thisAddress = this;
+    if ( softCapReached() && thisAddress.balance > totalEthPending ) {
+      wallet.transfer(thisAddress.balance - totalEthPending);
     }
     
     // log
@@ -1043,4 +1052,3 @@ contract VaryonToken is ERC20Token {
   }
   
 }
-
