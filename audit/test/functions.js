@@ -290,8 +290,8 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.TOKEN_THRESHOLD=" + contract.TOKEN_THRESHOLD().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.TOKEN_PRESALE_CAP=" + contract.TOKEN_PRESALE_CAP().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.TOKEN_ICO_CAP=" + contract.TOKEN_ICO_CAP().shift(-decimals) + " tokens");
-    console.log("RESULT: crowdsale.MAX_BONUS_TOKENS=" + contract.MAX_BONUS_TOKENS().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.BONUS=" + contract.BONUS() + "%");
+    console.log("RESULT: crowdsale.MAX_BONUS_TOKENS=" + contract.MAX_BONUS_TOKENS().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.MIN_PURCHASE_PRESALE=" + contract.MIN_PURCHASE_PRESALE().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.MIN_PURCHASE_MAIN=" + contract.MIN_PURCHASE_MAIN().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.MINIMUM_ETH_CONTRIBUTION=" + contract.MINIMUM_ETH_CONTRIBUTION().shift(-18) + " ETH");
@@ -392,6 +392,13 @@ function printTokenContractDetails() {
       console.log("RESULT: OfflinePending " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     offlinePendingEvents.stopWatching();
+
+    var registerOfflineContributionEvents = contract.RegisterOfflineContribution({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    registerOfflineContributionEvents.watch(function (error, result) {
+      console.log("RESULT: RegisterOfflineContribution " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    registerOfflineContributionEvents.stopWatching();
 
     var refundBlacklistedTokensEvents = contract.RefundBlacklistedTokens({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;

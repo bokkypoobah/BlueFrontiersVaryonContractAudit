@@ -60,13 +60,12 @@ printf "DATE_LIMIT_DATE    = '$DATE_LIMIT_DATE' '$DATE_LIMIT_DATE_S'\n" | tee -a
 `cp $SOURCEDIR/$CROWDSALESOL .`
 
 # --- Modify parameters ---
-`perl -pi -e "s/require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/\/\/ require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/" $CROWDSALESOL`
+# `perl -pi -e "s/require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/\/\/ require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/" $CROWDSALESOL`
 `perl -pi -e "s/date_ico_presale    \= 1526392800;.*$/date_ico_presale    \= $ICO_PRESALE_DATE; \/\/ $ICO_PRESALE_DATE_S/" $CROWDSALESOL`
 `perl -pi -e "s/date_ico_main       \= 1527861600;.*$/date_ico_main       \= $ICO_MAIN_DATE; \/\/ $ICO_MAIN_DATE_S/" $CROWDSALESOL`
 `perl -pi -e "s/date_ico_end        \= 1530367200;.*$/date_ico_end        \= $ICO_END_DATE; \/\/ $ICO_END_DATE_S/" $CROWDSALESOL`
 `perl -pi -e "s/date_ico_deadline   \= 1533045600;.*$/date_ico_deadline   \= $ICO_DEADLINE_DATE; \/\/ $ICO_DEADLINE_DATE_S/" $CROWDSALESOL`
 `perl -pi -e "s/DATE_LIMIT \= 1538316000;.*$/DATE_LIMIT \= $DATE_LIMIT_DATE; \/\/ $DATE_LIMIT_DATE_S/" $CROWDSALESOL`
-`perl -pi -e "s/FUNDS_WALLET \= address\(0\);.*$/FUNDS_WALLET \= 0xa22AB8A9D641CE77e06D98b7D7065d324D3d6976;/" $CROWDSALESOL`
 
 
 DIFFS1=`diff $SOURCEDIR/$CROWDSALESOL $CROWDSALESOL`
