@@ -280,12 +280,22 @@ function printTokenContractDetails() {
     console.log("RESULT: token.name=" + contract.name());
     console.log("RESULT: token.symbol=" + contract.symbol());
     console.log("RESULT: token.decimals=" + decimals);
-    console.log("RESULT: token.START_DATE=" + contract.date_ico_presale() + " " + new Date(contract.date_ico_presale() * 1000).toUTCString() + " " + new Date(contract.date_ico_presale() * 1000).toString());
-    console.log("RESULT: token.START_DATE=" + contract.date_ico_main() + " " + new Date(contract.date_ico_main() * 1000).toUTCString() + " " + new Date(contract.date_ico_main() * 1000).toString());
-    console.log("RESULT: token.START_DATE=" + contract.date_ico_end() + " " + new Date(contract.date_ico_end() * 1000).toUTCString() + " " + new Date(contract.date_ico_end() * 1000).toString());
-    console.log("RESULT: token.START_DATE=" + contract.date_ico_deadline() + " " + new Date(contract.date_ico_deadline() * 1000).toUTCString() + " " + new Date(contract.date_ico_deadline() * 1000).toString());
+    console.log("RESULT: token.date_ico_presale=" + contract.date_ico_presale() + " " + new Date(contract.date_ico_presale() * 1000).toUTCString() + " " + new Date(contract.date_ico_presale() * 1000).toString());
+    console.log("RESULT: token.date_ico_main=" + contract.date_ico_main() + " " + new Date(contract.date_ico_main() * 1000).toUTCString() + " " + new Date(contract.date_ico_main() * 1000).toString());
+    console.log("RESULT: token.date_ico_end=" + contract.date_ico_end() + " " + new Date(contract.date_ico_end() * 1000).toUTCString() + " " + new Date(contract.date_ico_end() * 1000).toString());
+    console.log("RESULT: token.date_ico_deadline=" + contract.date_ico_deadline() + " " + new Date(contract.date_ico_deadline() * 1000).toUTCString() + " " + new Date(contract.date_ico_deadline() * 1000).toString());
+    console.log("RESULT: token.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
+    console.log("RESULT: token.TOKENS_PER_ETH=" + contract.TOKENS_PER_ETH());
+    console.log("RESULT: token.TOKEN_TOTAL_SUPPLY=" + contract.TOKEN_TOTAL_SUPPLY().shift(-decimals));
+    console.log("RESULT: token.TOKEN_THRESHOLD=" + contract.TOKEN_THRESHOLD().shift(-decimals));
+    console.log("RESULT: token.TOKEN_PRESALE_CAP=" + contract.TOKEN_PRESALE_CAP().shift(-decimals));
+    console.log("RESULT: token.TOKEN_ICO_CAP=" + contract.TOKEN_ICO_CAP().shift(-decimals));
+    console.log("RESULT: token.MAX_BONUS_TOKENS=" + contract.MAX_BONUS_TOKENS().shift(-decimals));
+    console.log("RESULT: token.BONUS=" + contract.BONUS());
+    console.log("RESULT: token.MIN_PURCHASE_PRESALE=" + contract.MIN_PURCHASE_PRESALE().shift(-decimals));
+    console.log("RESULT: token.MIN_PURCHASE_MAIN=" + contract.MIN_PURCHASE_MAIN().shift(-decimals));
+    console.log("RESULT: token.MINIMUM_ETH_CONTRIBUTION=" + contract.MINIMUM_ETH_CONTRIBUTION().shift(-18));
 
-    
     var latestBlock = eth.blockNumber;
     var i;
 

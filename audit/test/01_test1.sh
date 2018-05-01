@@ -26,10 +26,16 @@ JSONEVENTS=`grep ^JSONEVENTS= settings.txt | sed "s/^.*=//"`
 CURRENTTIME=`date +%s`
 CURRENTTIMES=`date -r $CURRENTTIME -u`
 
-START_DATE=`echo "$CURRENTTIME+45" | bc`
-START_DATE_S=`date -r $START_DATE -u`
-END_DATE=`echo "$CURRENTTIME+60*2" | bc`
-END_DATE_S=`date -r $END_DATE -u`
+ICO_PRESALE_DATE=`echo "$CURRENTTIME+30" | bc`
+ICO_PRESALE_DATE_S=`date -r $ICO_PRESALE_DATE -u`
+ICO_MAIN_DATE=`echo "$CURRENTTIME+60" | bc`
+ICO_MAIN_DATE_S=`date -r $ICO_MAIN_DATE -u`
+ICO_END_DATE=`echo "$CURRENTTIME+90" | bc`
+ICO_END_DATE_S=`date -r $ICO_END_DATE -u`
+ICO_DEADLINE_DATE=`echo "$CURRENTTIME+120" | bc`
+ICO_DEADLINE_DATE_S=`date -r $ICO_DEADLINE_DATE -u`
+DATE_LIMIT_DATE=`echo "$CURRENTTIME+150" | bc`
+DATE_LIMIT_DATE_S=`date -r $DATE_LIMIT_DATE -u`
 
 printf "MODE               = '$MODE'\n" | tee $TEST1OUTPUT
 printf "GETHATTACHPOINT    = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT
@@ -44,13 +50,23 @@ printf "TEST1RESULTS       = '$TEST1RESULTS'\n" | tee -a $TEST1OUTPUT
 printf "JSONSUMMARY        = '$JSONSUMMARY'\n" | tee -a $TEST1OUTPUT
 printf "JSONEVENTS         = '$JSONEVENTS'\n" | tee -a $TEST1OUTPUT
 printf "CURRENTTIME        = '$CURRENTTIME' '$CURRENTTIMES'\n" | tee -a $TEST1OUTPUT
-printf "START_DATE         = '$START_DATE' '$START_DATE_S'\n" | tee -a $TEST1OUTPUT
-printf "END_DATE           = '$END_DATE' '$END_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "ICO_PRESALE_DATE   = '$ICO_PRESALE_DATE' '$ICO_PRESALE_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "ICO_MAIN_DATE      = '$ICO_MAIN_DATE' '$ICO_MAIN_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "ICO_END_DATE       = '$ICO_END_DATE' '$ICO_END_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "ICO_DEADLINE_DATE  = '$ICO_DEADLINE_DATE' '$ICO_DEADLINE_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "DATE_LIMIT_DATE    = '$DATE_LIMIT_DATE' '$DATE_LIMIT_DATE_S'\n" | tee -a $TEST1OUTPUT
 
 # Make copy of SOL file and modify start and end times ---
 `cp $SOURCEDIR/$CROWDSALESOL .`
 
+# --- Modify parameters ---
 `perl -pi -e "s/require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/\/\/ require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/" $CROWDSALESOL`
+`perl -pi -e "s/date_ico_presale    \= 1526392800;.*$/date_ico_presale    \= $ICO_PRESALE_DATE; \/\/ $ICO_PRESALE_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/date_ico_main       \= 1527861600;.*$/date_ico_main       \= $ICO_MAIN_DATE; \/\/ $ICO_MAIN_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/date_ico_end        \= 1530367200;.*$/date_ico_end        \= $ICO_END_DATE; \/\/ $ICO_END_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/date_ico_deadline   \= 1533045600;.*$/date_ico_deadline   \= $ICO_DEADLINE_DATE; \/\/ $ICO_DEADLINE_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/DATE_LIMIT \= 1538316000;.*$/DATE_LIMIT \= $DATE_LIMIT_DATE; \/\/ $DATE_LIMIT_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/FUNDS_WALLET \= address\(0\);.*$/FUNDS_WALLET \= 0xa22AB8A9D641CE77e06D98b7D7065d324D3d6976;/" $CROWDSALESOL`
 
 
 DIFFS1=`diff $SOURCEDIR/$CROWDSALESOL $CROWDSALESOL`
@@ -59,94 +75,19 @@ echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
 solc_0.4.23 --version | tee -a $TEST1OUTPUT
 
-echo "var saleOutput=`solc_0.4.23 --optimize --pretty-json --combined-json abi,bin,interface $CROWDSALESOL`;" > $CROWDSALEJS
+echo "var crowdsaleOutput=`solc_0.4.23 --optimize --pretty-json --combined-json abi,bin,interface $CROWDSALESOL`;" > $CROWDSALEJS
 
-exit;
-
-geth --verbosity 3 attach $GETHATTACHPOINT << EOF1 | tee -a $TEST1OUTPUT
-loadScript("$TOKENJS");
-loadScript("functions.js");
-
-var tokenAbi = JSON.parse(tokenOutput.contracts["$TOKENSOL:EnergisToken"].abi);
-var tokenBin = "0x" + tokenOutput.contracts["$TOKENSOL:EnergisToken"].bin;
-
-console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
-console.log("DATA: tokenBin=" + JSON.stringify(tokenBin));
-
-unlockAccounts("$PASSWORD");
-// printBalances();
-console.log("RESULT: ");
-
-
-// -----------------------------------------------------------------------------
-var deployTokenMessage = "Deploy Token";
-// -----------------------------------------------------------------------------
-console.log("RESULT: " + deployTokenMessage);
-var tokenContract = web3.eth.contract(tokenAbi);
-var tokenTx = null;
-var tokenAddress = null;
-var currentBlock = eth.blockNumber;
-var token = tokenContract.new({from: contractOwnerAccount, data: tokenBin, gas: 6000000, gasPrice: defaultGasPrice},
-  function(e, contract) {
-    if (!e) {
-      if (!contract.address) {
-        tokenTx = contract.transactionHash;
-      } else {
-        tokenAddress = contract.address;
-        addAccount(tokenAddress, "Token");
-        console.log("DATA: tokenAddress=" + tokenAddress);
-      }
-    }
-  }
-);
-while (txpool.status.pending > 0) {
-}
-printBalances();
-failIfTxStatusError(tokenTx, deployTokenMessage);
-printTxData("tokenTx", tokenTx);
-printTokenContractDetails();
-console.log("RESULT: ");
-
-EOF1
-
-grep "DATA: " $TEST1OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
-cat $DEPLOYMENTDATA
-
-TOKENADDRESS=`grep ^tokenAddress= $DEPLOYMENTDATA | sed "s/^.*=//"`
-
-# --- Modify parameters ---
-`perl -pi -e "s/START_DATE \= 1522749798;.*$/START_DATE = $START_DATE; \/\/ $START_DATE_S/" $CROWDSALESOL`
-`perl -pi -e "s/FUNDS_WALLET \= address\(0\);.*$/FUNDS_WALLET \= 0xa22AB8A9D641CE77e06D98b7D7065d324D3d6976;/" $CROWDSALESOL`
-`perl -pi -e "s/TOKEN_WALLET \= address\(0\);.*$/TOKEN_WALLET \= 0xa11AAE29840fBb5c86E6fd4cF809EBA183AEf433;/" $CROWDSALESOL`
-`perl -pi -e "s/TOKEN_ADDRESS \= address\(0\);.*$/TOKEN_ADDRESS \= $TOKENADDRESS;/" $CROWDSALESOL`
-
-DIFFS1=`diff $CROWDSALESOURCEDIR/$CROWDSALESOL $CROWDSALESOL`
-echo "--- Differences $CROWDSALESOURCEDIR/$CROWDSALESOL $CROWDSALESOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-echo "var crowdsaleOutput=`solc_0.4.21 --optimize --pretty-json --combined-json abi,bin,interface $CROWDSALESOL`;" > $CROWDSALEJS
-
-geth --verbosity 3 attach $GETHATTACHPOINT << EOF2 | tee -a $TEST1OUTPUT
-loadScript("$TOKENJS");
+geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
 loadScript("$CROWDSALEJS");
 loadScript("functions.js");
 
-var tokenAbi = JSON.parse(tokenOutput.contracts["$TOKENSOL:EnergisToken"].abi);
-var tokenBin = "0x" + tokenOutput.contracts["$TOKENSOL:EnergisToken"].bin;
-var crowdsaleAbi = JSON.parse(crowdsaleOutput.contracts["$CROWDSALESOL:PrivatePreSale"].abi);
-var crowdsaleBin = "0x" + crowdsaleOutput.contracts["$CROWDSALESOL:PrivatePreSale"].bin;
+var crowdsaleAbi = JSON.parse(crowdsaleOutput.contracts["$CROWDSALESOL:VaryonToken"].abi);
+var crowdsaleBin = "0x" + crowdsaleOutput.contracts["$CROWDSALESOL:VaryonToken"].bin;
 
-console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
-console.log("DATA: tokenBin=" + JSON.stringify(tokenBin));
-console.log("DATA: crowdsaleAbi=" + JSON.stringify(crowdsaleAbi));
-console.log("DATA: crowdsaleBin=" + JSON.stringify(crowdsaleBin));
-
+// console.log("DATA: crowdsaleAbi=" + JSON.stringify(crowdsaleAbi));
+// console.log("DATA: crowdsaleBin=" + JSON.stringify(crowdsaleBin));
 
 unlockAccounts("$PASSWORD");
-var tokenAddress = "$TOKENADDRESS";
-var token = eth.contract(tokenAbi).at(tokenAddress);
-addAccount(tokenAddress, "Token '" + token.symbol() + "' '" + token.name() + "'");
-addTokenContractAddressAndAbi(tokenAddress, tokenAbi);
 printBalances();
 console.log("RESULT: ");
 
@@ -165,8 +106,8 @@ var crowdsale = crowdsaleContract.new({from: contractOwnerAccount, data: crowdsa
         crowdsaleTx = contract.transactionHash;
       } else {
         crowdsaleAddress = contract.address;
-        addAccount(crowdsaleAddress, "Energis Private PreSale");
-        addCrowdsaleContractAddressAndAbi(crowdsaleAddress, crowdsaleAbi);
+        addAccount(crowdsaleAddress, "Varyone Crowdsale + Token '" + crowdsale.symbol() + "' '" + crowdsale.name() + "'");
+        addTokenContractAddressAndAbi(crowdsaleAddress, crowdsaleAbi);
         console.log("DATA: crowdsaleAddress=" + crowdsaleAddress);
       }
     }
@@ -177,9 +118,10 @@ while (txpool.status.pending > 0) {
 printBalances();
 failIfTxStatusError(crowdsaleTx, crowdsaleMessage);
 printTxData("crowdsaleAddress=" + crowdsaleAddress, crowdsaleTx);
-printCrowdsaleContractDetails();
+printTokenContractDetails();
 console.log("RESULT: ");
 
+exit;
 
 // -----------------------------------------------------------------------------
 var approveTokensForSale_Message = "Approve Tokens For Sale";
@@ -299,7 +241,7 @@ printTokenContractDetails();
 console.log("RESULT: ");
 
 
-EOF2
+EOF
 grep "DATA: " $TEST1OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
 cat $DEPLOYMENTDATA
 grep "RESULT: " $TEST1OUTPUT | sed "s/RESULT: //" > $TEST1RESULTS

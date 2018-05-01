@@ -228,12 +228,12 @@ contract VaryonToken is ERC20Token {
 
   /* Crowdsale parameters : dates */
 
-  uint public date_ico_presale    = 1526392800; // 15-MAY-2018 14:00 UTC
-  uint public date_ico_main       = 1527861600; // 01-JUN-2018 14:00 UTC
-  uint public date_ico_end        = 1530367200; // 30-JUN-2018 14:00 UTC
-  uint public date_ico_deadline   = 1533045600; // 31-JUL-2018 14:00 UTC
+  uint public date_ico_presale    = 1525159407; // Tue  1 May 2018 07:23:27 UTC
+  uint public date_ico_main       = 1525159437; // Tue  1 May 2018 07:23:57 UTC
+  uint public date_ico_end        = 1525159467; // Tue  1 May 2018 07:24:27 UTC
+  uint public date_ico_deadline   = 1525159497; // Tue  1 May 2018 07:24:57 UTC
   
-  uint public constant DATE_LIMIT = 1538316000; // 30-SEP-2018 14:00 UTC
+  uint public constant DATE_LIMIT = 1525159527; // Tue  1 May 2018 07:25:27 UTC
 
   /* Crowdsale parameters : token price, supply, caps and bonus */  
   
