@@ -34,9 +34,9 @@
 ## Code Review
 
 * [ ] [code-review/VaryonToken.md](code-review/VaryonToken.md)
-  * [ ] library SafeMath
-  * [ ] contract Owned
-  * [ ] contract ERC20Interface
-  * [ ] contract ERC20Token is ERC20Interface, Owned
-    * [ ] using SafeMath for uint;
+  * [x] library SafeMath
+  * [x] contract Owned
+  * [x] contract ERC20Interface
+  * [x] contract ERC20Token is ERC20Interface, Owned
+    * [x] using SafeMath for uint;
   * [ ] contract VaryonToken is ERC20Token

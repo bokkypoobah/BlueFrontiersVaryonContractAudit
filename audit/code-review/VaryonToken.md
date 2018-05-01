@@ -7,6 +7,7 @@ Source file [../../contracts/VaryonToken.sol](../../contracts/VaryonToken.sol).
 <hr />
 
 ```javascript
+// BK Ok
 pragma solidity ^0.4.23;
 
 // ----------------------------------------------------------------------------
@@ -24,20 +25,30 @@ pragma solidity ^0.4.23;
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 library SafeMath {
 
+  // BK Ok - Internal pure function
   function add(uint a, uint b) internal pure returns (uint c) {
+    // BK Ok
     c = a + b;
+    // BK Ok
     require( c >= a );
   }
 
+  // BK Ok - Internal pure function
   function sub(uint a, uint b) internal pure returns (uint c) {
+    // BK Ok
     require( b <= a );
+    // BK Ok
     c = a - b;
   }
 
+  // BK Ok - Internal pure function
   function mul(uint a, uint b) internal pure returns (uint c) {
+    // BK Ok
     c = a * b;
+    // BK Ok
     require( a == 0 || c / a == b );
   }
 
@@ -50,52 +61,76 @@ library SafeMath {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract Owned {
 
+  // BK Next 2 Ok
   address public owner;
   address public newOwner;
 
+  // BK Ok
   mapping(address => bool) public isAdmin;
 
   // Events ---------------------------
 
+  // BK Next 3 Ok - Events
   event OwnershipTransferProposed(address indexed _from, address indexed _to);
   event OwnershipTransferred(address indexed _from, address indexed _to);
   event AdminChange(address indexed _admin, bool _status);
 
   // Modifiers ------------------------
 
+  // BK Next 2 Ok - Modifiers
   modifier onlyOwner { require( msg.sender == owner ); _; }
   modifier onlyAdmin { require( isAdmin[msg.sender] ); _; }
 
   // Functions ------------------------
 
+  // BK Ok - Constructor
   constructor() public {
+    // BK Ok
     owner = msg.sender;
+    // BK Ok
     isAdmin[owner] = true;
   }
 
+  // BK Ok - Only owner can execute
   function transferOwnership(address _newOwner) public onlyOwner {
+    // BK Ok
     require( _newOwner != address(0x0) );
+    // BK Ok - Log event
     emit OwnershipTransferProposed(owner, _newOwner);
+    // BK Ok
     newOwner = _newOwner;
   }
 
+  // BK Ok - Only new owner can execute
   function acceptOwnership() public {
+    // BK Ok
     require(msg.sender == newOwner);
+    // BK Ok - Log event
     emit OwnershipTransferred(owner, newOwner);
+    // BK Ok
     owner = newOwner;
   }
   
+  // BK Ok - Only owner can execute
   function addAdmin(address _a) public onlyOwner {
+    // BK Ok
     require( isAdmin[_a] == false );
+    // BK Ok
     isAdmin[_a] = true;
+    // BK Ok - Log event
     emit AdminChange(_a, true);
   }
 
+  // BK Ok - Only owner can execute
   function removeAdmin(address _a) public onlyOwner {
+    // BK Ok
     require( isAdmin[_a] == true );
+    // BK Ok
     isAdmin[_a] = false;
+    // BK Ok - Log event
     emit AdminChange(_a, false);
   }
   
@@ -109,15 +144,18 @@ contract Owned {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract ERC20Interface {
 
   // Events ---------------------------
 
+  // BK Next 2 Ok - Events
   event Transfer(address indexed _from, address indexed _to, uint _value);
   event Approval(address indexed _owner, address indexed _spender, uint _value);
 
   // Functions ------------------------
 
+  // BK Next 6 Ok
   function totalSupply() public view returns (uint);
   function balanceOf(address _owner) public view returns (uint balance);
   function transfer(address _to, uint _value) public returns (bool success);
@@ -134,11 +172,15 @@ contract ERC20Interface {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract ERC20Token is ERC20Interface, Owned {
   
+  // BK Ok
   using SafeMath for uint;
 
+  // BK Ok
   uint public tokensIssuedTotal = 0;
+  // BK Next 2 Ok
   mapping(address => uint) balances;
   mapping(address => mapping (address => uint)) allowed;
 
@@ -146,67 +188,92 @@ contract ERC20Token is ERC20Interface, Owned {
 
   /* Total token supply */
 
+  // BK Ok - View function
   function totalSupply() public view returns (uint) {
+    // BK Ok
     return tokensIssuedTotal;
   }
 
   /* Get the account balance for an address */
 
+  // BK Ok - View function
   function balanceOf(address _owner) public view returns (uint balance) {
+    // BK Ok
     return balances[_owner];
   }
 
   /* Transfer the balance from owner's account to another account */
 
+  // BK Ok - Any token owner can execute
   function transfer(address _to, uint _amount) public returns (bool success) {
     // amount sent cannot exceed balance
+    // BK Ok
     require( balances[msg.sender] >= _amount );
 
     // update balances
+    // BK Ok
     balances[msg.sender] = balances[msg.sender].sub(_amount);
+    // BK Ok
     balances[_to]        = balances[_to].add(_amount);
 
     // log event
+    // BK Ok - Log event
     emit Transfer(msg.sender, _to, _amount);
+    // BK Ok
     return true;
   }
 
   /* Allow _spender to withdraw from your account up to _amount */
 
+  // BK Ok - Any token owner can execute this function
   function approve(address _spender, uint _amount) public returns (bool success) {
     // approval amount cannot exceed the balance
+    // BK Ok
     require( balances[msg.sender] >= _amount );
       
     // update allowed amount
+    // BK Ok
     allowed[msg.sender][_spender] = _amount;
     
     // log event
+    // BK Ok - Log event
     emit Approval(msg.sender, _spender, _amount);
+    // BK Ok
     return true;
   }
 
   /* Spender of tokens transfers tokens from the owner's balance */
   /* Must be pre-approved by owner */
 
+  // BK Ok - Any account approved by _from to transfer tokens can execute this function
   function transferFrom(address _from, address _to, uint _amount) public returns (bool success) {
     // balance checks
+    // BK Ok
     require( balances[_from] >= _amount );
+    // BK Ok
     require( allowed[_from][msg.sender] >= _amount );
 
     // update balances and allowed amount
+    // BK Ok
     balances[_from]            = balances[_from].sub(_amount);
+    // BK Ok
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_amount);
+    // BK Ok
     balances[_to]              = balances[_to].add(_amount);
 
     // log event
+    // BK Ok - Log event
     emit Transfer(_from, _to, _amount);
+    // BK Ok
     return true;
   }
 
   /* Returns the amount of tokens approved by the owner */
   /* that can be transferred by spender */
 
+  // BK Ok - View function
   function allowance(address _owner, address _spender) public view returns (uint remaining) {
+    // BK Ok
     return allowed[_owner][_spender];
   }
 
@@ -237,11 +304,16 @@ contract VaryonToken is ERC20Token {
 
   /* Crowdsale parameters : dates */
 
+  // token.date_ico_presale=1526392800 Tue, 15 May 2018 14:00:00 UTC Wed, 16 May 2018 00:00:00 AEST
   uint public date_ico_presale    = 1526392800; // 15-MAY-2018 14:00 UTC
+  // token.date_ico_main=1527861600 Fri, 01 Jun 2018 14:00:00 UTC Sat, 02 Jun 2018 00:00:00 AEST
   uint public date_ico_main       = 1527861600; // 01-JUN-2018 14:00 UTC
+  // token.date_ico_end=1530367200 Sat, 30 Jun 2018 14:00:00 UTC Sun, 01 Jul 2018 00:00:00 AEST
   uint public date_ico_end        = 1530367200; // 30-JUN-2018 14:00 UTC
+  // token.date_ico_deadline=1533045600 Tue, 31 Jul 2018 14:00:00 UTC Wed, 01 Aug 2018 00:00:00 AEST
   uint public date_ico_deadline   = 1533045600; // 31-JUL-2018 14:00 UTC
   
+  // token.DATE_LIMIT=1538316000 Sun, 30 Sep 2018 14:00:00 UTC Wed, 01 Aug 2018 00:00:00 AEST
   uint public constant DATE_LIMIT = 1538316000; // 30-SEP-2018 14:00 UTC
 
   /* Crowdsale parameters : token price, supply, caps and bonus */  
