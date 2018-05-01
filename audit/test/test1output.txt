@@ -1,0 +1,22 @@
+MODE               = 'test'
+GETHATTACHPOINT    = 'ipc:./testchain/geth.ipc'
+PASSWORD           = ''
+SOURCEDIR          = '../../contracts'
+CROWDSALESOL       = 'VaryonToken.sol'
+CROWDSALEJS        = 'VaryonToken.js'
+DEPLOYMENTDATA     = 'deploymentData.txt'
+INCLUDEJS          = './include.js'
+TEST1OUTPUT        = 'test1output.txt'
+TEST1RESULTS       = 'test1results.txt'
+JSONSUMMARY        = 'Summary.json'
+JSONEVENTS         = 'Events.json'
+CURRENTTIME        = '1525147120' 'Tue  1 May 2018 03:58:40 UTC'
+START_DATE         = '1525147165' 'Tue  1 May 2018 03:59:25 UTC'
+END_DATE           = '1525147240' 'Tue  1 May 2018 04:00:40 UTC'
+--- Differences ../../contracts/VaryonToken.sol VaryonToken.sol ---
+363c363
+<     require( TOKEN_PRESALE_CAP.mul(BONUS) / 100 == MAX_BONUS_TOKENS );
+---
+>     // require( TOKEN_PRESALE_CAP.mul(BONUS) / 100 == MAX_BONUS_TOKENS );
+solc, the solidity compiler commandline interface
+Version: 0.4.23+commit.124ca40d.Darwin.appleclang
