@@ -286,56 +286,66 @@ contract ERC20Token is ERC20Interface, Owned {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract VaryonToken is ERC20Token {
 
   /* Utility variable */
   
+  // BK Ok
   uint constant E6  = 10**6;
 
   /* Basic token data */
 
+  // BK Next 3 Ok
   string public constant name     = "Varyon Token";
   string public constant symbol   = "VAR";
   uint8  public constant decimals = 6;
 
   /* Wallets */
   
+  // BK Ok
   address public wallet;
 
   /* Crowdsale parameters : dates */
 
-  // token.date_ico_presale=1526392800 Tue, 15 May 2018 14:00:00 UTC Wed, 16 May 2018 00:00:00 AEST
+  // BK Ok - crowdsale.date_ico_presale=1526392800 Tue, 15 May 2018 14:00:00 UTC Wed, 16 May 2018 00:00:00 AEST
   uint public date_ico_presale    = 1526392800; // 15-MAY-2018 14:00 UTC
-  // token.date_ico_main=1527861600 Fri, 01 Jun 2018 14:00:00 UTC Sat, 02 Jun 2018 00:00:00 AEST
+  // BK Ok - crowdsale.date_ico_main=1527861600 Fri, 01 Jun 2018 14:00:00 UTC Sat, 02 Jun 2018 00:00:00 AEST
   uint public date_ico_main       = 1527861600; // 01-JUN-2018 14:00 UTC
-  // token.date_ico_end=1530367200 Sat, 30 Jun 2018 14:00:00 UTC Sun, 01 Jul 2018 00:00:00 AEST
+  // BK Ok - crowdsale.date_ico_end=1530367200 Sat, 30 Jun 2018 14:00:00 UTC Sun, 01 Jul 2018 00:00:00 AEST
   uint public date_ico_end        = 1530367200; // 30-JUN-2018 14:00 UTC
-  // token.date_ico_deadline=1533045600 Tue, 31 Jul 2018 14:00:00 UTC Wed, 01 Aug 2018 00:00:00 AEST
+  // BK Ok - crowdsale.date_ico_deadline=1533045600 Tue, 31 Jul 2018 14:00:00 UTC Wed, 01 Aug 2018 00:00:00 AEST
   uint public date_ico_deadline   = 1533045600; // 31-JUL-2018 14:00 UTC
   
-  // token.DATE_LIMIT=1538316000 Sun, 30 Sep 2018 14:00:00 UTC Wed, 01 Aug 2018 00:00:00 AEST
+  // BK Ok - crowdsale.DATE_LIMIT=1538316000 Sun, 30 Sep 2018 14:00:00 UTC Wed, 01 Aug 2018 00:00:00 AEST
   uint public constant DATE_LIMIT = 1538316000; // 30-SEP-2018 14:00 UTC
 
   /* Crowdsale parameters : token price, supply, caps and bonus */  
   
+  // BK Ok
   uint public constant TOKENS_PER_ETH = 14750;
 
+  // BK Next 4 Ok
   uint public constant TOKEN_TOTAL_SUPPLY = 1000000000 * E6;
   uint public constant TOKEN_THRESHOLD    =   59000000 * E6; // ETH  4,000
   uint public constant TOKEN_PRESALE_CAP  =   64900000 * E6; // ETH  4,400
   uint public constant TOKEN_ICO_CAP      =  356950000 * E6; // ETH 24,200 
   
+  // BK Ok
   uint public constant MAX_BONUS_TOKENS   =    9735000 * E6; // 15% of 64.9mm
   
+  // BK Ok
   uint public BONUS = 15;
   
   /* Crowdsale parameters : minimum purchase amounts expressed in tokens */    
   
+  // BK Next 2 Ok
   uint public constant MIN_PURCHASE_PRESALE = 590000 * E6; // ETH 40
   uint public constant MIN_PURCHASE_MAIN    =  14750 * E6; // ETH  1
 
   /* Crowdsale parameters : minimum contribution in ether */
 
+  // BK Ok - Can specify as 0.1 ether;
   uint public constant MINIMUM_ETH_CONTRIBUTION  = 1 ether / 100; // 0.01 ether
   
   /* Keep track of tokens */

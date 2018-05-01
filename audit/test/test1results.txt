@@ -32,34 +32,42 @@ Deploy Crowdsale Contract
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000 Account #11
-12 0xb8c31f47dfba40162326aba12cd577ae5cb2ce99        0.000000000000000000           0.000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+12 0x8b97d31ff6bfc0c2fd7a0fff69d6b4bd485a832b        0.000000000000000000           0.000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy Crowdsale Contract
-crowdsaleAddress=0xb8c31f47dfba40162326aba12cd577ae5cb2ce99 status=0x1 Success gas=6000000 gasUsed=5262134 costETH=0.005262134 costUSD=2.11237845162 @ ETH/USD=401.43 gasPrice=1 gwei block=17164 txIx=0 txId=0x3f9811606490e9edd78daab93ad7dd05916d80a4a125ccdd523f49cf55828964 @ 1525159389 Tue, 01 May 2018 07:23:09 UTC
-tokenContractAddress=0xb8c31f47dfba40162326aba12cd577ae5cb2ce99
+crowdsaleAddress=0x8b97d31ff6bfc0c2fd7a0fff69d6b4bd485a832b status=0x1 Success gas=6000000 gasUsed=5262134 costETH=0.005262134 costUSD=2.11237845162 @ ETH/USD=401.43 gasPrice=1 gwei block=21525 txIx=0 txId=0x09b29b26a31ce246192f3352421832e1081f9ddd128c32d82de59b6b08e24f8d @ 1525163750 Tue, 01 May 2018 08:35:50 UTC
+tokenContractAddress=0x8b97d31ff6bfc0c2fd7a0fff69d6b4bd485a832b
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
-token.tokensIssuedTotal=0 0
-token.totalSupply=0
+token.tokensIssuedTotal=0 0 tokens
+token.totalSupply=0 tokens
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=6
-token.date_ico_presale=1525159407 Tue, 01 May 2018 07:23:27 UTC Tue, 01 May 2018 17:23:27 AEST
-token.date_ico_main=1525159437 Tue, 01 May 2018 07:23:57 UTC Tue, 01 May 2018 17:23:57 AEST
-token.date_ico_end=1525159467 Tue, 01 May 2018 07:24:27 UTC Tue, 01 May 2018 17:24:27 AEST
-token.date_ico_deadline=1525159497 Tue, 01 May 2018 07:24:57 UTC Tue, 01 May 2018 17:24:57 AEST
-token.DATE_LIMIT=1525159527 Tue, 01 May 2018 07:25:27 UTC Tue, 01 May 2018 17:25:27 AEST
-token.TOKENS_PER_ETH=14750
-token.TOKEN_TOTAL_SUPPLY=1000000000
-token.TOKEN_THRESHOLD=59000000
-token.TOKEN_PRESALE_CAP=64900000
-token.TOKEN_ICO_CAP=356950000
-token.MAX_BONUS_TOKENS=9735000
-token.BONUS=15
-token.MIN_PURCHASE_PRESALE=590000
-token.MIN_PURCHASE_MAIN=14750
-token.MINIMUM_ETH_CONTRIBUTION=10000000000
+crowdsale.date_ico_presale=1525163769 Tue, 01 May 2018 08:36:09 UTC Tue, 01 May 2018 18:36:09 AEST
+crowdsale.date_ico_main=1525163799 Tue, 01 May 2018 08:36:39 UTC Tue, 01 May 2018 18:36:39 AEST
+crowdsale.date_ico_end=1525163829 Tue, 01 May 2018 08:37:09 UTC Tue, 01 May 2018 18:37:09 AEST
+crowdsale.date_ico_deadline=1525163859 Tue, 01 May 2018 08:37:39 UTC Tue, 01 May 2018 18:37:39 AEST
+crowdsale.DATE_LIMIT=1525163889 Tue, 01 May 2018 08:38:09 UTC Tue, 01 May 2018 18:38:09 AEST
+crowdsale.TOKENS_PER_ETH=14750 tokens/ETH
+crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
+crowdsale.TOKEN_THRESHOLD=59000000 tokens
+crowdsale.TOKEN_PRESALE_CAP=64900000 tokens
+crowdsale.TOKEN_ICO_CAP=356950000 tokens
+crowdsale.MAX_BONUS_TOKENS=9735000 tokens
+crowdsale.BONUS=15%
+crowdsale.MIN_PURCHASE_PRESALE=590000 tokens
+crowdsale.MIN_PURCHASE_MAIN=14750 tokens
+crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
+crowdsale.tokensIcoPending=0 tokens
+crowdsale.tokensIcoIssued=0 tokens
+crowdsale.tokensIcoCrowd=0 tokens
+crowdsale.tokensIcoOffline=0 tokens
+crowdsale.tokensIcoBonus=0 tokens
+crowdsale.tokensMinted=0 tokens
+crowdsale.totalEthPending=0 ETH
+crowdsale.totalEthContributed=0 ETH
 

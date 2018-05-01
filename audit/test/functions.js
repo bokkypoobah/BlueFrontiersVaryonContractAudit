@@ -275,26 +275,36 @@ function printTokenContractDetails() {
     var decimals = contract.decimals();
     console.log("RESULT: token.owner=" + contract.owner());
     console.log("RESULT: token.newOwner=" + contract.newOwner());
-    console.log("RESULT: token.tokensIssuedTotal=" + contract.tokensIssuedTotal() + " " + contract.tokensIssuedTotal().shift(-decimals));
-    console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals));
+    console.log("RESULT: token.tokensIssuedTotal=" + contract.tokensIssuedTotal() + " " + contract.tokensIssuedTotal().shift(-decimals) + " tokens");
+    console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals) + " tokens");
     console.log("RESULT: token.name=" + contract.name());
     console.log("RESULT: token.symbol=" + contract.symbol());
     console.log("RESULT: token.decimals=" + decimals);
-    console.log("RESULT: token.date_ico_presale=" + contract.date_ico_presale() + " " + new Date(contract.date_ico_presale() * 1000).toUTCString() + " " + new Date(contract.date_ico_presale() * 1000).toString());
-    console.log("RESULT: token.date_ico_main=" + contract.date_ico_main() + " " + new Date(contract.date_ico_main() * 1000).toUTCString() + " " + new Date(contract.date_ico_main() * 1000).toString());
-    console.log("RESULT: token.date_ico_end=" + contract.date_ico_end() + " " + new Date(contract.date_ico_end() * 1000).toUTCString() + " " + new Date(contract.date_ico_end() * 1000).toString());
-    console.log("RESULT: token.date_ico_deadline=" + contract.date_ico_deadline() + " " + new Date(contract.date_ico_deadline() * 1000).toUTCString() + " " + new Date(contract.date_ico_deadline() * 1000).toString());
-    console.log("RESULT: token.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
-    console.log("RESULT: token.TOKENS_PER_ETH=" + contract.TOKENS_PER_ETH());
-    console.log("RESULT: token.TOKEN_TOTAL_SUPPLY=" + contract.TOKEN_TOTAL_SUPPLY().shift(-decimals));
-    console.log("RESULT: token.TOKEN_THRESHOLD=" + contract.TOKEN_THRESHOLD().shift(-decimals));
-    console.log("RESULT: token.TOKEN_PRESALE_CAP=" + contract.TOKEN_PRESALE_CAP().shift(-decimals));
-    console.log("RESULT: token.TOKEN_ICO_CAP=" + contract.TOKEN_ICO_CAP().shift(-decimals));
-    console.log("RESULT: token.MAX_BONUS_TOKENS=" + contract.MAX_BONUS_TOKENS().shift(-decimals));
-    console.log("RESULT: token.BONUS=" + contract.BONUS());
-    console.log("RESULT: token.MIN_PURCHASE_PRESALE=" + contract.MIN_PURCHASE_PRESALE().shift(-decimals));
-    console.log("RESULT: token.MIN_PURCHASE_MAIN=" + contract.MIN_PURCHASE_MAIN().shift(-decimals));
-    console.log("RESULT: token.MINIMUM_ETH_CONTRIBUTION=" + contract.MINIMUM_ETH_CONTRIBUTION().shift(-18));
+    console.log("RESULT: crowdsale.date_ico_presale=" + contract.date_ico_presale() + " " + new Date(contract.date_ico_presale() * 1000).toUTCString() + " " + new Date(contract.date_ico_presale() * 1000).toString());
+    console.log("RESULT: crowdsale.date_ico_main=" + contract.date_ico_main() + " " + new Date(contract.date_ico_main() * 1000).toUTCString() + " " + new Date(contract.date_ico_main() * 1000).toString());
+    console.log("RESULT: crowdsale.date_ico_end=" + contract.date_ico_end() + " " + new Date(contract.date_ico_end() * 1000).toUTCString() + " " + new Date(contract.date_ico_end() * 1000).toString());
+    console.log("RESULT: crowdsale.date_ico_deadline=" + contract.date_ico_deadline() + " " + new Date(contract.date_ico_deadline() * 1000).toUTCString() + " " + new Date(contract.date_ico_deadline() * 1000).toString());
+    console.log("RESULT: crowdsale.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
+    console.log("RESULT: crowdsale.TOKENS_PER_ETH=" + contract.TOKENS_PER_ETH() + " tokens/ETH");
+    console.log("RESULT: crowdsale.TOKEN_TOTAL_SUPPLY=" + contract.TOKEN_TOTAL_SUPPLY().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.TOKEN_THRESHOLD=" + contract.TOKEN_THRESHOLD().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.TOKEN_PRESALE_CAP=" + contract.TOKEN_PRESALE_CAP().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.TOKEN_ICO_CAP=" + contract.TOKEN_ICO_CAP().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.MAX_BONUS_TOKENS=" + contract.MAX_BONUS_TOKENS().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.BONUS=" + contract.BONUS() + "%");
+    console.log("RESULT: crowdsale.MIN_PURCHASE_PRESALE=" + contract.MIN_PURCHASE_PRESALE().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.MIN_PURCHASE_MAIN=" + contract.MIN_PURCHASE_MAIN().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.MINIMUM_ETH_CONTRIBUTION=" + contract.MINIMUM_ETH_CONTRIBUTION().shift(-18) + " ETH");
+
+    console.log("RESULT: crowdsale.tokensIcoPending=" + contract.tokensIcoPending().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.tokensIcoIssued=" + contract.tokensIcoIssued().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.tokensIcoCrowd=" + contract.tokensIcoCrowd().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.tokensIcoOffline=" + contract.tokensIcoOffline().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.tokensIcoBonus=" + contract.tokensIcoBonus().shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.tokensMinted=" + contract.tokensMinted().shift(-decimals) + " tokens");
+
+    console.log("RESULT: crowdsale.totalEthPending=" + contract.totalEthPending().shift(-18) + " ETH");
+    console.log("RESULT: crowdsale.totalEthContributed=" + contract.totalEthContributed().shift(-18) + " ETH");
 
     var latestBlock = eth.blockNumber;
     var i;
@@ -442,82 +452,6 @@ function printTokenContractDetails() {
     transferEvents.stopWatching();
 
     tokenFromBlock = latestBlock + 1;
-  }
-}
-
-
-// -----------------------------------------------------------------------------
-// Crowdsale Contract
-// -----------------------------------------------------------------------------
-var crowdsaleContractAddress = null;
-var crowdsaleContractAbi = null;
-
-function addCrowdsaleContractAddressAndAbi(address, crowdsaleAbi) {
-  crowdsaleContractAddress = address;
-  crowdsaleContractAbi = crowdsaleAbi;
-}
-
-function displaySplit(data) {
-  var eth1 = data[0];
-  var eth2 = data[1];
-  var eth3 = data[2];
-  var refund = data[3];
-  var total = eth1.add(eth2).add(eth3).add(refund);
-  return "[eth1=" + eth1.shift(-18) + "; eth2=" + eth2.shift(-18) + "; eth3=" + eth3.shift(-18) + "; refund=" + refund.shift(-18)  + "; total=" + total.shift(-18) + "]";
-}
-
-var crowdsaleFromBlock = 0;
-function printCrowdsaleContractDetails() {
-  console.log("RESULT: crowdsaleContractAddress=" + crowdsaleContractAddress);
-  if (crowdsaleContractAddress != null && crowdsaleContractAbi != null) {
-    var contract = eth.contract(crowdsaleContractAbi).at(crowdsaleContractAddress);
-    console.log("RESULT: crowdsale.owner=" + contract.owner());
-    console.log("RESULT: crowdsale.pendingOwner=" + contract.pendingOwner());
-    console.log("RESULT: crowdsale.paused=" + contract.paused());
-    console.log("RESULT: crowdsale.FUNDS_WALLET=" + contract.FUNDS_WALLET());
-    console.log("RESULT: crowdsale.TOKEN_WALLET=" + contract.TOKEN_WALLET());
-    console.log("RESULT: crowdsale.TOKEN_ADDRESS=" + contract.TOKEN_ADDRESS());
-    console.log("RESULT: crowdsale.TOKEN=" + contract.TOKEN());
-    console.log("RESULT: crowdsale.TOKENS_PER_ETH=" + contract.TOKENS_PER_ETH());
-    console.log("RESULT: crowdsale.MAX_TOKENS=" + contract.MAX_TOKENS() + " " + contract.MAX_TOKENS().shift(-18) + " tokens");
-    console.log("RESULT: crowdsale.MIN_TOKEN_INVEST=" + contract.MIN_TOKEN_INVEST() + " " + contract.MIN_TOKEN_INVEST().shift(-18) + " tokens");
-    console.log("RESULT: crowdsale.START_DATE=" + contract.START_DATE() + " " + new Date(contract.START_DATE() * 1000).toUTCString() + " " + new Date(contract.START_DATE() * 1000).toString());
-    console.log("RESULT: crowdsale.weiRaised=" + contract.weiRaised() + " " + contract.weiRaised().shift(-18) + " ETH");
-    console.log("RESULT: crowdsale.tokensIssued=" + contract.tokensIssued() + " " + contract.tokensIssued().shift(-18) + " tokens");
-    console.log("RESULT: crowdsale.closed=" + contract.closed());
-
-    var latestBlock = eth.blockNumber;
-    var i;
-
-    var ownershipTransferredEvents = contract.OwnershipTransferred({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
-    i = 0;
-    ownershipTransferredEvents.watch(function (error, result) {
-      console.log("RESULT: OwnershipTransferred " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    ownershipTransferredEvents.stopWatching();
-
-    var pauseEvents = contract.Pause({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
-    i = 0;
-    pauseEvents.watch(function (error, result) {
-      console.log("RESULT: Pause " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    pauseEvents.stopWatching();
-
-    var unpauseEvents = contract.Unpause({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
-    i = 0;
-    unpauseEvents.watch(function (error, result) {
-      console.log("RESULT: Unpause " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    unpauseEvents.stopWatching();
-
-    var tokenPurchaseEvents = contract.TokenPurchase({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
-    i = 0;
-    tokenPurchaseEvents.watch(function (error, result) {
-      console.log("RESULT: TokenPurchase " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    tokenPurchaseEvents.stopWatching();
-
-    crowdsaleFromBlock = latestBlock + 1;
   }
 }
 
