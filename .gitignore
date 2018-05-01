@@ -1,3 +1,15 @@
 /tmp
 /test
 /contracts/VaryonToken.20180426.sol
+
+.project
+.settings
+test/testchain/geth
+test/testchain/geth.ipc
+test/testchain/history
+
+audit/test/testchain/geth
+audit/test/testchain/geth.ipc
+audit/test/testchain/history
+private
+
