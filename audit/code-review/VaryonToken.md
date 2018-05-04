@@ -325,32 +325,40 @@ contract VaryonToken is ERC20Token {
   // BK Ok
   uint public constant TOKENS_PER_ETH = 14750;
 
+  // BK Next 4 Ok
   uint public constant TOKEN_TOTAL_SUPPLY = 1000000000 * E6; // VAR 1,000,000,000
   uint public constant TOKEN_THRESHOLD    =   4000 * TOKENS_PER_ETH * E6; // ETH  4,000 = VAR  59,000,000
   uint public constant TOKEN_PRESALE_CAP  =   4400 * TOKENS_PER_ETH * E6; // ETH  4,400 = VAR  64,000,000
   uint public constant TOKEN_ICO_CAP      =  24200 * TOKENS_PER_ETH * E6; // ETH 24,200 = VAR 356,950,000
   
+  // BK Ok
   uint public constant BONUS = 15;
   
+  // BK Ok
   uint public constant MAX_BONUS_TOKENS = TOKEN_PRESALE_CAP * BONUS / 100; // 9,735,000 tokens
   
   /* Crowdsale parameters : minimum purchase amounts expressed in tokens */    
   
+  // BK Next 2 Ok
   uint public constant MIN_PURCHASE_PRESALE = 40 * TOKENS_PER_ETH * E6; // ETH 40 = VAR 590,000
   uint public constant MIN_PURCHASE_MAIN    =  1 * TOKENS_PER_ETH * E6; // ETH  1 = VAR  14,750
 
   /* Crowdsale parameters : minimum contribution in ether */
 
+  // BK Ok
   uint public constant MINIMUM_ETH_CONTRIBUTION  = 0.01 ether;
   
   /* Tokens from off-chain contributions (no eth returns for these tokens) */
   
+  // BK Ok
   mapping(address => uint) public balancesOffline;
   
   /* Tokens - pending */
   
+  // BK Ok
   mapping(address => uint) public balancesPending;
 
+  // BK Ok
   uint public tokensIcoPending  = 0;
 
   /* Tokens - issued */
@@ -397,8 +405,8 @@ contract VaryonToken is ERC20Token {
   
   uint8 public constant LOCK_SLOTS = 6;
   
-  mapping(address => uint[6]) public lockTerm;
-  mapping(address => uint[6]) public lockAmnt;
+  mapping(address => uint[LOCK_SLOTS]) public lockTerm;
+  mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
   
   /* Other parameters */
 
@@ -441,7 +449,9 @@ contract VaryonToken is ERC20Token {
 
   /* Fallback */
   
+  // BK Ok - Fallbank, payable
   function () public payable {
+    // BK Ok
     buyTokens();
   }
 
@@ -451,69 +461,99 @@ contract VaryonToken is ERC20Token {
   
   /* What time is it? */
   
+  // BK Ok - View function
   function atNow() public view returns (uint) {
+    // BK Ok
     return now;
   }
 
   /* Are tokens tradeable */
   
+  // BK Ok - View function
   function tradeable() public view returns (bool) {
+    // BK Ok
     if (thresholdReached() && atNow() > date_ico_end) return true;
+    // BK Ok
     return false;
   }
   
   /* Has soft cap been reached */
   
+  // BK Ok - View function
   function thresholdReached() public view returns (bool) {
+    // BK Ok
     if (tokensIcoIssued >= TOKEN_THRESHOLD) return true;
+    // BK Ok
     return false;
   }
   
   /* Tokens available to mint by owner */
   
+  // BK Ok - View function
   function availableToMint() public view returns (uint available) {
+    // BK Ok
     if (atNow() <= date_ico_end) {
+      // BK Ok
       available = TOKEN_TOTAL_SUPPLY.sub(TOKEN_ICO_CAP).sub(MAX_BONUS_TOKENS);
+    // BK Ok - After end, before deadline
     } else if (atNow() <= date_ico_deadline) {
+      // BK Ok
       available = TOKEN_TOTAL_SUPPLY.sub(tokensIssuedTotal).sub(tokensIcoPending);
+    // BK Ok - After deadline
     } else {
+      // BK Ok
       available = TOKEN_TOTAL_SUPPLY.sub(tokensIssuedTotal);
     }
   }
   
   /* Currently available tokens for sale */
 
+  // BK Ok - View function
   function tokensAvailableIco() private view returns (uint) {
+    // BK Ok
     if (atNow() <= date_ico_main) {
+      // BK Ok
       return TOKEN_PRESALE_CAP.sub(tokensIcoIssued).sub(tokensIcoPending);
+    // BK Ok
     } else {
+      // BK Ok
       return TOKEN_ICO_CAP.sub(tokensIcoIssued).sub(tokensIcoPending);
     }
   }
   
   /* Minimum number of tokens per contributor */
 
+  // BK Ok - View function
   function minumumInvestment() private view returns (uint) {
+    // BK Ok
     if (atNow() <= date_ico_main) return MIN_PURCHASE_PRESALE;
+    // BK Ok
     return MIN_PURCHASE_MAIN;
   }
   
   /* Convert ether to tokens */
 
+  // BK Ok - View function
   function ethToTokens(uint _eth) public pure returns (uint tokens) {
+    // BK Ok
     tokens = _eth.mul(TOKENS_PER_ETH).mul(E6) / 1 ether;
   }
   
   /* Convert tokens to ether */
   
+  // BK Ok - View function
   function tokensToEth(uint _tokens) public pure returns (uint eth) {
+    // BK Ok
     eth = _tokens.mul(1 ether) / TOKENS_PER_ETH.mul(E6);
   }
   
   /* Compute bonus tokens */
   
+  // BK Ok - View function
   function getBonus(uint _tokens) private view returns (uint) {
+    // BK Ok
     if (atNow() <= date_ico_main) return _tokens.mul(BONUS)/100;
+    // BK Ok
     return 0;
   }
 
@@ -532,8 +572,8 @@ contract VaryonToken is ERC20Token {
     // we use either the existing slot with the exact same term,
     // of which there can be at most one, or the first empty slot
     idx = 9999;  
-    uint[6] storage term = lockTerm[_account];
-    uint[6] storage amnt = lockAmnt[_account];
+    uint[LOCK_SLOTS] storage term = lockTerm[_account];
+    uint[LOCK_SLOTS] storage amnt = lockAmnt[_account];
     for (uint i = 1; i < LOCK_SLOTS; i++) {
       if (term[i] <= atNow()) {
         term[i] = 0;
@@ -555,8 +595,8 @@ contract VaryonToken is ERC20Token {
   
   function unlockedTokens(address _account) public view returns (uint _unlockedTokens) {
     uint locked_tokens = 0;
-    uint[6] storage term = lockTerm[_account];
-    uint[6] storage amnt = lockAmnt[_account];
+    uint[LOCK_SLOTS] storage term = lockTerm[_account];
+    uint[LOCK_SLOTS] storage amnt = lockAmnt[_account];
     for (uint i = 0; i < LOCK_SLOTS; i++) {
       if (term[i] > atNow()) locked_tokens = locked_tokens.add(amnt[i]);
     }
@@ -570,7 +610,7 @@ contract VaryonToken is ERC20Token {
     // true if locking term has already passed
     if (_term < atNow()) return true;
     // case of term in the future
-    uint[6] storage term = lockTerm[_account];
+    uint[LOCK_SLOTS] storage term = lockTerm[_account];
     for (uint i = 1; i < LOCK_SLOTS; i++) {
       if (term[i] < atNow() || term[i] == _term) return true;
     }
@@ -910,12 +950,21 @@ contract VaryonToken is ERC20Token {
 
   function buyTokensWhitelist() private {
 
+    // to process as contributions:
+    uint tokens;
+    uint tokens_bonus;
+    uint eth_to_contribute;
+
+    // to return:
+    uint eth_to_return;
+    
+    // helper variable
+    uint tokens_max;
+  
     // the maximum number of tokens is a function of ether sent
     // the actual maximum depends on tokens available
-    uint tokens_max = ethToTokens(msg.value);
-    uint tokens = tokens_max;
-    uint tokens_bonus;
-    
+    tokens_max = ethToTokens(msg.value);
+    tokens = tokens_max;
     if ( tokens_max > tokensAvailableIco() ) tokens = tokensAvailableIco();
 
     // adjust based on limit and threshold, update total crowd contribution
@@ -927,25 +976,22 @@ contract VaryonToken is ERC20Token {
     require( balances[msg.sender].add(tokens) >= minumumInvestment(), "minimum purchase amount" );
 
     // register eth contribution and return any unused ether if necessary
-    uint eth_contributed = msg.value;
-    uint eth_returned = 0;
+    eth_to_contribute = msg.value;
+    eth_to_return = 0;
     if (tokens < tokens_max) {
-      eth_contributed = tokensToEth(tokens);
-      eth_returned = msg.value.sub(eth_contributed);
+      eth_to_contribute = tokensToEth(tokens);
+      eth_to_return = msg.value.sub(eth_to_contribute);
     }
-    ethContributed[msg.sender] = ethContributed[msg.sender].add(eth_contributed);
-    totalEthContributed = totalEthContributed.add(eth_contributed);
-    if (eth_returned > 0) msg.sender.transfer(eth_returned);
+    ethContributed[msg.sender] = ethContributed[msg.sender].add(eth_to_contribute);
+    totalEthContributed = totalEthContributed.add(eth_to_contribute);
+    if (eth_to_return > 0) msg.sender.transfer(eth_to_return);
 
-    // send ether to wallet if soft cap reached
-    address thisAddress = this;
-    if ( thresholdReached() && thisAddress.balance > totalEthPending ) {
-      wallet.transfer(thisAddress.balance - totalEthPending);
-    }
+    // send ether to wallet if threshold reached
+    sendEtherToWallet();
     
     // log
     emit Transfer(0x0, msg.sender, tokens.add(tokens_bonus));
-    emit RegisterContribution(msg.sender, tokens, tokens_bonus, eth_contributed, eth_returned);
+    emit RegisterContribution(msg.sender, tokens, tokens_bonus, eth_to_contribute, eth_to_return);
   }
 
   /* whitelisting of an address */
@@ -961,9 +1007,12 @@ contract VaryonToken is ERC20Token {
     uint tokens_to_return;
     uint eth_to_return;
     
+    // helper variable
+    uint tokens_max;
+    
     // the maximum number of tokens is a function of ether sent
     // the actual maximum depends on tokens available
-    uint tokens_max = balancesPending[_account];
+    tokens_max = balancesPending[_account];
     tokens = tokens_max;
     if ( tokens_max > tokensAvailableIco() ) tokens = tokensAvailableIco();
 
@@ -972,14 +1021,14 @@ contract VaryonToken is ERC20Token {
     tokensIcoCrowd = tokensIcoCrowd.add(tokens);
       
     // tokens to return
-    tokens_to_return = tokens_max - tokens;
+    tokens_to_return = tokens_max.sub(tokens);
     
     // ether to return (there may be an "offline" portion)
     if (tokens_to_return > 0) {
       eth_to_return = tokensToEth(tokens_to_return);
       if (eth_to_return > ethPending[_account]) eth_to_return = ethPending[_account];
     }
-    eth_to_contribute = ethPending[_account] - eth_to_return;
+    eth_to_contribute = ethPending[_account].sub(eth_to_return);
 
     // process tokens pending
     balancesPending[_account] = 0;
@@ -997,16 +1046,22 @@ contract VaryonToken is ERC20Token {
     // return any unused ether
     if (eth_to_return > 0) _account.transfer(eth_to_return);
 
-    // send ether to wallet if soft cap reached
-    address thisAddress = this;
-    if ( thresholdReached() && thisAddress.balance > totalEthPending ) {
-      wallet.transfer(thisAddress.balance - totalEthPending);
-    }
+    // send ether to wallet if threshold reached
+    sendEtherToWallet();
     
     // log
     emit Transfer(0x0, _account, tokens.add(tokens_bonus));
     emit WhitelistingEvent(_account, tokens, tokens_bonus, tokens_to_return, eth_to_contribute, eth_to_return);
 
+  }
+  
+  /* Send ether to wallet if threshold reached */
+  
+  function sendEtherToWallet() private {
+    address thisAddress = this;
+    if ( thresholdReached() && thisAddress.balance > totalEthPending ) {
+      wallet.transfer(thisAddress.balance.sub(totalEthPending));
+    }
   }
   
   /* Adjust tokens that can be issued, based on limit and threshold, and update balances */
@@ -1031,7 +1086,7 @@ contract VaryonToken is ERC20Token {
         tokens = 0;
       } else {
         // reduce tokens if necessary
-        available = limit - balance;
+        available = limit.sub(balance);
         if (tokens > available) tokens = available;
       }      
     }
@@ -1049,7 +1104,7 @@ contract VaryonToken is ERC20Token {
           tokens = 0;
         } else {
           // reduce tokens if necessary
-          available = limit - balance;
+          available = limit.sub(balance);
           if (tokens < available) tokens = available;
         }
       }
@@ -1107,14 +1162,14 @@ contract VaryonToken is ERC20Token {
   
   function pRevertPending(address _account) private {
     // nothing to do if there are no pending tokens
-    if (balancesPending[_account] > 0) return;
+    if (balancesPending[_account] == 0) return;
       
     // tokens
     uint tokens_to_cancel = balancesPending[_account];
     balancesPending[_account] = 0;
     tokensIcoPending = tokensIcoPending.sub(tokens_to_cancel);
     
-    //eth)
+    //eth
     uint eth_to_return = ethPending[_account];
     ethPending[_account] = 0;
     totalEthPending = totalEthPending.sub(eth_to_return);
