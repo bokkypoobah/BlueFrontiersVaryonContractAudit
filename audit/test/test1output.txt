@@ -10,12 +10,12 @@ TEST1OUTPUT        = 'test1output.txt'
 TEST1RESULTS       = 'test1results.txt'
 JSONSUMMARY        = 'Summary.json'
 JSONEVENTS         = 'Events.json'
-CURRENTTIME        = '1525189736' 'Tue  1 May 2018 15:48:56 UTC'
-ICO_PRESALE_DATE   = '1525189766' 'Tue  1 May 2018 15:49:26 UTC'
-ICO_MAIN_DATE      = '1525189796' 'Tue  1 May 2018 15:49:56 UTC'
-ICO_END_DATE       = '1525189826' 'Tue  1 May 2018 15:50:26 UTC'
-ICO_DEADLINE_DATE  = '1525189856' 'Tue  1 May 2018 15:50:56 UTC'
-DATE_LIMIT_DATE    = '1525189886' 'Tue  1 May 2018 15:51:26 UTC'
+CURRENTTIME        = '1525554518' 'Sat  5 May 2018 21:08:38 UTC'
+ICO_PRESALE_DATE   = '1525554548' 'Sat  5 May 2018 21:09:08 UTC'
+ICO_MAIN_DATE      = '1525554578' 'Sat  5 May 2018 21:09:38 UTC'
+ICO_END_DATE       = '1525554608' 'Sat  5 May 2018 21:10:08 UTC'
+ICO_DEADLINE_DATE  = '1525554638' 'Sat  5 May 2018 21:10:38 UTC'
+DATE_LIMIT_DATE    = '1525554668' 'Sat  5 May 2018 21:11:08 UTC'
 --- Differences ../../contracts/VaryonToken.sol VaryonToken.sol ---
 231,234c231,234
 <   uint public date_ico_presale    = 1526392800; // 15-MAY-2018 14:00 UTC
@@ -23,21 +23,21 @@ DATE_LIMIT_DATE    = '1525189886' 'Tue  1 May 2018 15:51:26 UTC'
 <   uint public date_ico_end        = 1530367200; // 30-JUN-2018 14:00 UTC
 <   uint public date_ico_deadline   = 1533045600; // 31-JUL-2018 14:00 UTC
 ---
->   uint public date_ico_presale    = 1525189766; // Tue  1 May 2018 15:49:26 UTC
->   uint public date_ico_main       = 1525189796; // Tue  1 May 2018 15:49:56 UTC
->   uint public date_ico_end        = 1525189826; // Tue  1 May 2018 15:50:26 UTC
->   uint public date_ico_deadline   = 1525189856; // Tue  1 May 2018 15:50:56 UTC
+>   uint public date_ico_presale    = 1525554548; // Sat  5 May 2018 21:09:08 UTC
+>   uint public date_ico_main       = 1525554578; // Sat  5 May 2018 21:09:38 UTC
+>   uint public date_ico_end        = 1525554608; // Sat  5 May 2018 21:10:08 UTC
+>   uint public date_ico_deadline   = 1525554638; // Sat  5 May 2018 21:10:38 UTC
 236c236
 <   uint public constant DATE_LIMIT = 1538316000; // 30-SEP-2018 14:00 UTC
 ---
->   uint public constant DATE_LIMIT = 1525189886; // Tue  1 May 2018 15:51:26 UTC
+>   uint public constant DATE_LIMIT = 1525554668; // Sat  5 May 2018 21:11:08 UTC
 solc, the solidity compiler commandline interface
 Version: 0.4.23+commit.124ca40d.Darwin.appleclang
 Welcome to the Geth JavaScript console!
 
 instance: Geth/v1.8.6-stable-12683fec/darwin-amd64/go1.10
 coinbase: 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-at block: 33762 (Wed, 02 May 2018 01:48:57 AEST)
+at block: 3847 (Sun, 06 May 2018 07:08:39 AEST)
  datadir: /Users/bok/Projects/BlueFrontiersVaryonContractAudit/audit/test/testchain
  modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 shh:1.0 txpool:1.0 web3:1.0
 
@@ -117,11 +117,11 @@ undefined
 ... 
 undefined
 > 
-DATA: crowdsaleAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b
+DATA: crowdsaleAddress=0x8b97d31ff6bfc0c2fd7a0fff69d6b4bd485a832b
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005287373000000000           0.000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005287373000000000           0.000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005282013000000000           0.000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005282013000000000           0.000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000 Account #2 - Wallet
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000 Account #3
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000 Account #4
@@ -132,7 +132,7 @@ RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.00000000000000000
 RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000 Account #9
 RESULT: 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000 Account #10
 RESULT: 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000 Account #11
-RESULT: 12 0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b        0.000000000000000000           0.000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+RESULT: 12 0x8b97d31ff6bfc0c2fd7a0fff69d6b4bd485a832b        0.000000000000000000           0.000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -142,10 +142,10 @@ undefined
 RESULT: PASS Deploy Crowdsale Contract
 1
 > 
-RESULT: crowdsaleAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b status=0x1 Success gas=6000000 gasUsed=5287373 costETH=0.005287373 costUSD=2.12251014339 @ ETH/USD=401.43 gasPrice=1 gwei block=33772 txIx=0 txId=0x077a0f37c0bc51b9e5442ea3a780698c0393063e6c55d4c34969a350d5c10a1f @ 1525189747 Tue, 01 May 2018 15:49:07 UTC
+RESULT: crowdsaleAddress=0x8b97d31ff6bfc0c2fd7a0fff69d6b4bd485a832b status=0x1 Success gas=6000000 gasUsed=5282013 costETH=0.005282013 costUSD=2.12035847859 @ ETH/USD=401.43 gasPrice=1 gwei block=3856 txIx=0 txId=0x93b8ffddbbd245be1a5fc4856961c05d30ac074e0c04eae9bf49d793d84611b5 @ 1525554528 Sat, 05 May 2018 21:08:48 UTC
 undefined
 > 
-RESULT: tokenContractAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b
+RESULT: tokenContractAddress=0x8b97d31ff6bfc0c2fd7a0fff69d6b4bd485a832b
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.newOwner=0x0000000000000000000000000000000000000000
 RESULT: token.tokensIssuedTotal=0 0 tokens
@@ -153,11 +153,11 @@ RESULT: token.totalSupply=0 tokens
 RESULT: token.name=Varyon Token
 RESULT: token.symbol=VAR
 RESULT: token.decimals=6
-RESULT: crowdsale.date_ico_presale=1525189766 Tue, 01 May 2018 15:49:26 UTC Wed, 02 May 2018 01:49:26 AEST
-RESULT: crowdsale.date_ico_main=1525189796 Tue, 01 May 2018 15:49:56 UTC Wed, 02 May 2018 01:49:56 AEST
-RESULT: crowdsale.date_ico_end=1525189826 Tue, 01 May 2018 15:50:26 UTC Wed, 02 May 2018 01:50:26 AEST
-RESULT: crowdsale.date_ico_deadline=1525189856 Tue, 01 May 2018 15:50:56 UTC Wed, 02 May 2018 01:50:56 AEST
-RESULT: crowdsale.DATE_LIMIT=1525189886 Tue, 01 May 2018 15:51:26 UTC Wed, 02 May 2018 01:51:26 AEST
+RESULT: crowdsale.date_ico_presale=1525554548 Sat, 05 May 2018 21:09:08 UTC Sun, 06 May 2018 07:09:08 AEST
+RESULT: crowdsale.date_ico_main=1525554578 Sat, 05 May 2018 21:09:38 UTC Sun, 06 May 2018 07:09:38 AEST
+RESULT: crowdsale.date_ico_end=1525554608 Sat, 05 May 2018 21:10:08 UTC Sun, 06 May 2018 07:10:08 AEST
+RESULT: crowdsale.date_ico_deadline=1525554638 Sat, 05 May 2018 21:10:38 UTC Sun, 06 May 2018 07:10:38 AEST
+RESULT: crowdsale.DATE_LIMIT=1525554668 Sat, 05 May 2018 21:11:08 UTC Sun, 06 May 2018 07:11:08 AEST
 RESULT: crowdsale.TOKENS_PER_ETH=14750 tokens/ETH
 RESULT: crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
 RESULT: crowdsale.TOKEN_THRESHOLD=59000000 tokens
@@ -176,6 +176,16 @@ RESULT: crowdsale.tokensIcoBonus=0 tokens
 RESULT: crowdsale.tokensMinted=0 tokens
 RESULT: crowdsale.totalEthPending=0 ETH
 RESULT: crowdsale.totalEthContributed=0 ETH
+RESULT: crowdsale.tradeable=false
+RESULT: crowdsale.thresholdReached=false
+RESULT: crowdsale.availableToMint=633315000 tokens
+RESULT: crowdsale.ethToTokens(1/3 ETH)=4916.666666 tokens
+RESULT: crowdsale.ethToTokens(1 ETH)=14750 tokens
+RESULT: crowdsale.ethToTokens(100 ETH)=1475000 tokens
+RESULT: crowdsale.tokensToEth(4916.66666666666666666666666666 tokens)=0.333333333288135593 ETH
+RESULT: crowdsale.tokensToEth(4916.666667 tokens)=0.333333333355932203 ETH
+RESULT: crowdsale.tokensToEth(14750 tokens)=1 ETH
+RESULT: crowdsale.tokensToEth(1475000 tokens)=100 ETH
 undefined
 > 
 RESULT: 

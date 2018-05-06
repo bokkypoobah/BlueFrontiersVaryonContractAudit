@@ -306,6 +306,26 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.totalEthPending=" + contract.totalEthPending().shift(-18) + " ETH");
     console.log("RESULT: crowdsale.totalEthContributed=" + contract.totalEthContributed().shift(-18) + " ETH");
 
+    console.log("RESULT: crowdsale.tradeable=" + contract.tradeable());
+    console.log("RESULT: crowdsale.thresholdReached=" + contract.thresholdReached());
+    console.log("RESULT: crowdsale.availableToMint=" + contract.availableToMint().shift(-decimals) + " tokens");
+
+    var ether1Div3 = new BigNumber("1").shift(18).div(3);
+    var ether1 = new BigNumber("1").shift(18);
+    var ether100 = new BigNumber("100").shift(18);
+    console.log("RESULT: crowdsale.ethToTokens(1/3 ETH)=" + contract.ethToTokens(ether1Div3).shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.ethToTokens(1 ETH)=" + contract.ethToTokens(ether1).shift(-decimals) + " tokens");
+    console.log("RESULT: crowdsale.ethToTokens(100 ETH)=" + contract.ethToTokens(ether100).shift(-decimals) + " tokens");
+
+    var tokensFor1Div3Ether = new BigNumber("14750").shift(decimals).div(3);
+    var tokensFor1Div3EtherRoundUp = new BigNumber("4916.666667").shift(decimals);
+    var tokensFor1Ether = new BigNumber("14750").shift(decimals);
+    var tokensFor100Ether = new BigNumber("1475000").shift(decimals);
+    console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Div3Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Div3Ether).shift(-18) + " ETH");
+    console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Div3EtherRoundUp.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Div3EtherRoundUp).shift(-18) + " ETH");
+    console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Ether).shift(-18) + " ETH");
+    console.log("RESULT: crowdsale.tokensToEth(" + tokensFor100Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor100Ether).shift(-18) + " ETH");
+    
     var latestBlock = eth.blockNumber;
     var i;
 
