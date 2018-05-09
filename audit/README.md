@@ -48,3 +48,95 @@
   * [x] contract ERC20Token is ERC20Interface, Owned
     * [x] using SafeMath for uint;
   * [ ] contract VaryonToken is ERC20Token
+
+### Structure Using Surya
+
+Using `surya describe VaryonToken.sol` from https://github.com/GNSPS/soli :
+
+```
+ + [Lib] SafeMath 
+    - [Int] add 
+    - [Int] sub 
+    - [Int] mul 
+
+ +  Owned 
+    - [Pub] <fallback> 
+    - [Pub] transferOwnership 
+    - [Pub] acceptOwnership 
+    - [Pub] addAdmin 
+    - [Pub] removeAdmin 
+
+ +  ERC20Interface 
+    - [Pub] totalSupply 
+    - [Pub] balanceOf 
+    - [Pub] transfer 
+    - [Pub] transferFrom 
+    - [Pub] approve 
+    - [Pub] allowance 
+
+ +  ERC20Token (ERC20Interface, Owned)
+    - [Pub] totalSupply 
+    - [Pub] balanceOf 
+    - [Pub] transfer 
+    - [Pub] approve 
+    - [Pub] transferFrom 
+    - [Pub] allowance 
+
+ +  VaryonToken (ERC20Token)
+    - [Pub] <fallback> 
+    - [Pub] <fallback> ($)
+    - [Pub] atNow 
+    - [Pub] tradeable 
+    - [Pub] thresholdReached 
+    - [Pub] availableToMint 
+    - [Prv] tokensAvailableIco 
+    - [Prv] minumumInvestment 
+    - [Pub] ethToTokens 
+    - [Pub] tokensToEth 
+    - [Prv] getBonus 
+    - [Prv] registerLockedTokens 
+    - [Pub] unlockedTokens 
+    - [Pub] isAvailableLockSlot 
+    - [Pub] setWallet 
+    - [Pub] setDateIcoPresale 
+    - [Pub] setDateIcoMain 
+    - [Pub] setDateIcoEnd 
+    - [Pub] setDateIcoDeadline 
+    - [Pub] addToWhitelist 
+    - [Pub] addToWhitelistParams 
+    - [Pub] addToWhitelistMultiple 
+    - [Pub] addToWhitelistParamsMultiple 
+    - [Prv] pWhitelist 
+    - [Pub] addToBlacklist 
+    - [Pub] addToBlacklistMultiple 
+    - [Prv] pBlacklist 
+    - [Pub] mintTokens 
+    - [Pub] mintTokensMultiple 
+    - [Prv] pMintTokens 
+    - [Pub] mintTokensLocked 
+    - [Pub] mintTokensLockedMultiple 
+    - [Prv] pMintTokensLocked 
+    - [Pub] modifyIcoLock 
+    - [Pub] offlineContribution 
+    - [Prv] offlineTokensWhitelist 
+    - [Prv] offlineTokensPending 
+    - [Prv] buyTokens 
+    - [Prv] buyTokensPending 
+    - [Prv] buyTokensWhitelist 
+    - [Prv] processWhitelisting 
+    - [Prv] sendEtherToWallet 
+    - [Prv] processTokenIssue 
+    - [Pub] cancelPending 
+    - [Pub] cancelPendingMultiple 
+    - [Pub] reclaimPending 
+    - [Prv] pRevertPending 
+    - [Pub] reclaimEth 
+    - [Pub] reclaimEthAdmin 
+    - [Pub] reclaimEthAdminMultiple 
+    - [Prv] pReclaimEth 
+    - [Pub] transferAnyERC20Token 
+    - [Pub] transfer 
+    - [Pub] transferFrom 
+    - [Pub] transferLocked 
+    - [Ext] transferMultiple 
+```
