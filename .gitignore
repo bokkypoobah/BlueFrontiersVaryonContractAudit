@@ -1,6 +1,8 @@
 /tmp
 /test
 /contracts/VaryonToken.20180426.sol
+/contracts/VaryonToken.wip.sol
+/contracts/var_unused.sol
 
 .project
 .settings
@@ -12,4 +14,3 @@ audit/test/testchain/geth
 audit/test/testchain/geth.ipc
 audit/test/testchain/history
 private
-
