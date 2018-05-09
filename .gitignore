@@ -10,6 +10,7 @@ test/testchain/geth
 test/testchain/geth.ipc
 test/testchain/history
 
+audit/code-review/*.sol
 audit/test/testchain/geth
 audit/test/testchain/geth.ipc
 audit/test/testchain/history

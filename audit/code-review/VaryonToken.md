@@ -61,9 +61,12 @@ library SafeMath {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract Utils {
   
+  // BK Ok - Public view function
   function atNow() public view returns (uint) {
+    // BK Ok
     return now;
   }
   
