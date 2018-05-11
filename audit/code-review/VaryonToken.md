@@ -139,7 +139,7 @@ contract Owned {
   // BK Ok - Only owner can execute
   function removeAdmin(address _a) public onlyOwner {
     // BK Ok
-    require( isAdmin[_a] == true );
+    require(isAdmin[_a] == true);
     // BK Ok
     isAdmin[_a] = false;
     // BK Ok - Log event
