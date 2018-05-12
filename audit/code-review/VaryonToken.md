@@ -690,9 +690,13 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         pMintTokens(_account, _tokens);
     }
 
+    // BK Ok - Only owner can execute
     function mintTokensMultiple(address[] _accounts, uint[] _tokens) public onlyOwner {
+        // BK Ok
         require(_accounts.length == _tokens.length);
+        // BK Ok
         for (uint i = 0; i < _accounts.length; i++) {
+            // BK Ok
             pMintTokens(_accounts[i], _tokens[i]);
         }
     }
