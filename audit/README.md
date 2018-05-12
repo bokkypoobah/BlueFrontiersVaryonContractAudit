@@ -52,13 +52,13 @@ NIL
 ## Code Review
 
 * [ ] [code-review/VaryonToken.md](code-review/VaryonToken.md)
-  * [ ] library SafeMath
-  * [ ] contract Utils
-  * [ ] contract Owned
-  * [ ] contract Wallet is Owned
-  * [ ] contract ERC20Interface
-  * [ ] contract ERC20Token is ERC20Interface, Owned
-    * [ ] using SafeMath for uint;
+  * [x] library SafeMath
+  * [x] contract Utils
+  * [x] contract Owned
+  * [x] contract Wallet is Owned
+  * [x] contract ERC20Interface
+  * [x] contract ERC20Token is ERC20Interface, Owned
+    * [x] using SafeMath for uint;
   * [ ] contract LockSlots is ERC20Token, Utils
     * [ ] using SafeMath for uint;
   * [ ] contract WBList is Owned, Utils
