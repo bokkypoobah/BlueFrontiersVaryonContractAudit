@@ -1,11 +1,29 @@
 # Blue Frontiers Varyon Contract Audit
 
-[2edcced](https://github.com/Blue-Frontiers/varyon/commit/2edccedc46e66644058db50bb6e6652175bf09a6)
-[66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
+## Summary
 
-## Table Of Contents
+[Blue Frontiers](https://www.blue-frontiers.com/) intends to run a crowdsale in May/June 2018.
 
+Bok Consulting Pty Ltd was commissioned to perform an private audit on the Ethereum smart contracts for Blue Frontiers's crowdsale.
+
+This audit has been conducted on Blue Frontiers's source code in commits
+[2edcced](https://github.com/Blue-Frontiers/varyon/commit/2edccedc46e66644058db50bb6e6652175bf09a6), 
+[66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a) and
+[d2e0b13](https://github.com/Blue-Frontiers/varyon/commit/d2e0b13e3e283a1dcde898e90daa2e70fb25d3f0).
+
+TODO - CHeck that no potential vulnerabilities have been identified in the crowdsale and token contracts.
+
+<br />
+
+<hr />
+
+* [Summary](#summary)
 * [Recommendations](#recommendations)
+* [Potential Vulnerabilities](#potential-vulnerabilities)
+* [Scope](#scope)
+* [Limitations](#limitations)
+* [Due Diligence](#due-diligence)
+* [Risks](#risks)
 * [Testing](#testing)
 * [Code Review](#code-review)
 
@@ -43,7 +61,73 @@ NIL
 
 <hr />
 
+## Potential Vulnerabilities
+
+TODO - Check that no potential vulnerabilities have been identified in the crowdsale and token contracts.
+
+<br />
+
+<hr />
+
+## Scope
+
+This audit is into the technical aspects of the crowdsale contracts. The primary aim of this audit is to ensure that funds
+contributed to these contracts are not easily attacked or stolen by third parties. The secondary aim of this audit is to
+ensure the coded algorithms work as expected. This audit does not guarantee that that the code is bugfree, but intends to
+highlight any areas of weaknesses.
+
+<br />
+
+<hr />
+
+## Limitations
+
+This audit makes no statements or warranties about the viability of the Blue Frontier's business proposition, the individuals
+involved in this business or the regulatory regime for the business model.
+
+<br />
+
+<hr />
+
+## Due Diligence
+
+As always, potential participants in any crowdsale are encouraged to perform their due diligence on the business proposition
+before funding any crowdsales.
+
+Potential participants are also encouraged to only send their funds to the official crowdsale Ethereum address, published on
+the crowdsale beneficiary's official communication channel.
+
+Scammers have been publishing phishing address in the forums, twitter and other communication channels, and some go as far as
+duplicating crowdsale websites. Potential participants should NOT just click on any links received through these messages.
+Scammers have also hacked the crowdsale website to replace the crowdsale contract address with their scam address.
+ 
+Potential participants should also confirm that the verified source code on EtherScan.io for the published crowdsale address
+matches the audited source code, and that the deployment parameters are correctly set, including the constant parameters.
+
+<br />
+
+<hr />
+
+## Risks
+
+TODO
+
+<br />
+
+<hr />
+
 ## Testing
+
+Details of the testing environment can be found in [test](test).
+
+The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
+in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
+
+* [ ] Deploy crowdsale contract
+  * [ ] Deploy token contract
+* [ ] Contribute
+* [ ] Finalise crowdsale
+* [ ] `transfer(...)`, `approve(...)` and `transferFrom(...)`
 
 <br />
 
@@ -173,3 +257,9 @@ Using `surya describe VaryonToken.sol` from https://github.com/GNSPS/soli :
     - [Pub] transferFrom 
     - [Ext] transferMultiple 
 ```
+
+<br />
+
+<br />
+
+(c) BokkyPooBah / Bok Consulting Pty Ltd for Blue Frontier - May 12 2018. The MIT Licence.
