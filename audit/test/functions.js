@@ -18,7 +18,7 @@ addAccount(eth.accounts[6], "Account #6");
 addAccount(eth.accounts[7], "Account #7");
 addAccount(eth.accounts[8], "Account #8");
 addAccount(eth.accounts[9], "Account #9");
-addAccount(eth.accounts[10], "Account #10");
+addAccount(eth.accounts[10], "Account #10 - Minted Tokens");
 addAccount(eth.accounts[11], "Account #11");
 
 var minerAccount = eth.accounts[0];
@@ -139,6 +139,14 @@ function assertEtherBalance(account, expectedBalance) {
     console.log("RESULT: OK " + account + " has expected balance " + expectedBalance);
   } else {
     console.log("RESULT: FAILURE " + account + " has balance " + etherBalance + " <> expected " + expectedBalance);
+  }
+}
+
+function assertEquals(variableText, variable, value) {
+  if (variable == value) {
+    console.log("RESULT: PASS " + variableText + " == " + value);
+  } else {
+    console.log("RESULT: FAIL " + variableText + " != " + value);
   }
 }
 
@@ -275,16 +283,31 @@ function printTokenContractDetails() {
     var decimals = contract.decimals();
     console.log("RESULT: token.owner=" + contract.owner());
     console.log("RESULT: token.newOwner=" + contract.newOwner());
+    console.log("RESULT: token.wallet=" + contract.wallet());
     console.log("RESULT: token.tokensIssuedTotal=" + contract.tokensIssuedTotal() + " " + contract.tokensIssuedTotal().shift(-decimals) + " tokens");
     console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals) + " tokens");
+    console.log("RESULT: token.LOCK_SLOTS=" + contract.LOCK_SLOTS());
+    // mapping(address => uint) public balances;
+    // mapping(address => uint[LOCK_SLOTS]) public lockTerm;
+    // mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
+    // function lockedTokens(address _account) public view returns (uint locked) {
+    // function unlockedTokens (address _account) public view returns (uint unlocked) {
+    // unction isAvailableLockSlot(address _account, uint _term) public view returns (bool) {
+    console.log("RESULT: token.MAX_LOCKING_PERIOD=" + contract.MAX_LOCKING_PERIOD() + " " + contract.MAX_LOCKING_PERIOD()/365);
+    // mapping(address => bool) public whitelist;
+    // mapping(address => uint) public whitelistLimit;
+    // mapping(address => uint) public whitelistThreshold;
+    // mapping(address => uint) public whitelistLockDate;
+    // mapping(address => bool) public blacklist;
+
+    console.log("RESULT: crowdsale.dateIcoPresale=" + contract.dateIcoPresale() + " " + new Date(contract.dateIcoPresale() * 1000).toUTCString() + " " + new Date(contract.dateIcoPresale() * 1000).toString());
+    console.log("RESULT: crowdsale.dateIcoMain=" + contract.dateIcoMain() + " " + new Date(contract.dateIcoMain() * 1000).toUTCString() + " " + new Date(contract.dateIcoMain() * 1000).toString());
+    console.log("RESULT: crowdsale.dateIcoEnd=" + contract.dateIcoEnd() + " " + new Date(contract.dateIcoEnd() * 1000).toUTCString() + " " + new Date(contract.dateIcoEnd() * 1000).toString());
+    console.log("RESULT: crowdsale.dateIcoDeadline=" + contract.dateIcoDeadline() + " " + new Date(contract.dateIcoDeadline() * 1000).toUTCString() + " " + new Date(contract.dateIcoDeadline() * 1000).toString());
+    console.log("RESULT: crowdsale.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
     console.log("RESULT: token.name=" + contract.name());
     console.log("RESULT: token.symbol=" + contract.symbol());
     console.log("RESULT: token.decimals=" + decimals);
-    console.log("RESULT: crowdsale.date_ico_presale=" + contract.date_ico_presale() + " " + new Date(contract.date_ico_presale() * 1000).toUTCString() + " " + new Date(contract.date_ico_presale() * 1000).toString());
-    console.log("RESULT: crowdsale.date_ico_main=" + contract.date_ico_main() + " " + new Date(contract.date_ico_main() * 1000).toUTCString() + " " + new Date(contract.date_ico_main() * 1000).toString());
-    console.log("RESULT: crowdsale.date_ico_end=" + contract.date_ico_end() + " " + new Date(contract.date_ico_end() * 1000).toUTCString() + " " + new Date(contract.date_ico_end() * 1000).toString());
-    console.log("RESULT: crowdsale.date_ico_deadline=" + contract.date_ico_deadline() + " " + new Date(contract.date_ico_deadline() * 1000).toUTCString() + " " + new Date(contract.date_ico_deadline() * 1000).toString());
-    console.log("RESULT: crowdsale.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
     console.log("RESULT: crowdsale.TOKENS_PER_ETH=" + contract.TOKENS_PER_ETH() + " tokens/ETH");
     console.log("RESULT: crowdsale.TOKEN_TOTAL_SUPPLY=" + contract.TOKEN_TOTAL_SUPPLY().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.TOKEN_THRESHOLD=" + contract.TOKEN_THRESHOLD().shift(-decimals) + " tokens");
@@ -295,21 +318,28 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.MIN_PURCHASE_PRESALE=" + contract.MIN_PURCHASE_PRESALE().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.MIN_PURCHASE_MAIN=" + contract.MIN_PURCHASE_MAIN().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.MINIMUM_ETH_CONTRIBUTION=" + contract.MINIMUM_ETH_CONTRIBUTION().shift(-18) + " ETH");
-
+    // mapping(address => uint) public balancesOffline;
+    // mapping(address => uint) public balancesPending;
+    // mapping(address => uint) public balancesPendingOffline;
     console.log("RESULT: crowdsale.tokensIcoPending=" + contract.tokensIcoPending().shift(-decimals) + " tokens");
+    // mapping(address => uint) public balancesMinted;
     console.log("RESULT: crowdsale.tokensIcoIssued=" + contract.tokensIcoIssued().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.tokensIcoCrowd=" + contract.tokensIcoCrowd().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.tokensIcoOffline=" + contract.tokensIcoOffline().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.tokensIcoBonus=" + contract.tokensIcoBonus().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.tokensMinted=" + contract.tokensMinted().shift(-decimals) + " tokens");
-
+    // mapping(address => uint) public balancesBonus;
+    // mapping(address => uint) public ethPending;
     console.log("RESULT: crowdsale.totalEthPending=" + contract.totalEthPending().shift(-18) + " ETH");
+    // mapping(address => uint) public ethContributed;
     console.log("RESULT: crowdsale.totalEthContributed=" + contract.totalEthContributed().shift(-18) + " ETH");
+    // mapping(address => bool) public refundClaimed;
 
     console.log("RESULT: crowdsale.tradeable=" + contract.tradeable());
     console.log("RESULT: crowdsale.thresholdReached=" + contract.thresholdReached());
     console.log("RESULT: crowdsale.availableToMint=" + contract.availableToMint().shift(-decimals) + " tokens");
-
+    console.log("RESULT: crowdsale.tokensAvailableIco=" + contract.tokensAvailableIco().shift(-decimals) + " tokens");
+    
     var ether1Div3 = new BigNumber("1").shift(18).div(3);
     var ether1 = new BigNumber("1").shift(18);
     var ether100 = new BigNumber("100").shift(18);
@@ -325,7 +355,7 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Div3EtherRoundUp.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Div3EtherRoundUp).shift(-18) + " ETH");
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Ether).shift(-18) + " ETH");
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor100Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor100Ether).shift(-18) + " ETH");
-    
+
     var latestBlock = eth.blockNumber;
     var i;
 
@@ -357,12 +387,26 @@ function printTokenContractDetails() {
     });
     walletUpdatedEvents.stopWatching();
 
-    var icoDateUpdatedEvents = contract.IcoDateUpdated({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    var registeredLockedTokensEvents = contract.RegisteredLockedTokens({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
-    icoDateUpdatedEvents.watch(function (error, result) {
-      console.log("RESULT: IcoDateUpdated " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    registeredLockedTokensEvents.watch(function (error, result) {
+      console.log("RESULT: RegisteredLockedTokens " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
-    icoDateUpdatedEvents.stopWatching();
+    registeredLockedTokensEvents.stopWatching();
+
+    var  icoLockSetEvents = contract.IcoLockSet({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    icoLockSetEvents.watch(function (error, result) {
+      console.log("RESULT: IcoLockSet " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    icoLockSetEvents.stopWatching();
+
+    var icoLockChangedEvents = contract.IcoLockChanged({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    icoLockChangedEvents.watch(function (error, result) {
+      console.log("RESULT: IcoLockChanged " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    icoLockChangedEvents.stopWatching();
 
     var whitelistedEvents = contract.Whitelisted({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
@@ -378,12 +422,41 @@ function printTokenContractDetails() {
     });
     blacklistedEvents.stopWatching();
 
+    var icoDateUpdatedEvents = contract.IcoDateUpdated({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    icoDateUpdatedEvents.watch(function (error, result) {
+      console.log("RESULT: IcoDateUpdated " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    icoDateUpdatedEvents.stopWatching();
+
     var tokensMintedEvents = contract.TokensMinted({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
     tokensMintedEvents.watch(function (error, result) {
-      console.log("RESULT: TokensMinted " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+      console.log("RESULT: TokensMinted " + i++ + " #" + result.blockNumber + " account=" + result.args.account +
+        " tokens=" + result.args.tokens.shift(-decimals) + " term=" + result.args.term);
     });
     tokensMintedEvents.stopWatching();
+
+    var registerOfflineContributionEvents = contract.RegisterOfflineContribution({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    registerOfflineContributionEvents.watch(function (error, result) {
+      console.log("RESULT: RegisterOfflineContribution " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    registerOfflineContributionEvents.stopWatching();
+
+    var registerOfflinePendingEvents = contract.RegisterOfflinePending({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    registerOfflinePendingEvents.watch(function (error, result) {
+      console.log("RESULT: RegisterOfflinePending " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    registerOfflinePendingEvents.stopWatching();
+
+    var registerContributionEvents = contract.RegisterContribution({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    registerContributionEvents.watch(function (error, result) {
+      console.log("RESULT: RegisterContribution " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    });
+    registerContributionEvents.stopWatching();
 
     var registerPendingEvents = contract.RegisterPending({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
@@ -399,40 +472,19 @@ function printTokenContractDetails() {
     });
     whitelistingEventEvents.stopWatching();
 
-    var registerContributionEvents = contract.RegisterContribution({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    var offlineTokenReturnEvents = contract.OfflineTokenReturn({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
-    registerContributionEvents.watch(function (error, result) {
-      console.log("RESULT: RegisterContribution " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    offlineTokenReturnEvents.watch(function (error, result) {
+      console.log("RESULT: OfflineTokenReturn " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
-    registerContributionEvents.stopWatching();
+    offlineTokenReturnEvents.stopWatching();
 
-    var offlinePendingEvents = contract.OfflinePending({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    var revertPendingEvents = contract.RevertPending({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
-    offlinePendingEvents.watch(function (error, result) {
-      console.log("RESULT: OfflinePending " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
+    revertPendingEvents.watch(function (error, result) {
+      console.log("RESULT: RevertPending " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
-    offlinePendingEvents.stopWatching();
-
-    var registerOfflineContributionEvents = contract.RegisterOfflineContribution({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    registerOfflineContributionEvents.watch(function (error, result) {
-      console.log("RESULT: RegisterOfflineContribution " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    registerOfflineContributionEvents.stopWatching();
-
-    var refundBlacklistedTokensEvents = contract.RefundBlacklistedTokens({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    refundBlacklistedTokensEvents.watch(function (error, result) {
-      console.log("RESULT: RefundBlacklistedTokens " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    refundBlacklistedTokensEvents.stopWatching();
-
-    var refundBlacklistedEthEvents = contract.RefundBlacklistedEth({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    refundBlacklistedEthEvents.watch(function (error, result) {
-      console.log("RESULT: RefundBlacklistedEth " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    refundBlacklistedEthEvents.stopWatching();
+    revertPendingEvents.stopWatching();
 
     var refundFailedIcoEvents = contract.RefundFailedIco({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
@@ -440,27 +492,6 @@ function printTokenContractDetails() {
       console.log("RESULT: RefundFailedIco " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     refundFailedIcoEvents.stopWatching();
-
-    var returnedPendingEvents = contract.ReturnedPending({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    returnedPendingEvents.watch(function (error, result) {
-      console.log("RESULT: ReturnedPending " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    returnedPendingEvents.stopWatching();
-
-    var icoLockChangedEvents = contract.IcoLockChanged({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    icoLockChangedEvents.watch(function (error, result) {
-      console.log("RESULT: IcoLockChanged " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    icoLockChangedEvents.stopWatching();
-
-    var transferLockedEvents = contract.TransferLocked({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    transferLockedEvents.watch(function (error, result) {
-      console.log("RESULT: TransferLocked " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
-    });
-    transferLockedEvents.stopWatching();
 
     var approvalEvents = contract.Approval({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;

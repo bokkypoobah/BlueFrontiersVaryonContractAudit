@@ -2,7 +2,7 @@
 
 ## Summary
 
-[Blue Frontiers](https://www.blue-frontiers.com/) intends to run a crowdsale in May/June 2018.
+[Blue Frontiers](https://www.blue-frontiers.com/) intends to run a crowdsale in May or June 2018.
 
 Bok Consulting Pty Ltd was commissioned to perform an private audit on the Ethereum smart contracts for Blue Frontiers's crowdsale.
 
@@ -123,8 +123,7 @@ Details of the testing environment can be found in [test](test).
 The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
 in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
 
-* [ ] Deploy crowdsale contract
-  * [ ] Deploy token contract
+* [x] Deploy crowdsale/token contract
 * [ ] Contribute
 * [ ] Finalise crowdsale
 * [ ] `transfer(...)`, `approve(...)` and `transferFrom(...)`

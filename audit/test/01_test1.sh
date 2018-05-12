@@ -61,12 +61,11 @@ printf "DATE_LIMIT_DATE    = '$DATE_LIMIT_DATE' '$DATE_LIMIT_DATE_S'\n" | tee -a
 
 # --- Modify parameters ---
 # `perl -pi -e "s/require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/\/\/ require\( TOKEN_PRESALE_CAP\.mul\(BONUS\) \/ 100 \=\= MAX_BONUS_TOKENS \);/" $CROWDSALESOL`
-`perl -pi -e "s/date_ico_presale    \= 1526392800;.*$/date_ico_presale    \= $ICO_PRESALE_DATE; \/\/ $ICO_PRESALE_DATE_S/" $CROWDSALESOL`
-`perl -pi -e "s/date_ico_main       \= 1527861600;.*$/date_ico_main       \= $ICO_MAIN_DATE; \/\/ $ICO_MAIN_DATE_S/" $CROWDSALESOL`
-`perl -pi -e "s/date_ico_end        \= 1530367200;.*$/date_ico_end        \= $ICO_END_DATE; \/\/ $ICO_END_DATE_S/" $CROWDSALESOL`
-`perl -pi -e "s/date_ico_deadline   \= 1533045600;.*$/date_ico_deadline   \= $ICO_DEADLINE_DATE; \/\/ $ICO_DEADLINE_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/dateIcoPresale  \= 1526392800;.*$/dateIcoPresale  \= $ICO_PRESALE_DATE; \/\/ $ICO_PRESALE_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/dateIcoMain     \= 1527861600;.*$/dateIcoMain     \= $ICO_MAIN_DATE; \/\/ $ICO_MAIN_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/dateIcoEnd      \= 1530367200;.*$/dateIcoEnd      \= $ICO_END_DATE; \/\/ $ICO_END_DATE_S/" $CROWDSALESOL`
+`perl -pi -e "s/dateIcoDeadline \= 1533045600;.*$/dateIcoDeadline \= $ICO_DEADLINE_DATE; \/\/ $ICO_DEADLINE_DATE_S/" $CROWDSALESOL`
 `perl -pi -e "s/DATE_LIMIT \= 1538316000;.*$/DATE_LIMIT \= $DATE_LIMIT_DATE; \/\/ $DATE_LIMIT_DATE_S/" $CROWDSALESOL`
-
 
 DIFFS1=`diff $SOURCEDIR/$CROWDSALESOL $CROWDSALESOL`
 echo "--- Differences $SOURCEDIR/$CROWDSALESOL $CROWDSALESOL ---" | tee -a $TEST1OUTPUT
@@ -94,7 +93,7 @@ console.log("RESULT: ");
 // -----------------------------------------------------------------------------
 var crowdsaleMessage = "Deploy Crowdsale Contract";
 // -----------------------------------------------------------------------------
-console.log("RESULT: " + crowdsaleMessage);
+console.log("RESULT: ---------- " + crowdsaleMessage + " ----------");
 var crowdsaleContract = web3.eth.contract(crowdsaleAbi);
 var crowdsaleTx = null;
 var crowdsaleAddress = null;
@@ -119,6 +118,24 @@ failIfTxStatusError(crowdsaleTx, crowdsaleMessage);
 printTxData("crowdsaleAddress=" + crowdsaleAddress, crowdsaleTx);
 printTokenContractDetails();
 console.log("RESULT: ");
+
+assertEquals("availableToMint()", crowdsale.availableToMint().shift(-crowdsale.decimals()), "751400000");
+assertEquals("tokensAvailableIco()", crowdsale.tokensAvailableIco().shift(-crowdsale.decimals()), "44000000");
+
+
+// -----------------------------------------------------------------------------
+var mintTokens_Message = "Mint Tokens";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ---------- " + mintTokens_Message + " ----------");
+var mintTokens_1Tx = crowdsale.mintTokens(account10, new BigNumber("123.456").shift(18), {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(mintTokens_1Tx, mintTokens_1Tx + " - owner mint(ac10, 123.456 tokens)");
+printTxData("mintTokens_Message", mintTokens_1Tx);
+printTokenContractDetails();
+console.log("RESULT: ");
+
 
 exit;
 
