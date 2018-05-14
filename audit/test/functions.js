@@ -283,16 +283,20 @@ function printTokenContractDetails() {
     var decimals = contract.decimals();
     console.log("RESULT: token.owner=" + contract.owner());
     console.log("RESULT: token.newOwner=" + contract.newOwner());
+
     console.log("RESULT: token.wallet=" + contract.wallet());
+
     console.log("RESULT: token.tokensIssuedTotal=" + contract.tokensIssuedTotal() + " " + contract.tokensIssuedTotal().shift(-decimals) + " tokens");
     console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals) + " tokens");
-    console.log("RESULT: token.LOCK_SLOTS=" + contract.LOCK_SLOTS());
     // mapping(address => uint) public balances;
+
+    console.log("RESULT: token.LOCK_SLOTS=" + contract.LOCK_SLOTS());
     // mapping(address => uint[LOCK_SLOTS]) public lockTerm;
     // mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
-    // function lockedTokens(address _account) public view returns (uint locked) {
-    // function unlockedTokens (address _account) public view returns (uint unlocked) {
-    // unction isAvailableLockSlot(address _account, uint _term) public view returns (bool) {
+    // function lockedTokens(address _account) public view returns (uint locked)
+    // function unlockedTokens (address _account) public view returns (uint unlocked)
+    // function isAvailableLockSlot(address _account, uint _term) public view returns (bool)
+
     console.log("RESULT: token.MAX_LOCKING_PERIOD=" + contract.MAX_LOCKING_PERIOD() + " " + contract.MAX_LOCKING_PERIOD()/365);
     // mapping(address => bool) public whitelist;
     // mapping(address => uint) public whitelistLimit;
@@ -305,6 +309,7 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.dateIcoEnd=" + contract.dateIcoEnd() + " " + new Date(contract.dateIcoEnd() * 1000).toUTCString() + " " + new Date(contract.dateIcoEnd() * 1000).toString());
     console.log("RESULT: crowdsale.dateIcoDeadline=" + contract.dateIcoDeadline() + " " + new Date(contract.dateIcoDeadline() * 1000).toUTCString() + " " + new Date(contract.dateIcoDeadline() * 1000).toString());
     console.log("RESULT: crowdsale.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
+
     console.log("RESULT: token.name=" + contract.name());
     console.log("RESULT: token.symbol=" + contract.symbol());
     console.log("RESULT: token.decimals=" + decimals);
@@ -339,7 +344,7 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.thresholdReached=" + contract.thresholdReached());
     console.log("RESULT: crowdsale.availableToMint=" + contract.availableToMint().shift(-decimals) + " tokens");
     console.log("RESULT: crowdsale.tokensAvailableIco=" + contract.tokensAvailableIco().shift(-decimals) + " tokens");
-    
+
     var ether1Div3 = new BigNumber("1").shift(18).div(3);
     var ether1 = new BigNumber("1").shift(18);
     var ether100 = new BigNumber("100").shift(18);
@@ -380,12 +385,31 @@ function printTokenContractDetails() {
     });
     adminChangeEvents.stopWatching();
 
+
     var walletUpdatedEvents = contract.WalletUpdated({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
     walletUpdatedEvents.watch(function (error, result) {
       console.log("RESULT: WalletUpdated " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     walletUpdatedEvents.stopWatching();
+
+
+    var approvalEvents = contract.Approval({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    approvalEvents.watch(function (error, result) {
+      console.log("RESULT: Approval " + i++ + " #" + result.blockNumber + " _owner=" + result.args._owner +
+        " _spender=" + result.args._spender + " _value=" + result.args._value.shift(-decimals));
+    });
+    approvalEvents.stopWatching();
+
+    var transferEvents = contract.Transfer({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    transferEvents.watch(function (error, result) {
+      console.log("RESULT: Transfer " + i++ + " #" + result.blockNumber + ": _from=" + result.args._from + " _to=" + result.args._to +
+        " _value=" + result.args._value.shift(-decimals));
+    });
+    transferEvents.stopWatching();
+
 
     var registeredLockedTokensEvents = contract.RegisteredLockedTokens({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
@@ -408,6 +432,7 @@ function printTokenContractDetails() {
     });
     icoLockChangedEvents.stopWatching();
 
+
     var whitelistedEvents = contract.Whitelisted({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
     whitelistedEvents.watch(function (error, result) {
@@ -422,12 +447,14 @@ function printTokenContractDetails() {
     });
     blacklistedEvents.stopWatching();
 
+
     var icoDateUpdatedEvents = contract.IcoDateUpdated({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
     icoDateUpdatedEvents.watch(function (error, result) {
       console.log("RESULT: IcoDateUpdated " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     icoDateUpdatedEvents.stopWatching();
+
 
     var tokensMintedEvents = contract.TokensMinted({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
@@ -492,22 +519,6 @@ function printTokenContractDetails() {
       console.log("RESULT: RefundFailedIco " + i++ + " #" + result.blockNumber + " " + JSON.stringify(result.args));
     });
     refundFailedIcoEvents.stopWatching();
-
-    var approvalEvents = contract.Approval({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    approvalEvents.watch(function (error, result) {
-      console.log("RESULT: Approval " + i++ + " #" + result.blockNumber + " _owner=" + result.args._owner +
-        " _spender=" + result.args._spender + " _value=" + result.args._value.shift(-decimals));
-    });
-    approvalEvents.stopWatching();
-
-    var transferEvents = contract.Transfer({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-    i = 0;
-    transferEvents.watch(function (error, result) {
-      console.log("RESULT: Transfer " + i++ + " #" + result.blockNumber + ": _from=" + result.args._from + " _to=" + result.args._to +
-        " _value=" + result.args._value.shift(-decimals));
-    });
-    transferEvents.stopWatching();
 
     tokenFromBlock = latestBlock + 1;
   }
