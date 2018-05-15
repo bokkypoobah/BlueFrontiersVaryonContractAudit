@@ -295,27 +295,37 @@ contract ERC20Token is ERC20Interface, Owned {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract LockSlots is ERC20Token, Utils {
 
+    // BK Ok
     using SafeMath for uint;
 
+    // BK Ok
     uint8 public constant LOCK_SLOTS = 6;
+    // BK Next 2 Ok
     mapping(address => uint[LOCK_SLOTS]) public lockTerm;
     mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
 
+    // BK Next 3 Ok - Events
     event RegisteredLockedTokens(address indexed account, uint indexed idx, uint tokens, uint term);
     event IcoLockSet(address indexed account, uint term, uint tokens);
     event IcoLockChanged(address indexed account, uint oldTerm, uint newTerm);
 
+    // BK Ok - Internal function, called by VaryonToken.pMintTokensLocked(...) private
     function registerLockedTokens(address _account, uint _tokens, uint _term) internal returns (uint idx) {
+        // BK Ok
         require(_term > atNow(), "lock term must be in the future"); 
 
         // find a slot (clean up while doing this)
         // use either the existing slot with the exact same term,
         // of which there can be at most one, or the first empty slot
+        // BK Ok
         idx = 9999;    
+        // BK Next 2 Ok
         uint[LOCK_SLOTS] storage term = lockTerm[_account];
         uint[LOCK_SLOTS] storage amnt = lockAmnt[_account];
+        // BK Ok
         for (uint i = 1; i < LOCK_SLOTS; i++) {
             if (term[i] <= atNow()) {
                 term[i] = 0;
@@ -381,12 +391,16 @@ contract LockSlots is ERC20Token, Utils {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract WBList is Owned, Utils {
 
+    // BK Ok
     using SafeMath for uint;
 
+    // BK Ok
     uint public constant MAX_LOCKING_PERIOD = 1827 days; // max 5 years
 
+    // BK Next 4 Ok
     mapping(address => bool) public whitelist;
     mapping(address => uint) public whitelistLimit;
     mapping(address => uint) public whitelistThreshold;
@@ -478,54 +492,88 @@ contract WBList is Owned, Utils {
 //
 // ----------------------------------------------------------------------------
 
+// BK Ok
 contract VaryonIcoDates is Owned, Utils {    
 
+    // BK Next 4 Ok
+    // crowdsale.dateIcoPresale=1526392800 Tue, 15 May 2018 14:00:00 UTC Wed, 16 May 2018 00:00:00 AEST
+    // crowdsale.dateIcoMain=1527861600 Fri, 01 Jun 2018 14:00:00 UTC Sat, 02 Jun 2018 00:00:00 AEST
+    // crowdsale.dateIcoEnd=1530367200 Sat, 30 Jun 2018 14:00:00 UTC Sun, 01 Jul 2018 00:00:00 AEST
+    // crowdsale.dateIcoDeadline=1533045600 Tue, 31 Jul 2018 14:00:00 UTC Wed, 01 Aug 2018 00:00:00 AEST
     uint public dateIcoPresale  = 1526392800; // 15-MAY-2018 14:00 UTC
     uint public dateIcoMain     = 1527861600; // 01-JUN-2018 14:00 UTC
     uint public dateIcoEnd      = 1530367200; // 30-JUN-2018 14:00 UTC
     uint public dateIcoDeadline = 1533045600; // 31-JUL-2018 14:00 UTC
 
+    // BK Ok
+    // crowdsale.DATE_LIMIT=1538316000 Sun, 30 Sep 2018 14:00:00 UTC Mon, 01 Oct 2018 00:00:00 AEST
     uint public constant DATE_LIMIT = 1538316000; // 30-SEP-2018 14:00 UTC
 
+    // BK Ok
     event IcoDateUpdated(uint8 id, uint unixts);
 
+    // BK Ok - Constructor
     constructor() public {
+        // BK Ok
         require(atNow() < dateIcoPresale);
+        // BK Ok
         checkDateOrder();
     }
 
+    // BK Ok - Internal view function
     function checkDateOrder() internal view {
+        // BK Next 4 Ok
         require(dateIcoPresale < dateIcoMain);
         require(dateIcoMain < dateIcoEnd);
         require(dateIcoEnd < dateIcoDeadline);
         require(dateIcoDeadline < DATE_LIMIT);
     }
 
+    // BK Ok - Only owner can execute
     function setDateIcoPresale(uint _unixts) public onlyOwner {
+        // BK Ok
         require(atNow() < _unixts && atNow() < dateIcoPresale);
+        // BK Ok
         dateIcoPresale = _unixts;
+        // BK Ok
         checkDateOrder();
+        // BK Ok - Log event
         emit IcoDateUpdated(1, _unixts);
     }
 
+    // BK Ok - Only owner can execute
     function setDateIcoMain(uint _unixts) public onlyOwner {
+        // BK Ok
         require(atNow() < _unixts && atNow() < dateIcoMain);
+        // BK Ok
         dateIcoMain = _unixts;
+        // BK Ok
         checkDateOrder();
+        // BK Ok - Log event
         emit IcoDateUpdated(2, _unixts);
     }
 
+    // BK Ok - Only owner can execute
     function setDateIcoEnd(uint _unixts) public onlyOwner {
+        // BK Ok
         require(atNow() < _unixts && atNow() < dateIcoEnd);
+        // BK Ok
         dateIcoEnd = _unixts;
+        // BK Ok
         checkDateOrder();
+        // BK Ok - Log event
         emit IcoDateUpdated(3, _unixts);
     }
 
+    // BK Ok - Only owner can execute
     function setDateIcoDeadline(uint _unixts) public onlyOwner {
+        // BK Ok
         require(atNow() < _unixts && atNow() < dateIcoDeadline);
+        // BK Ok
         dateIcoDeadline = _unixts;
+        // BK Ok
         checkDateOrder();
+        // BK Ok - Log event
         emit IcoDateUpdated(4, _unixts);
     }
 
@@ -552,20 +600,24 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Crowdsale parameters : token price, supply, caps and bonus
 
+    // BK Ok
     uint public constant TOKENS_PER_ETH = 10000; // test value, will be reset to 14750 before deployment
 
     uint public constant TOKEN_TOTAL_SUPPLY = 1000000000 * E18; // VAR 1,000,000,000
 
+    // BK Next 3 Ok
     uint public constant TOKEN_THRESHOLD   =  4000 * TOKENS_PER_ETH * E18; // ETH  4,000 = VAR  59,000,000
     uint public constant TOKEN_PRESALE_CAP =  4400 * TOKENS_PER_ETH * E18; // ETH  4,400 = VAR  64,000,000
     uint public constant TOKEN_ICO_CAP     = 24200 * TOKENS_PER_ETH * E18; // ETH 24,200 = VAR 356,950,000
 
+    // BK Ok
     uint public constant BONUS = 15;
 
     uint public constant MAX_BONUS_TOKENS = TOKEN_PRESALE_CAP * BONUS / 100; // 9,735,000 tokens
 
     // Crowdsale parameters : minimum purchase amounts expressed in tokens        
 
+    // BK Next 2 Ok
     uint public constant MIN_PURCHASE_PRESALE = 40 * TOKENS_PER_ETH * E18; // ETH 40 = VAR 590,000
     uint public constant MIN_PURCHASE_MAIN    =  1 * TOKENS_PER_ETH * E18; // ETH  1 = VAR  14,750
 
@@ -636,13 +688,19 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Information Functions --------------------------------
 
+    // BK Ok - View function
     function tradeable() public view returns (bool) {
+        // BK Ok
         if (thresholdReached() && atNow() > dateIcoEnd) return true;
+        // BK Ok
         return false;
     }
 
+    // BK Ok - View function
     function thresholdReached() public view returns (bool) {
+        // BK Ok
         if (tokensIcoIssued >= TOKEN_THRESHOLD) return true;
+        // BK Ok
         return false;
     }
 
@@ -669,11 +727,15 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         return MIN_PURCHASE_MAIN;
     }
 
+    // BK Ok - Pure function
     function ethToTokens(uint _eth) public pure returns (uint tokens) {
+        // BK Ok
         tokens = _eth.mul(TOKENS_PER_ETH);
     }
 
+    // BK Ok - Pure function
     function tokensToEth(uint _tokens) public pure returns (uint eth) {
+        // BK Ok
         eth = _tokens / TOKENS_PER_ETH;
     }
 
@@ -819,6 +881,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         
         // the maximum number of tokens is a function of ether sent
         // the actual maximum depends on tokens available
+        // BK Ok
         uint tokens_max = ethToTokens(msg.value);
         uint tokens = tokens_max;
         if (tokens_max > tokensAvailableIco()) {
@@ -833,6 +896,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         uint eth_contributed = msg.value;
         uint eth_returned = 0;
         if (tokens < tokens_max) {
+            // BK Ok
             eth_contributed = tokensToEth(tokens);
             eth_returned = msg.value.sub(eth_contributed);
         }
@@ -866,6 +930,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
         // the maximum number of tokens is a function of ether sent
         // the actual maximum depends on tokens available
+        // BK Ok
         tokens_max = ethToTokens(msg.value);
         tokens = tokens_max;
         if (tokens_max > tokensAvailableIco()) {
@@ -884,6 +949,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         eth_to_contribute = msg.value;
         eth_to_return = 0;
         if (tokens < tokens_max) {
+            // BK Ok
             eth_to_contribute = tokensToEth(tokens);
             eth_to_return = msg.value.sub(eth_to_contribute);
         }
@@ -945,6 +1011,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
         // ether to return (there may be an "offline" portion)
         if (tokens_to_return > 0) {
+            // BK Ok
             eth_to_return = tokensToEth(tokens_to_return);
             if (eth_to_return > ethPending[_account]) { eth_to_return = ethPending[_account]; }
         }
@@ -1115,17 +1182,23 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Override "transfer"
 
+    // BK Ok - Any account can transfer their own tokens if threshold reached and after the crowdsale ends
     function transfer(address _to, uint _amount) public returns (bool success) {
+        // BK Ok
         require(tradeable());
         require(_amount <= unlockedTokens(msg.sender));
+        // BK Ok
         return super.transfer(_to, _amount);
     }
 
     // Override "transferFrom"
 
+    // BK Ok - Any account can transfer `from` account's tokens if threshold reached and after the crowdsale ends, and `from` account has approve(...)-d the spending
     function transferFrom(address _from, address _to, uint _amount) public returns (bool success) {
+        // BK Ok
         require(tradeable());
-        require(_amount <= unlockedTokens(_from)); 
+        require(_amount <= unlockedTokens(_from));
+        // BK Ok 
         return super.transferFrom(_from, _to, _amount);
     }
 

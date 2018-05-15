@@ -3,15 +3,15 @@
  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.000000000000000000           0.000000000000000000 Account #0 - Miner
  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
- 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
- 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
- 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Offline
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Whitelisted
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10 - Minted Tokens
-11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11 - Minted Locked Tokens
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -20,26 +20,26 @@
 ---------- Deploy Crowdsale Contract ----------
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005101730000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005101730000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005101602000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005101602000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
- 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
- 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
- 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Offline
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Whitelisted
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10 - Minted Tokens
-11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11 - Minted Locked Tokens
+12 0x57930444aa5c1e758c1407ded001a8f36aa80b1d        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy Crowdsale Contract
-crowdsaleAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688 status=0x1 Success gas=6000000 gasUsed=5101730 costETH=0.00510173 costUSD=2.0479874739 @ ETH/USD=401.43 gasPrice=1 gwei block=36 txIx=0 txId=0x329a1575889b10f9947a8a3d0ee8b065177c4cacd894dd0316641ced81097bf7 @ 1526324036 Mon, 14 May 2018 18:53:56 UTC
-tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
+crowdsaleAddress=0x57930444aa5c1e758c1407ded001a8f36aa80b1d status=0x1 Success gas=6000000 gasUsed=5101602 costETH=0.005101602 costUSD=2.04793609086 @ ETH/USD=401.43 gasPrice=1 gwei block=10123 txIx=0 txId=0xb95048ef73bea48c9e62107f68b74ae35322f8e63951c305326045fd50e1656e @ 1526690705 Sat, 19 May 2018 00:45:05 UTC
+tokenContractAddress=0x57930444aa5c1e758c1407ded001a8f36aa80b1d
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -47,11 +47,11 @@ token.tokensIssuedTotal=0 0 tokens
 token.totalSupply=0 tokens
 token.LOCK_SLOTS=6
 token.MAX_LOCKING_PERIOD=157852800 432473.4246575342
-crowdsale.dateIcoPresale=1526324046 Mon, 14 May 2018 18:54:06 UTC Tue, 15 May 2018 04:54:06 AEST
-crowdsale.dateIcoMain=1526324076 Mon, 14 May 2018 18:54:36 UTC Tue, 15 May 2018 04:54:36 AEST
-crowdsale.dateIcoEnd=1526324106 Mon, 14 May 2018 18:55:06 UTC Tue, 15 May 2018 04:55:06 AEST
-crowdsale.dateIcoDeadline=1526324136 Mon, 14 May 2018 18:55:36 UTC Tue, 15 May 2018 04:55:36 AEST
-crowdsale.DATE_LIMIT=1526324166 Mon, 14 May 2018 18:56:06 UTC Tue, 15 May 2018 04:56:06 AEST
+crowdsale.dateIcoPresale=1526690724 Sat, 19 May 2018 00:45:24 UTC Sat, 19 May 2018 10:45:24 AEST
+crowdsale.dateIcoMain=1526690754 Sat, 19 May 2018 00:45:54 UTC Sat, 19 May 2018 10:45:54 AEST
+crowdsale.dateIcoEnd=1526690784 Sat, 19 May 2018 00:46:24 UTC Sat, 19 May 2018 10:46:24 AEST
+crowdsale.dateIcoDeadline=1526690814 Sat, 19 May 2018 00:46:54 UTC Sat, 19 May 2018 10:46:54 AEST
+crowdsale.DATE_LIMIT=1526690844 Sat, 19 May 2018 00:47:24 UTC Sat, 19 May 2018 10:47:24 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -84,32 +84,132 @@ crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.4916
 crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
 crowdsale.tokensToEth(14750 tokens)=1.475 ETH
 crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
+--- 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 Account #3 - Offline ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xa44a08d3f6933c69212114bb66e2df1813651844 Account #4 - Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xa55a151eb00fded1634d27d1127b4be4627079ea Account #5 - Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 Account #10 - Minted Tokens ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xabba43e7594e3b76afb157989e93c6621497fd4b Account #11 - Minted Locked Tokens ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
 
 PASS availableToMint() == 751400000
 PASS tokensAvailableIco() == 44000000
 ---------- Mint Tokens ----------
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005213356000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005213356000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005213228000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005213228000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
- 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
- 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
- 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Offline
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Whitelisted
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000         123.456000000000000000 Account #10 - Minted Tokens
-11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
-12 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11 - Minted Locked Tokens
+12 0x57930444aa5c1e758c1407ded001a8f36aa80b1d        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                   123.456000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
-PASS 0x0f5e712a2e66948bff731c8ab68739741b1fce6bf5b1117a1b2375ba33f6ee2a - owner mint(ac10, 123.456 tokens)
-mintTokens_Message status=0x1 Success gas=1000000 gasUsed=111626 costETH=0.000111626 costUSD=0.04481002518 @ ETH/USD=401.43 gasPrice=1 gwei block=40 txIx=0 txId=0x0f5e712a2e66948bff731c8ab68739741b1fce6bf5b1117a1b2375ba33f6ee2a @ 1526324040 Mon, 14 May 2018 18:54:00 UTC
-tokenContractAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688
+PASS 0x7f8c8d3edfeab961bead591276582bcd437475ee40aa8dbbc2ae42020cda3555 - owner mint(ac10, 123.456 tokens)
+mintTokens_Message status=0x1 Success gas=1000000 gasUsed=111626 costETH=0.000111626 costUSD=0.04481002518 @ ETH/USD=401.43 gasPrice=1 gwei block=10132 txIx=0 txId=0x7f8c8d3edfeab961bead591276582bcd437475ee40aa8dbbc2ae42020cda3555 @ 1526690715 Sat, 19 May 2018 00:45:15 UTC
+tokenContractAddress=0x57930444aa5c1e758c1407ded001a8f36aa80b1d
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -117,11 +217,11 @@ token.tokensIssuedTotal=123456000000000000000 123.456 tokens
 token.totalSupply=123.456 tokens
 token.LOCK_SLOTS=6
 token.MAX_LOCKING_PERIOD=157852800 432473.4246575342
-crowdsale.dateIcoPresale=1526324046 Mon, 14 May 2018 18:54:06 UTC Tue, 15 May 2018 04:54:06 AEST
-crowdsale.dateIcoMain=1526324076 Mon, 14 May 2018 18:54:36 UTC Tue, 15 May 2018 04:54:36 AEST
-crowdsale.dateIcoEnd=1526324106 Mon, 14 May 2018 18:55:06 UTC Tue, 15 May 2018 04:55:06 AEST
-crowdsale.dateIcoDeadline=1526324136 Mon, 14 May 2018 18:55:36 UTC Tue, 15 May 2018 04:55:36 AEST
-crowdsale.DATE_LIMIT=1526324166 Mon, 14 May 2018 18:56:06 UTC Tue, 15 May 2018 04:56:06 AEST
+crowdsale.dateIcoPresale=1526690724 Sat, 19 May 2018 00:45:24 UTC Sat, 19 May 2018 10:45:24 AEST
+crowdsale.dateIcoMain=1526690754 Sat, 19 May 2018 00:45:54 UTC Sat, 19 May 2018 10:45:54 AEST
+crowdsale.dateIcoEnd=1526690784 Sat, 19 May 2018 00:46:24 UTC Sat, 19 May 2018 10:46:24 AEST
+crowdsale.dateIcoDeadline=1526690814 Sat, 19 May 2018 00:46:54 UTC Sat, 19 May 2018 10:46:54 AEST
+crowdsale.DATE_LIMIT=1526690844 Sat, 19 May 2018 00:47:24 UTC Sat, 19 May 2018 10:47:24 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -154,6 +254,106 @@ crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.4916
 crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
 crowdsale.tokensToEth(14750 tokens)=1.475 ETH
 crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
-Transfer 0 #40: _from=0x0000000000000000000000000000000000000000 _to=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 _value=123.456
-TokensMinted 0 #40 account=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 tokens=123.456 term=0
+--- 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 Account #3 - Offline ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xa44a08d3f6933c69212114bb66e2df1813651844 Account #4 - Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xa55a151eb00fded1634d27d1127b4be4627079ea Account #5 - Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 Account #10 - Minted Tokens ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 123456000000000000000
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 123456000000000000000
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 246912000000000000000
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+--- 0xabba43e7594e3b76afb157989e93c6621497fd4b Account #11 - Minted Locked Tokens ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- lockedTokens             : 0
+- unlockedTokens           : 0
+- isAvailableLockSlot(0-5) : true, true, true, true, true, true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0
+- balancesOffline          : 0
+- balancesPending          : 0
+- balancesPendingOffline   : 0
+- balancesMinted           : 0
+- balancesBonus            : 0
+- ethPending               : 0
+- ethContributed           : 0
+- refundClaimed            : false
+Transfer 0 #10132: _from=0x0000000000000000000000000000000000000000 _to=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 _value=123.456
+TokensMinted 0 #10132 account=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 tokens=123.456 term=0
 

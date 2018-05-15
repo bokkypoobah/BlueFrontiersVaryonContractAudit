@@ -146,7 +146,7 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
     * [ ] using SafeMath for uint;
   * [ ] contract WBList is Owned, Utils
     * [ ] using SafeMath for uint;
-  * [ ] contract VaryonIcoDates is Owned, Utils  
+  * [x] contract VaryonIcoDates is Owned, Utils  
   * [ ] contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates
 
 ### Structure Using Surya

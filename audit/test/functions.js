@@ -11,15 +11,15 @@ var accountNames = {};
 addAccount(eth.accounts[0], "Account #0 - Miner");
 addAccount(eth.accounts[1], "Account #1 - Contract Owner");
 addAccount(eth.accounts[2], "Account #2 - Wallet");
-addAccount(eth.accounts[3], "Account #3");
-addAccount(eth.accounts[4], "Account #4");
-addAccount(eth.accounts[5], "Account #5");
+addAccount(eth.accounts[3], "Account #3 - Offline");
+addAccount(eth.accounts[4], "Account #4 - Whitelisted");
+addAccount(eth.accounts[5], "Account #5 - Whitelisted");
 addAccount(eth.accounts[6], "Account #6");
 addAccount(eth.accounts[7], "Account #7");
 addAccount(eth.accounts[8], "Account #8");
 addAccount(eth.accounts[9], "Account #9");
 addAccount(eth.accounts[10], "Account #10 - Minted Tokens");
-addAccount(eth.accounts[11], "Account #11");
+addAccount(eth.accounts[11], "Account #11 - Minted Locked Tokens");
 
 var minerAccount = eth.accounts[0];
 var contractOwnerAccount = eth.accounts[1];
@@ -360,6 +360,56 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Div3EtherRoundUp.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Div3EtherRoundUp).shift(-18) + " ETH");
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Ether).shift(-18) + " ETH");
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor100Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor100Ether).shift(-18) + " ETH");
+
+    [account3, account4, account5, account10, account11].forEach(function(e) {
+      console.log("RESULT: --- " + e  + " " + accountNames[e] + " ---");
+      console.log("RESULT: - lockTerm                 : " + contract.lockTerm(e, 0) + ", " + contract.lockTerm(e, 1) +
+        ", " + contract.lockTerm(e, 2) + ", " + contract.lockTerm(e, 3) + ", " + contract.lockTerm(e, 4) +
+        ", " + contract.lockTerm(e, 0));
+      console.log("RESULT: - lockAmnt                 : " + contract.lockAmnt(e, 0) + ", " + contract.lockAmnt(e, 1) +
+          ", " + contract.lockAmnt(e, 2) + ", " + contract.lockAmnt(e, 3) + ", " + contract.lockAmnt(e, 4) +
+          ", " + contract.lockAmnt(e, 0));
+      // mapping(address => uint[LOCK_SLOTS]) public lockTerm;
+      // mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
+
+      console.log("RESULT: - lockedTokens             : " + contract.lockedTokens(e));
+      console.log("RESULT: - unlockedTokens           : " + contract.unlockedTokens(e));
+      console.log("RESULT: - isAvailableLockSlot(0-5) : " + contract.isAvailableLockSlot(e, 0) + ", " + contract.isAvailableLockSlot(e, 1) +
+        ", " + contract.isAvailableLockSlot(e, 2) + ", " + contract.isAvailableLockSlot(e, 3) + ", " + contract.isAvailableLockSlot(e, 4) + 
+        ", " + contract.isAvailableLockSlot(e, 5));
+      // function lockedTokens(address _account) public view returns (uint locked)
+      // function unlockedTokens (address _account) public view returns (uint unlocked)
+      // function isAvailableLockSlot(address _account, uint _term) public view returns (bool)
+
+      console.log("RESULT: - whitelist                : " + contract.whitelist(e));
+      console.log("RESULT: - whitelistLimit           : " + contract.whitelistLimit(e));
+      console.log("RESULT: - whitelistThreshold       : " + contract.whitelistThreshold(e));
+      console.log("RESULT: - whitelistLockDate        : " + contract.whitelistLockDate(e));
+      console.log("RESULT: - blacklist                : " + contract.blacklist(e));
+      // mapping(address => bool) public whitelist;
+      // mapping(address => uint) public whitelistLimit;
+      // mapping(address => uint) public whitelistThreshold;
+      // mapping(address => uint) public whitelistLockDate;
+      // mapping(address => bool) public blacklist;
+
+      console.log("RESULT: - balanceOf                : " + contract.balanceOf(e));
+      console.log("RESULT: - balancesOffline          : " + contract.balancesOffline(e));
+      console.log("RESULT: - balancesPending          : " + contract.balancesPending(e));
+      console.log("RESULT: - balancesPendingOffline   : " + contract.balancesPendingOffline(e));
+      console.log("RESULT: - balancesMinted           : " + contract.balancesMinted(e));
+      console.log("RESULT: - balancesBonus            : " + contract.balancesBonus(e));
+      console.log("RESULT: - ethPending               : " + contract.ethPending(e));
+      console.log("RESULT: - ethContributed           : " + contract.ethContributed(e));
+      console.log("RESULT: - refundClaimed            : " + contract.refundClaimed(e));
+      // mapping(address => uint) public balancesOffline;
+      // mapping(address => uint) public balancesPending;
+      // mapping(address => uint) public balancesPendingOffline;
+      // mapping(address => uint) public balancesMinted;
+      // mapping(address => uint) public balancesBonus;
+      // mapping(address => uint) public ethPending;
+      // mapping(address => uint) public ethContributed;
+      // mapping(address => bool) public refundClaimed;
+    })
 
     var latestBlock = eth.blockNumber;
     var i;
