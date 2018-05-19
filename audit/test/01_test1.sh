@@ -133,7 +133,7 @@ while (txpool.status.pending > 0) {
 printBalances();
 failIfTxStatusError(crowdsaleTx, crowdsaleMessage);
 printTxData("crowdsaleAddress=" + crowdsaleAddress, crowdsaleTx);
-printTokenContractDetails();
+printTokenContractDetails([]);
 console.log("RESULT: ");
 
 assertEquals("availableToMint()", crowdsale.availableToMint().shift(-crowdsale.decimals()), "751400000");
@@ -145,18 +145,18 @@ var whiteBlackList_Message = "Whitelist / Blacklist Accounts";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ---------- " + whiteBlackList_Message + " ----------");
 var whiteBlackList_1Tx = crowdsale.addToWhitelist(account4, {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
-var whiteBlackList_2Tx = crowdsale.addToWhitelistMultiple([account5], {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
-var whiteBlackList_3Tx = crowdsale.addToBlacklistMultiple([account6], {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+var whiteBlackList_2Tx = crowdsale.addToWhitelistMultiple([account5, account6], {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+var whiteBlackList_3Tx = crowdsale.addToBlacklistMultiple([account7], {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
 printBalances();
 failIfTxStatusError(whiteBlackList_1Tx, whiteBlackList_Message + " - owner addToWhitelist(ac4)");
-failIfTxStatusError(whiteBlackList_2Tx, whiteBlackList_Message + " - owner addToWhitelistMultiple([ac5])");
-failIfTxStatusError(whiteBlackList_3Tx, whiteBlackList_Message + " - owner addToBlacklistMultiple([ac6])");
+failIfTxStatusError(whiteBlackList_2Tx, whiteBlackList_Message + " - owner addToWhitelistMultiple([ac5, ac6])");
+failIfTxStatusError(whiteBlackList_3Tx, whiteBlackList_Message + " - owner addToBlacklistMultiple([ac7])");
 printTxData("whiteBlackList_1Tx", whiteBlackList_1Tx);
 printTxData("whiteBlackList_2Tx", whiteBlackList_2Tx);
 printTxData("whiteBlackList_3Tx", whiteBlackList_3Tx);
-printTokenContractDetails();
+printTokenContractDetails([account4, account5, account6, account7]);
 console.log("RESULT: ");
 
 
@@ -167,39 +167,42 @@ waitUntil("dateIcoPresale", crowdsale.dateIcoPresale(), 1);
 var sendContribution1Message = "Send Contribution #1";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + sendContribution1Message);
-var sendContribution1_1Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("10", "ether")});
+var sendContribution1_1Tx = crowdsale.buyOffline(account3, new BigNumber("40000").shift(18), {from: contractOwnerAccount, to: crowdsaleAddress, gas: 400000});
+var sendContribution1_2Tx = crowdsale.buyOffline(account4, new BigNumber("50000").shift(18), {from: contractOwnerAccount, to: crowdsaleAddress, gas: 400000});
+var sendContribution1_3Tx = eth.sendTransaction({from: account5, to: crowdsaleAddress, gas: 400000, value: web3.toWei("10", "ether")});
 while (txpool.status.pending > 0) {
 }
-var sendContribution1_2Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
-var sendContribution1_3Tx = eth.sendTransaction({from: account5, to: crowdsaleAddress, gas: 400000, value: web3.toWei("50", "ether")});
-var sendContribution1_4Tx = eth.sendTransaction({from: account6, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
-var sendContribution1_5Tx = eth.sendTransaction({from: account7, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
+var sendContribution1_4Tx = eth.sendTransaction({from: account5, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
+var sendContribution1_5Tx = eth.sendTransaction({from: account6, to: crowdsaleAddress, gas: 400000, value: web3.toWei("50", "ether")});
+var sendContribution1_6Tx = eth.sendTransaction({from: account7, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
+var sendContribution1_7Tx = eth.sendTransaction({from: account8, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
 while (txpool.status.pending > 0) {
 }
-var sendContribution1_6Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("10", "ether")});
+var sendContribution1_8Tx = eth.sendTransaction({from: account5, to: crowdsaleAddress, gas: 400000, value: web3.toWei("10", "ether")});
 while (txpool.status.pending > 0) {
 }
 printBalances();
-passIfTxStatusError(sendContribution1_1Tx, sendContribution1Message + " - ac4 10 ETH - Whitelisted - Expecting failure as under min contribution");
-failIfTxStatusError(sendContribution1_2Tx, sendContribution1Message + " - ac4 40 ETH - Whitelisted");
-failIfTxStatusError(sendContribution1_3Tx, sendContribution1Message + " - ac5 50 ETH - Whitelisted");
-passIfTxStatusError(sendContribution1_4Tx, sendContribution1Message + " - ac6 40 ETH - Expecting failure as blacklisted");
-failIfTxStatusError(sendContribution1_5Tx, sendContribution1Message + " - ac7 40 ETH - Not Whitelisted, goes into Pending");
-failIfTxStatusError(sendContribution1_6Tx, sendContribution1Message + " - ac4 10 ETH - Whitelisted - Under min contribution, but topping up");
+failIfTxStatusError(sendContribution1_1Tx, sendContribution1Message + " - Offline ac3 40000 tokens - not whitelisted");
+failIfTxStatusError(sendContribution1_2Tx, sendContribution1Message + " - Offline ac4 50000 tokens - whitelisted");
+passIfTxStatusError(sendContribution1_3Tx, sendContribution1Message + " - ac5 10 ETH - Whitelisted - Expecting failure as under min contribution");
+failIfTxStatusError(sendContribution1_4Tx, sendContribution1Message + " - ac5 40 ETH - Whitelisted");
+failIfTxStatusError(sendContribution1_5Tx, sendContribution1Message + " - ac6 50 ETH - Whitelisted");
+passIfTxStatusError(sendContribution1_6Tx, sendContribution1Message + " - ac7 40 ETH - Expecting failure as blacklisted");
+failIfTxStatusError(sendContribution1_7Tx, sendContribution1Message + " - ac8 40 ETH - Not Whitelisted, goes into Pending");
+failIfTxStatusError(sendContribution1_8Tx, sendContribution1Message + " - ac5 10 ETH - Whitelisted - Under min contribution, but topping up");
 printTxData("sendContribution1_1Tx", sendContribution1_1Tx);
 printTxData("sendContribution1_2Tx", sendContribution1_2Tx);
 printTxData("sendContribution1_3Tx", sendContribution1_3Tx);
 printTxData("sendContribution1_4Tx", sendContribution1_4Tx);
 printTxData("sendContribution1_5Tx", sendContribution1_5Tx);
 printTxData("sendContribution1_6Tx", sendContribution1_5Tx);
-printTokenContractDetails();
+printTxData("sendContribution1_7Tx", sendContribution1_7Tx);
+printTxData("sendContribution1_8Tx", sendContribution1_8Tx);
+printTokenContractDetails([account3, account4, account5, account6, account7, account8]);
 console.log("RESULT: ");
 
 
-
-exit;
-
-if (false) {
+if (true) {
 // -----------------------------------------------------------------------------
 var mintTokens_Message = "Mint Tokens";
 // -----------------------------------------------------------------------------
@@ -210,7 +213,7 @@ while (txpool.status.pending > 0) {
 printBalances();
 failIfTxStatusError(mintTokens_1Tx, mintTokens_Message + " - owner mint(ac10, 123.456 tokens)");
 printTxData("mintTokens_1Tx", mintTokens_1Tx);
-printTokenContractDetails();
+printTokenContractDetails([account10]);
 console.log("RESULT: ");
 }
 
@@ -236,7 +239,7 @@ passIfTxStatusError(mintLockedTokens_3Tx, mintLockedTokens_Message + " - owner m
 printTxData("mintLockedTokens_1Tx", mintLockedTokens_1Tx);
 printTxData("mintLockedTokens_2Tx", mintLockedTokens_2Tx);
 printTxData("mintLockedTokens_3Tx", mintLockedTokens_3Tx);
-printTokenContractDetails();
+printTokenContractDetails([account11]);
 console.log("RESULT: ");
 
 

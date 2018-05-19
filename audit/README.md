@@ -33,6 +33,7 @@ TODO - CHeck that no potential vulnerabilities have been identified in the crowd
 
 ## Recommendations
 
+* [ ] **MEDIUM IMPORTANCE** `buyOffline(...)` can only be executed by the admin, and this calls `buyOfflineWhitelist(...)` which calls `processTokenIssue(...)`. In `processTokenIssue(...)`, the statement `uint balance = balances[msg.sender].sub(balancesBonus[msg.sender]).sub(balancesMinted[msg.sender]);` checks the balance of `msg.sender` which will be the admin account
 * [ ] **MEDIUM IMPORTANCE** `VaryonToken.pMintTokens(...)` has the statement `balancesMinted[_account] = balances[_account].add(_tokens);` which should be `balancesMinted[_account] = balancesMinted[_account].add(_tokens);`
 * [ ] **LOW IMPORTANCE** Inconsistency between `uint public constant MAX_LOCKING_PERIOD = 1827 days; // max 5 years` and `require(_term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days");`
 

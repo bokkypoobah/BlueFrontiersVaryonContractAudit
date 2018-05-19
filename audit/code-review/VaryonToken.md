@@ -688,9 +688,12 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Basic Functions ----------------------------
 
+    // BK Ok
     constructor() public {}
 
+    // BK Ok - Any account can send ETH and can contribute depending on whitelisting etc
     function () public payable {
+        // BK Ok
         buyTokens();
     }
 
@@ -778,76 +781,108 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         }
     }
 
+    // BK Ok - Private
     function pMintTokens(address _account, uint _tokens) private {
         // checks
+        // BK Next 3 Ok
         require(_account != 0x0);
         require(_tokens > 0);
         require(_tokens <= availableToMint(), "not enough tokens available to mint");
 
         // update
+        // BK Ok
         balances[_account] = balances[_account].add(_tokens);
         // BK NOTE - Line below should have `balancesMinted` instead of `balances`
+        // BK TODO
         balancesMinted[_account] = balances[_account].add(_tokens);
+        // BK Ok
         tokensMinted = tokensMinted.add(_tokens);
+        // BK Ok
         tokensIssuedTotal = tokensIssuedTotal.add(_tokens);
 
         // log event
+        // BK Next 2 Ok - Log events
         emit Transfer(0x0, _account, _tokens);
         emit TokensMinted(_account, _tokens, 0);
     }
 
     // Minting of locked tokens
 
+    // BK Ok - Only owner can execute
     function mintTokensLocked(address _account, uint _tokens, uint _term) public onlyOwner {
+        // BK Ok
         pMintTokensLocked(_account, _tokens, _term);
     }
 
+    // BK Ok - Only owner can execute
     function mintTokensLockedMultiple(address[] _accounts, uint[] _tokens, uint[] _terms) public onlyOwner {
+        // BK Ok
         require(_accounts.length == _tokens.length);
+        // BK Ok
         require(_accounts.length == _terms.length);
+        // BK Ok
         for (uint i = 0; i < _accounts.length; i++) {
+            // BK Ok
             pMintTokensLocked(_accounts[i], _tokens[i], _terms[i]);
         }
     }
 
+    // BK Ok - Private function
     function pMintTokensLocked(address _account, uint _tokens, uint _term) private {
         // checks
+        // BK Next 3 Ok
         require(_account != 0x0);
         require(_tokens > 0);
         require(_tokens <= availableToMint(), "not enough tokens available to mint");
 
         // term has to be in the future
+        // BK Ok
         require(_term > atNow(), "lock term must be in the future");
 
         // register locked tokens (will throw if no slot is found)
+        // BK TODO
         registerLockedTokens(_account, _tokens, _term);
 
         // update
+        // BK Ok
         balances[_account] = balances[_account].add(_tokens);
+        // BK Ok
         balancesMinted[_account] = balancesMinted[_account].add(_tokens);
+        // BK Ok
         tokensMinted = tokensMinted.add(_tokens);
+        // BK Ok
         tokensIssuedTotal = tokensIssuedTotal.add(_tokens);
 
         // log event
+        // BK Next 2 Ok - Log events
         emit Transfer(0x0, _account, _tokens);
         emit TokensMinted(_account, _tokens, _term);
     }
 
     // Offline contributions --------------------------------
 
+    // BK Ok - Only admin can execute
     function buyOffline(address _account, uint _tokens) public onlyAdmin {
+        // BK Ok
         require(!blacklist[_account]);
+        // BK Ok
         require(atNow() <= dateIcoEnd);
+        // BK Ok
         require(_tokens <= tokensAvailableIco());
 
         // buy tokens
+        // BK Ok
         if (whitelist[_account]) {
+            // BK Ok
             buyOfflineWhitelist(_account, _tokens);
+        // BK Ok
         } else {
+            // BK Ok
             buyOfflinePending(_account, _tokens);
         }
     }
 
+    // BK Ok - Private function only called by buyOffline(...)
     function buyOfflineWhitelist(address _account, uint _tokens) private {
 
         // adjust based on limit and threshold, update total offline contributions
@@ -865,6 +900,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         emit RegisterOfflineContribution(_account, tokens, tokens_bonus);    
     }
 
+    // BK Ok - Private function only called by buyOffline(...)
     function buyOfflinePending(address _account, uint _tokens) private {
         balancesPending[_account] = balancesPending[_account].add(_tokens);
         balancesPendingOffline[_account] = balancesPendingOffline[_account].add(_tokens);
@@ -874,18 +910,27 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Crowdsale ETH contributions --------------------------
 
+    // BK Ok - Private. Only called by fallback function
     function buyTokens() private {
 
         // checks
+        // BK Ok
         require(atNow() > dateIcoPresale && atNow() <= dateIcoEnd, "outside of ICO period");
+        // BK Ok
         require(msg.value >= MINIMUM_ETH_CONTRIBUTION, "fail minimum contribution");
+        // BK Ok
         require(!blacklist[msg.sender], "blacklisted sending address");
+        // BK TODO
         require(tokensAvailableIco() > 0, "no more tokens available");
         
         // buy tokens
+        // BK Ok
         if (whitelist[msg.sender]) {
+            // BK Ok
             buyTokensWhitelist();
+        // BK Ok
         } else {
+            // BK Ok
             buyTokensPending();
         }
 
@@ -974,6 +1019,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         if (eth_to_return > 0) { msg.sender.transfer(eth_to_return); }
 
         // send ether to wallet if threshold reached
+        // BK Ok
         sendEtherToWallet();
 
         // log
@@ -1050,6 +1096,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         if (eth_to_return > 0) { _account.transfer(eth_to_return); }
 
         // send ether to wallet if threshold reached
+        // BK Ok
         sendEtherToWallet();
 
         // log
@@ -1059,15 +1106,22 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     
     // Send ether to wallet if threshold reached
 
+    // BK NOTES - Called by buyTokensWhitelist() and processWhitelisting()
+    // BK Ok - Private function
     function sendEtherToWallet() private {
+        // BK Ok
         address thisAddress = this;
+        // BK Ok
         if (thresholdReached() && thisAddress.balance > totalEthPending) {
+            // BK Ok
             wallet.transfer(thisAddress.balance.sub(totalEthPending));
         }
     }
 
     // Adjust tokens that can be issued, based on limit and threshold, and update balances
 
+    // BK NOTES - Called by buyOfflineWhitelist(...), buyTokensWhitelist(...) and processWhitelisting(...)
+    // BK TODO
     function processTokenIssue(address _account, uint _tokens_to_add) private returns (uint tokens, uint tokens_bonus) {
 
         tokens = _tokens_to_add;

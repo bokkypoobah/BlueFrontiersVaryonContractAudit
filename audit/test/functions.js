@@ -11,12 +11,12 @@ var accountNames = {};
 addAccount(eth.accounts[0], "Account #0 - Miner");
 addAccount(eth.accounts[1], "Account #1 - Contract Owner");
 addAccount(eth.accounts[2], "Account #2 - Wallet");
-addAccount(eth.accounts[3], "Account #3 - Offline");
-addAccount(eth.accounts[4], "Account #4 - Whitelisted");
+addAccount(eth.accounts[3], "Account #3 - Offline, Not Whitelisted");
+addAccount(eth.accounts[4], "Account #4 - Offline, Whitelisted");
 addAccount(eth.accounts[5], "Account #5 - Whitelisted");
-addAccount(eth.accounts[6], "Account #6 - Blacklisted");
-addAccount(eth.accounts[7], "Account #7 - Not Whitelisted, Pending");
-addAccount(eth.accounts[8], "Account #8");
+addAccount(eth.accounts[6], "Account #6 - Whitelisted");
+addAccount(eth.accounts[7], "Account #7 - Blacklisted");
+addAccount(eth.accounts[8], "Account #8 - Not Whitelisted, Pending");
 addAccount(eth.accounts[9], "Account #9");
 addAccount(eth.accounts[10], "Account #10 - Minted Tokens");
 addAccount(eth.accounts[11], "Account #11 - Minted Locked Tokens");
@@ -276,7 +276,7 @@ function waitUntilBlock(message, block, addBlocks) {
 // Token Contract
 //-----------------------------------------------------------------------------
 var tokenFromBlock = 0;
-function printTokenContractDetails() {
+function printTokenContractDetails(detailedAccounts) {
   console.log("RESULT: tokenContractAddress=" + tokenContractAddress);
   if (tokenContractAddress != null && tokenContractAbi != null) {
     var contract = eth.contract(tokenContractAbi).at(tokenContractAddress);
@@ -361,7 +361,8 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Ether).shift(-18) + " ETH");
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor100Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor100Ether).shift(-18) + " ETH");
 
-    [account3, account4, account5, account6, account7, account10, account11].forEach(function(e) {
+    // [account3, account4, account5, account6, account7, account8, account10, account11].forEach(function(e) 
+    detailedAccounts.forEach(function(e) {
       console.log("RESULT: --- " + e  + " " + accountNames[e] + " ---");
       console.log("RESULT: - lockTerm                 : " + contract.lockTerm(e, 0) + ", " + contract.lockTerm(e, 1) +
         ", " + contract.lockTerm(e, 2) + ", " + contract.lockTerm(e, 3) + ", " + contract.lockTerm(e, 4) +
@@ -374,9 +375,8 @@ function printTokenContractDetails() {
 
       console.log("RESULT: - lockedTokens             : " + contract.lockedTokens(e).shift(-decimals) + " tokens");
       console.log("RESULT: - unlockedTokens           : " + contract.unlockedTokens(e).shift(-decimals) + " tokens");
-      console.log("RESULT: - isAvailableLockSlot(0-5) : " + contract.isAvailableLockSlot(e, 0) + ", " + contract.isAvailableLockSlot(e, 1) +
-        ", " + contract.isAvailableLockSlot(e, 2) + ", " + contract.isAvailableLockSlot(e, 3) + ", " + contract.isAvailableLockSlot(e, 4) + 
-        ", " + contract.isAvailableLockSlot(e, 5));
+      // 01/01/2035
+      console.log("RESULT: - isAvailableLockSlot(2035): " + contract.isAvailableLockSlot(e, 2051222400));
       // function lockedTokens(address _account) public view returns (uint locked)
       // function unlockedTokens (address _account) public view returns (uint unlocked)
       // function isAvailableLockSlot(address _account, uint _term) public view returns (bool)
