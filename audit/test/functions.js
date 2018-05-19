@@ -14,8 +14,8 @@ addAccount(eth.accounts[2], "Account #2 - Wallet");
 addAccount(eth.accounts[3], "Account #3 - Offline");
 addAccount(eth.accounts[4], "Account #4 - Whitelisted");
 addAccount(eth.accounts[5], "Account #5 - Whitelisted");
-addAccount(eth.accounts[6], "Account #6");
-addAccount(eth.accounts[7], "Account #7");
+addAccount(eth.accounts[6], "Account #6 - Blacklisted");
+addAccount(eth.accounts[7], "Account #7 - Not Whitelisted, Pending");
 addAccount(eth.accounts[8], "Account #8");
 addAccount(eth.accounts[9], "Account #9");
 addAccount(eth.accounts[10], "Account #10 - Minted Tokens");
@@ -286,29 +286,29 @@ function printTokenContractDetails() {
 
     console.log("RESULT: token.wallet=" + contract.wallet());
 
-    console.log("RESULT: token.tokensIssuedTotal=" + contract.tokensIssuedTotal() + " " + contract.tokensIssuedTotal().shift(-decimals) + " tokens");
+    console.log("RESULT: token.tokensIssuedTotal=" + contract.tokensIssuedTotal().shift(-decimals) + " tokens");
     console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals) + " tokens");
     // mapping(address => uint) public balances;
 
-    console.log("RESULT: token.LOCK_SLOTS=" + contract.LOCK_SLOTS());
+    console.log("RESULT: lockSlots.LOCK_SLOTS=" + contract.LOCK_SLOTS());
     // mapping(address => uint[LOCK_SLOTS]) public lockTerm;
     // mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
     // function lockedTokens(address _account) public view returns (uint locked)
     // function unlockedTokens (address _account) public view returns (uint unlocked)
     // function isAvailableLockSlot(address _account, uint _term) public view returns (bool)
 
-    console.log("RESULT: token.MAX_LOCKING_PERIOD=" + contract.MAX_LOCKING_PERIOD() + " " + contract.MAX_LOCKING_PERIOD()/365);
+    console.log("RESULT: wbList.MAX_LOCKING_PERIOD=" + contract.MAX_LOCKING_PERIOD() + " " + contract.MAX_LOCKING_PERIOD()/365/24/60/60 + " years");
     // mapping(address => bool) public whitelist;
     // mapping(address => uint) public whitelistLimit;
     // mapping(address => uint) public whitelistThreshold;
     // mapping(address => uint) public whitelistLockDate;
     // mapping(address => bool) public blacklist;
 
-    console.log("RESULT: crowdsale.dateIcoPresale=" + contract.dateIcoPresale() + " " + new Date(contract.dateIcoPresale() * 1000).toUTCString() + " " + new Date(contract.dateIcoPresale() * 1000).toString());
-    console.log("RESULT: crowdsale.dateIcoMain=" + contract.dateIcoMain() + " " + new Date(contract.dateIcoMain() * 1000).toUTCString() + " " + new Date(contract.dateIcoMain() * 1000).toString());
-    console.log("RESULT: crowdsale.dateIcoEnd=" + contract.dateIcoEnd() + " " + new Date(contract.dateIcoEnd() * 1000).toUTCString() + " " + new Date(contract.dateIcoEnd() * 1000).toString());
-    console.log("RESULT: crowdsale.dateIcoDeadline=" + contract.dateIcoDeadline() + " " + new Date(contract.dateIcoDeadline() * 1000).toUTCString() + " " + new Date(contract.dateIcoDeadline() * 1000).toString());
-    console.log("RESULT: crowdsale.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
+    console.log("RESULT: icoDates.dateIcoPresale=" + contract.dateIcoPresale() + " " + new Date(contract.dateIcoPresale() * 1000).toUTCString() + " " + new Date(contract.dateIcoPresale() * 1000).toString());
+    console.log("RESULT: icoDates.dateIcoMain=" + contract.dateIcoMain() + " " + new Date(contract.dateIcoMain() * 1000).toUTCString() + " " + new Date(contract.dateIcoMain() * 1000).toString());
+    console.log("RESULT: icoDates.dateIcoEnd=" + contract.dateIcoEnd() + " " + new Date(contract.dateIcoEnd() * 1000).toUTCString() + " " + new Date(contract.dateIcoEnd() * 1000).toString());
+    console.log("RESULT: icoDates.dateIcoDeadline=" + contract.dateIcoDeadline() + " " + new Date(contract.dateIcoDeadline() * 1000).toUTCString() + " " + new Date(contract.dateIcoDeadline() * 1000).toString());
+    console.log("RESULT: icoDates.DATE_LIMIT=" + contract.DATE_LIMIT() + " " + new Date(contract.DATE_LIMIT() * 1000).toUTCString() + " " + new Date(contract.DATE_LIMIT() * 1000).toString());
 
     console.log("RESULT: token.name=" + contract.name());
     console.log("RESULT: token.symbol=" + contract.symbol());
@@ -361,14 +361,14 @@ function printTokenContractDetails() {
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor1Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor1Ether).shift(-18) + " ETH");
     console.log("RESULT: crowdsale.tokensToEth(" + tokensFor100Ether.shift(-decimals) + " tokens)=" + contract.tokensToEth(tokensFor100Ether).shift(-18) + " ETH");
 
-    [account3, account4, account5, account10, account11].forEach(function(e) {
+    [account3, account4, account5, account6, account7, account10, account11].forEach(function(e) {
       console.log("RESULT: --- " + e  + " " + accountNames[e] + " ---");
       console.log("RESULT: - lockTerm                 : " + contract.lockTerm(e, 0) + ", " + contract.lockTerm(e, 1) +
         ", " + contract.lockTerm(e, 2) + ", " + contract.lockTerm(e, 3) + ", " + contract.lockTerm(e, 4) +
-        ", " + contract.lockTerm(e, 0));
+        ", " + contract.lockTerm(e, 5));
       console.log("RESULT: - lockAmnt                 : " + contract.lockAmnt(e, 0).shift(-decimals) + ", " + contract.lockAmnt(e, 1).shift(-decimals) +
           ", " + contract.lockAmnt(e, 2).shift(-decimals) + ", " + contract.lockAmnt(e, 3).shift(-decimals) +
-          ", " + contract.lockAmnt(e, 4).shift(-decimals) + ", " + contract.lockAmnt(e, 0).shift(-decimals));
+          ", " + contract.lockAmnt(e, 4).shift(-decimals) + ", " + contract.lockAmnt(e, 5).shift(-decimals));
       // mapping(address => uint[LOCK_SLOTS]) public lockTerm;
       // mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
 

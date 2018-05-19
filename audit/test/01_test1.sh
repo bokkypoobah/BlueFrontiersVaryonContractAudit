@@ -38,13 +38,13 @@ DATE_LIMIT_DATE=`echo "$CURRENTTIME+150" | bc`
 DATE_LIMIT_DATE_S=`perl -le "print scalar localtime $DATE_LIMIT_DATE"`
 LOCK_TERM_1_DATE=`echo "$CURRENTTIME+180" | bc`
 LOCK_TERM_1_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_1_DATE"`
-LOCK_TERM_2_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_2_DATE=`echo "$CURRENTTIME+195" | bc`
 LOCK_TERM_2_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_2_DATE"`
-LOCK_TERM_3_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_3_DATE=`echo "$CURRENTTIME+210" | bc`
 LOCK_TERM_3_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_3_DATE"`
-LOCK_TERM_4_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_4_DATE=`echo "$CURRENTTIME+225" | bc`
 LOCK_TERM_4_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_4_DATE"`
-LOCK_TERM_5_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_5_DATE=`echo "$CURRENTTIME+240" | bc`
 LOCK_TERM_5_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_5_DATE"`
 
 CURRENTTIMES=`perl -le "print scalar localtime $CURRENTTIME"`
@@ -67,6 +67,11 @@ printf "ICO_MAIN_DATE      = '$ICO_MAIN_DATE' '$ICO_MAIN_DATE_S'\n" | tee -a $TE
 printf "ICO_END_DATE       = '$ICO_END_DATE' '$ICO_END_DATE_S'\n" | tee -a $TEST1OUTPUT
 printf "ICO_DEADLINE_DATE  = '$ICO_DEADLINE_DATE' '$ICO_DEADLINE_DATE_S'\n" | tee -a $TEST1OUTPUT
 printf "DATE_LIMIT_DATE    = '$DATE_LIMIT_DATE' '$DATE_LIMIT_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "LOCK_TERM_1_DATE   = '$LOCK_TERM_1_DATE' '$LOCK_TERM_1_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "LOCK_TERM_2_DATE   = '$LOCK_TERM_2_DATE' '$LOCK_TERM_2_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "LOCK_TERM_3_DATE   = '$LOCK_TERM_3_DATE' '$LOCK_TERM_3_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "LOCK_TERM_4_DATE   = '$LOCK_TERM_4_DATE' '$LOCK_TERM_4_DATE_S'\n" | tee -a $TEST1OUTPUT
+printf "LOCK_TERM_5_DATE   = '$LOCK_TERM_5_DATE' '$LOCK_TERM_5_DATE_S'\n" | tee -a $TEST1OUTPUT
 
 # Make copy of SOL file and modify start and end times ---
 `cp $SOURCEDIR/$CROWDSALESOL .`
@@ -136,6 +141,66 @@ assertEquals("tokensAvailableIco()", crowdsale.tokensAvailableIco().shift(-crowd
 
 
 // -----------------------------------------------------------------------------
+var whiteBlackList_Message = "Whitelist / Blacklist Accounts";
+// -----------------------------------------------------------------------------
+console.log("RESULT: ---------- " + whiteBlackList_Message + " ----------");
+var whiteBlackList_1Tx = crowdsale.addToWhitelist(account4, {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+var whiteBlackList_2Tx = crowdsale.addToWhitelistMultiple([account5], {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+var whiteBlackList_3Tx = crowdsale.addToBlacklistMultiple([account6], {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(whiteBlackList_1Tx, whiteBlackList_Message + " - owner addToWhitelist(ac4)");
+failIfTxStatusError(whiteBlackList_2Tx, whiteBlackList_Message + " - owner addToWhitelistMultiple([ac5])");
+failIfTxStatusError(whiteBlackList_3Tx, whiteBlackList_Message + " - owner addToBlacklistMultiple([ac6])");
+printTxData("whiteBlackList_1Tx", whiteBlackList_1Tx);
+printTxData("whiteBlackList_2Tx", whiteBlackList_2Tx);
+printTxData("whiteBlackList_3Tx", whiteBlackList_3Tx);
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+waitUntil("dateIcoPresale", crowdsale.dateIcoPresale(), 1);
+
+
+// -----------------------------------------------------------------------------
+var sendContribution1Message = "Send Contribution #1";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + sendContribution1Message);
+var sendContribution1_1Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("10", "ether")});
+while (txpool.status.pending > 0) {
+}
+var sendContribution1_2Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
+var sendContribution1_3Tx = eth.sendTransaction({from: account5, to: crowdsaleAddress, gas: 400000, value: web3.toWei("50", "ether")});
+var sendContribution1_4Tx = eth.sendTransaction({from: account6, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
+var sendContribution1_5Tx = eth.sendTransaction({from: account7, to: crowdsaleAddress, gas: 400000, value: web3.toWei("40", "ether")});
+while (txpool.status.pending > 0) {
+}
+var sendContribution1_6Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("10", "ether")});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+passIfTxStatusError(sendContribution1_1Tx, sendContribution1Message + " - ac4 10 ETH - Whitelisted - Expecting failure as under min contribution");
+failIfTxStatusError(sendContribution1_2Tx, sendContribution1Message + " - ac4 40 ETH - Whitelisted");
+failIfTxStatusError(sendContribution1_3Tx, sendContribution1Message + " - ac5 50 ETH - Whitelisted");
+passIfTxStatusError(sendContribution1_4Tx, sendContribution1Message + " - ac6 40 ETH - Expecting failure as blacklisted");
+failIfTxStatusError(sendContribution1_5Tx, sendContribution1Message + " - ac7 40 ETH - Not Whitelisted, goes into Pending");
+failIfTxStatusError(sendContribution1_6Tx, sendContribution1Message + " - ac4 10 ETH - Whitelisted - Under min contribution, but topping up");
+printTxData("sendContribution1_1Tx", sendContribution1_1Tx);
+printTxData("sendContribution1_2Tx", sendContribution1_2Tx);
+printTxData("sendContribution1_3Tx", sendContribution1_3Tx);
+printTxData("sendContribution1_4Tx", sendContribution1_4Tx);
+printTxData("sendContribution1_5Tx", sendContribution1_5Tx);
+printTxData("sendContribution1_6Tx", sendContribution1_5Tx);
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+
+exit;
+
+if (false) {
+// -----------------------------------------------------------------------------
 var mintTokens_Message = "Mint Tokens";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ---------- " + mintTokens_Message + " ----------");
@@ -143,8 +208,34 @@ var mintTokens_1Tx = crowdsale.mintTokens(account10, new BigNumber("123.456").sh
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfTxStatusError(mintTokens_1Tx, mintTokens_1Tx + " - owner mint(ac10, 123.456 tokens)");
-printTxData("mintTokens_Message", mintTokens_1Tx);
+failIfTxStatusError(mintTokens_1Tx, mintTokens_Message + " - owner mint(ac10, 123.456 tokens)");
+printTxData("mintTokens_1Tx", mintTokens_1Tx);
+printTokenContractDetails();
+console.log("RESULT: ");
+}
+
+
+// -----------------------------------------------------------------------------
+var mintLockedTokens_Message = "Mint Locked Tokens";
+var lockedAccounts = [account11, account11, account11, account11];
+var lockedTokens = [new BigNumber("234.5672").shift(18), new BigNumber("234.5673").shift(18), new BigNumber("234.5674").shift(18), new BigNumber("234.5675").shift(18)];
+var lockedTerms = [$LOCK_TERM_2_DATE, $LOCK_TERM_3_DATE, $LOCK_TERM_4_DATE, $LOCK_TERM_5_DATE];
+// -----------------------------------------------------------------------------
+console.log("RESULT: ---------- " + mintLockedTokens_Message + " ----------");
+var mintLockedTokens_1Tx = crowdsale.mintTokensLocked(account11, new BigNumber("234.5671").shift(18), $LOCK_TERM_1_DATE, {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+var mintLockedTokens_2Tx = crowdsale.mintTokensLockedMultiple(lockedAccounts, lockedTokens, lockedTerms, {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+var mintLockedTokens_3Tx = crowdsale.mintTokensLocked(account11, new BigNumber("234.5676").shift(18), parseInt($LOCK_TERM_5_DATE) + 30, {from: contractOwnerAccount, gas: 1000000, gasPrice: defaultGasPrice});
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfTxStatusError(mintLockedTokens_1Tx, mintLockedTokens_Message + " - owner mint locked term 1");
+failIfTxStatusError(mintLockedTokens_2Tx, mintLockedTokens_Message + " - owner mint locked terms 2, 3, 4, 5");
+passIfTxStatusError(mintLockedTokens_3Tx, mintLockedTokens_Message + " - owner mint locked term 6 - Expecting failure");
+printTxData("mintLockedTokens_1Tx", mintLockedTokens_1Tx);
+printTxData("mintLockedTokens_2Tx", mintLockedTokens_2Tx);
+printTxData("mintLockedTokens_3Tx", mintLockedTokens_3Tx);
 printTokenContractDetails();
 console.log("RESULT: ");
 
