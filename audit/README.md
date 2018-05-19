@@ -33,7 +33,7 @@ TODO - CHeck that no potential vulnerabilities have been identified in the crowd
 
 ## Recommendations
 
-NIL
+* [ ] **MEDIUM IMPORTANCE** `VaryonToken.pMintTokens(...)` has the statement `balancesMinted[_account] = balances[_account].add(_tokens);` which should be `balancesMinted[_account] = balancesMinted[_account].add(_tokens);`
 
 <br />
 

@@ -352,7 +352,9 @@ contract LockSlots is ERC20Token, Utils {
         }
     }
 
+    // BK Ok - View function
     function unlockedTokens (address _account) public view returns (uint unlocked) {
+        // BK Ok
         unlocked = balances[_account].sub(lockedTokens(_account));
     }
 
@@ -590,10 +592,12 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Utility variable
 
+    // BK Ok
     uint constant E18 = 10**18;
 
     // Basic token data
 
+    // BK Next 3 Ok
     string public constant name       = "Varyon Token";
     string public constant symbol     = "VAR";
     uint8    public constant decimals = 18;
@@ -603,6 +607,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     // BK Ok
     uint public constant TOKENS_PER_ETH = 10000; // test value, will be reset to 14750 before deployment
 
+    // BK Ok
     uint public constant TOKEN_TOTAL_SUPPLY = 1000000000 * E18; // VAR 1,000,000,000
 
     // BK Next 3 Ok
@@ -613,6 +618,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     // BK Ok
     uint public constant BONUS = 15;
 
+    // BK Ok
     uint public constant MAX_BONUS_TOKENS = TOKEN_PRESALE_CAP * BONUS / 100; // 9,735,000 tokens
 
     // Crowdsale parameters : minimum purchase amounts expressed in tokens        
@@ -623,6 +629,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Crowdsale parameters : minimum contribution in ether
 
+    // BK Ok
     uint public constant MINIMUM_ETH_CONTRIBUTION = 0.01 ether;
 
     // Tokens from off-chain contributions (no eth returns for these tokens)
@@ -668,6 +675,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Events ---------------------------
 
+    // BK Next 9 Ok - Events
     event TokensMinted(address indexed account, uint tokens, uint term);
     event RegisterOfflineContribution(address indexed account, uint tokens, uint tokensBonus);
     event RegisterOfflinePending(address indexed account, uint tokens);
@@ -722,8 +730,11 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         }
     }
 
+    // BK Ok - Private view function
     function minimumInvestment() private view returns (uint) {
+        // BK Ok
         if (atNow() <= dateIcoMain) return MIN_PURCHASE_PRESALE;
+        // BK Ok
         return MIN_PURCHASE_MAIN;
     }
 
@@ -739,8 +750,11 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         eth = _tokens / TOKENS_PER_ETH;
     }
 
+    // BK Ok - Private view function
     function getBonus(uint _tokens) private view returns (uint) {
+        // BK Ok
         if (atNow() <= dateIcoMain) return _tokens.mul(BONUS)/100;
+        // BK Ok
         return 0;
     }
 
@@ -748,6 +762,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     
     // Minting of unrestricted tokens
 
+    // BK Ok - Only owner can execute
     function mintTokens(address _account, uint _tokens) public onlyOwner {
         pMintTokens(_account, _tokens);
     }
@@ -771,6 +786,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
         // update
         balances[_account] = balances[_account].add(_tokens);
+        // BK NOTE - Line below should have `balancesMinted` instead of `balances`
         balancesMinted[_account] = balances[_account].add(_tokens);
         tokensMinted = tokensMinted.add(_tokens);
         tokensIssuedTotal = tokensIssuedTotal.add(_tokens);
@@ -1146,20 +1162,28 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Refunds in case of failed ICO ----------------------
 
+    // BK Ok - Any account can reclaim their own ETH
     function reclaimEth() public {
+        // BK Ok
         pReclaimEth(msg.sender);
     }
 
+    // BK Ok - Only the admin can execute the reclaim ETH function on behalf of another account
     function reclaimEthAdmin(address _account) public onlyAdmin {
+        // BK Ok
         pReclaimEth(_account);
     }
 
+    // BK Ok - Only the admin can execute the reclaim ETH function on behalf of multiple account
     function reclaimEthAdminMultiple(address[] _accounts) public onlyAdmin {
+        // BK Ok
         for (uint i = 0; i < _accounts.length; i++) {
+            // BK Ok
             pReclaimEth(_accounts[i]);
         }
     }
 
+    // BK TODO - Check logic
     function pReclaimEth(address _account) private {
         require(!thresholdReached() && atNow() > dateIcoDeadline, "too early");
         require(ethPending[_account] > 0 || ethContributed[_account] > 0, "nothing to return");
@@ -1176,7 +1200,9 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Transfer out any accidentally sent ERC20 tokens
 
+    // BK Ok - Only the owner can execute to transfer any ERC20 tokens owned by this sale/token contract
     function transferAnyERC20Token(address tokenAddress, uint amount) public onlyOwner returns (bool success) {
+        // BK Ok
         return ERC20Interface(tokenAddress).transfer(owner, amount);
     }
 
@@ -1186,6 +1212,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     function transfer(address _to, uint _amount) public returns (bool success) {
         // BK Ok
         require(tradeable());
+        // BK TODO - Check gas amount of transferring from the unlockedTokens logic
         require(_amount <= unlockedTokens(msg.sender));
         // BK Ok
         return super.transfer(_to, _amount);
@@ -1197,6 +1224,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     function transferFrom(address _from, address _to, uint _amount) public returns (bool success) {
         // BK Ok
         require(tradeable());
+        // BK TODO - Check gas amount of transferring from the unlockedTokens logic
         require(_amount <= unlockedTokens(_from));
         // BK Ok 
         return super.transferFrom(_from, _to, _amount);
@@ -1204,20 +1232,30 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Multiple token transfers from one address to save gas
 
+    // BK TODO - Check gas amount of transferring from the unlockedTokens logic
+    // BK Ok - Any account can transfer their own tokens to multiple destination account
     function transferMultiple(address[] _addresses, uint[] _amounts) external {
+        // BK Ok
         require(tradeable());
+        // BK Ok
         require(_addresses.length <= 100);
+        // BK Ok
         require(_addresses.length == _amounts.length);
 
         // check token amounts
         uint tokens_to_transfer = 0;
+        // BK Ok
         for (uint i = 0; i < _addresses.length; i++) {
+            // BK Ok
             tokens_to_transfer = tokens_to_transfer.add(_amounts[i]);
         }
+        // BK TODO - Check gas amount of transferring from the unlockedTokens logic
         require(tokens_to_transfer <= unlockedTokens(msg.sender));
 
         // do the transfers
+        // BK Ok
         for (i = 0; i < _addresses.length; i++) {
+            // BK Ok
             super.transfer(_addresses[i], _amounts[i]);
         }
     }
