@@ -366,14 +366,14 @@ function printTokenContractDetails() {
       console.log("RESULT: - lockTerm                 : " + contract.lockTerm(e, 0) + ", " + contract.lockTerm(e, 1) +
         ", " + contract.lockTerm(e, 2) + ", " + contract.lockTerm(e, 3) + ", " + contract.lockTerm(e, 4) +
         ", " + contract.lockTerm(e, 0));
-      console.log("RESULT: - lockAmnt                 : " + contract.lockAmnt(e, 0) + ", " + contract.lockAmnt(e, 1) +
-          ", " + contract.lockAmnt(e, 2) + ", " + contract.lockAmnt(e, 3) + ", " + contract.lockAmnt(e, 4) +
-          ", " + contract.lockAmnt(e, 0));
+      console.log("RESULT: - lockAmnt                 : " + contract.lockAmnt(e, 0).shift(-decimals) + ", " + contract.lockAmnt(e, 1).shift(-decimals) +
+          ", " + contract.lockAmnt(e, 2).shift(-decimals) + ", " + contract.lockAmnt(e, 3).shift(-decimals) +
+          ", " + contract.lockAmnt(e, 4).shift(-decimals) + ", " + contract.lockAmnt(e, 0).shift(-decimals));
       // mapping(address => uint[LOCK_SLOTS]) public lockTerm;
       // mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
 
-      console.log("RESULT: - lockedTokens             : " + contract.lockedTokens(e));
-      console.log("RESULT: - unlockedTokens           : " + contract.unlockedTokens(e));
+      console.log("RESULT: - lockedTokens             : " + contract.lockedTokens(e).shift(-decimals) + " tokens");
+      console.log("RESULT: - unlockedTokens           : " + contract.unlockedTokens(e).shift(-decimals) + " tokens");
       console.log("RESULT: - isAvailableLockSlot(0-5) : " + contract.isAvailableLockSlot(e, 0) + ", " + contract.isAvailableLockSlot(e, 1) +
         ", " + contract.isAvailableLockSlot(e, 2) + ", " + contract.isAvailableLockSlot(e, 3) + ", " + contract.isAvailableLockSlot(e, 4) + 
         ", " + contract.isAvailableLockSlot(e, 5));
@@ -392,14 +392,14 @@ function printTokenContractDetails() {
       // mapping(address => uint) public whitelistLockDate;
       // mapping(address => bool) public blacklist;
 
-      console.log("RESULT: - balanceOf                : " + contract.balanceOf(e));
-      console.log("RESULT: - balancesOffline          : " + contract.balancesOffline(e));
-      console.log("RESULT: - balancesPending          : " + contract.balancesPending(e));
-      console.log("RESULT: - balancesPendingOffline   : " + contract.balancesPendingOffline(e));
-      console.log("RESULT: - balancesMinted           : " + contract.balancesMinted(e));
-      console.log("RESULT: - balancesBonus            : " + contract.balancesBonus(e));
-      console.log("RESULT: - ethPending               : " + contract.ethPending(e));
-      console.log("RESULT: - ethContributed           : " + contract.ethContributed(e));
+      console.log("RESULT: - balanceOf                : " + contract.balanceOf(e).shift(-decimals) + " tokens");
+      console.log("RESULT: - balancesOffline          : " + contract.balancesOffline(e).shift(-decimals) + " tokens");
+      console.log("RESULT: - balancesPending          : " + contract.balancesPending(e).shift(-decimals) + " tokens");
+      console.log("RESULT: - balancesPendingOffline   : " + contract.balancesPendingOffline(e).shift(-decimals) + " tokens");
+      console.log("RESULT: - balancesMinted           : " + contract.balancesMinted(e).shift(-decimals) + " tokens");
+      console.log("RESULT: - balancesBonus            : " + contract.balancesBonus(e).shift(-decimals) + " tokens");
+      console.log("RESULT: - ethPending               : " + contract.ethPending(e).shift(-18) + " ETH");
+      console.log("RESULT: - ethContributed           : " + contract.ethContributed(e).shift(-18) + " ETH");
       console.log("RESULT: - refundClaimed            : " + contract.refundClaimed(e));
       // mapping(address => uint) public balancesOffline;
       // mapping(address => uint) public balancesPending;
