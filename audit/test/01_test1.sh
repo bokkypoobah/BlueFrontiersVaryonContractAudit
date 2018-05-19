@@ -27,15 +27,27 @@ CURRENTTIME=`date +%s`
 CURRENTTIMES=`date -r $CURRENTTIME -u`
 
 ICO_PRESALE_DATE=`echo "$CURRENTTIME+30" | bc`
-ICO_PRESALE_DATE_S=`date -r $ICO_PRESALE_DATE -u`
+ICO_PRESALE_DATE_S=`perl -le "print scalar localtime $ICO_PRESALE_DATE"`
 ICO_MAIN_DATE=`echo "$CURRENTTIME+60" | bc`
-ICO_MAIN_DATE_S=`date -r $ICO_MAIN_DATE -u`
+ICO_MAIN_DATE_S=`perl -le "print scalar localtime $ICO_MAIN_DATE"`
 ICO_END_DATE=`echo "$CURRENTTIME+90" | bc`
-ICO_END_DATE_S=`date -r $ICO_END_DATE -u`
+ICO_END_DATE_S=`perl -le "print scalar localtime $ICO_END_DATE"`
 ICO_DEADLINE_DATE=`echo "$CURRENTTIME+120" | bc`
-ICO_DEADLINE_DATE_S=`date -r $ICO_DEADLINE_DATE -u`
+ICO_DEADLINE_DATE_S=`perl -le "print scalar localtime $ICO_DEADLINE_DATE"`
 DATE_LIMIT_DATE=`echo "$CURRENTTIME+150" | bc`
-DATE_LIMIT_DATE_S=`date -r $DATE_LIMIT_DATE -u`
+DATE_LIMIT_DATE_S=`perl -le "print scalar localtime $DATE_LIMIT_DATE"`
+LOCK_TERM_1_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_1_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_1_DATE"`
+LOCK_TERM_2_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_2_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_2_DATE"`
+LOCK_TERM_3_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_3_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_3_DATE"`
+LOCK_TERM_4_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_4_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_4_DATE"`
+LOCK_TERM_5_DATE=`echo "$CURRENTTIME+180" | bc`
+LOCK_TERM_5_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_5_DATE"`
+
+CURRENTTIMES=`perl -le "print scalar localtime $CURRENTTIME"`
 
 printf "MODE               = '$MODE'\n" | tee $TEST1OUTPUT
 printf "GETHATTACHPOINT    = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT

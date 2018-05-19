@@ -32,14 +32,14 @@
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10 - Minted Tokens
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11 - Minted Locked Tokens
-12 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+12 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy Crowdsale Contract
-crowdsaleAddress=0x1029670471248c1046263e47c431a061a7fa34ab status=0x1 Success gas=6000000 gasUsed=5101218 costETH=0.005101218 costUSD=2.04778194174 @ ETH/USD=401.43 gasPrice=1 gwei block=23988 txIx=0 txId=0x0aa68e80191d7d0df5593ec8bdaa06b0f7569b204ce6fc1ab2c1946bc88e701d @ 1526734025 Sat, 19 May 2018 12:47:05 UTC
-tokenContractAddress=0x1029670471248c1046263e47c431a061a7fa34ab
+crowdsaleAddress=0x43ac93ca1533f31e82ae941b6f477096cf9a28e6 status=0x1 Success gas=6000000 gasUsed=5101218 costETH=0.005101218 costUSD=2.04778194174 @ ETH/USD=401.43 gasPrice=1 gwei block=24740 txIx=0 txId=0x6875978361d8a13486f6a4384700b1ec2cc763bf6ab603f82bac9a0c9bb18079 @ 1526734777 Sat, 19 May 2018 12:59:37 UTC
+tokenContractAddress=0x43ac93ca1533f31e82ae941b6f477096cf9a28e6
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -47,11 +47,11 @@ token.tokensIssuedTotal=0 0 tokens
 token.totalSupply=0 tokens
 token.LOCK_SLOTS=6
 token.MAX_LOCKING_PERIOD=157852800 432473.4246575342
-crowdsale.dateIcoPresale=1526734045 Sat, 19 May 2018 12:47:25 UTC Sat, 19 May 2018 22:47:25 AEST
-crowdsale.dateIcoMain=1526734075 Sat, 19 May 2018 12:47:55 UTC Sat, 19 May 2018 22:47:55 AEST
-crowdsale.dateIcoEnd=1526734105 Sat, 19 May 2018 12:48:25 UTC Sat, 19 May 2018 22:48:25 AEST
-crowdsale.dateIcoDeadline=1526734135 Sat, 19 May 2018 12:48:55 UTC Sat, 19 May 2018 22:48:55 AEST
-crowdsale.DATE_LIMIT=1526734165 Sat, 19 May 2018 12:49:25 UTC Sat, 19 May 2018 22:49:25 AEST
+crowdsale.dateIcoPresale=1526734796 Sat, 19 May 2018 12:59:56 UTC Sat, 19 May 2018 22:59:56 AEST
+crowdsale.dateIcoMain=1526734826 Sat, 19 May 2018 13:00:26 UTC Sat, 19 May 2018 23:00:26 AEST
+crowdsale.dateIcoEnd=1526734856 Sat, 19 May 2018 13:00:56 UTC Sat, 19 May 2018 23:00:56 AEST
+crowdsale.dateIcoDeadline=1526734886 Sat, 19 May 2018 13:01:26 UTC Sat, 19 May 2018 23:01:26 AEST
+crowdsale.DATE_LIMIT=1526734916 Sat, 19 May 2018 13:01:56 UTC Sat, 19 May 2018 23:01:56 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -202,14 +202,14 @@ PASS tokensAvailableIco() == 44000000
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000         123.456000000000000000 Account #10 - Minted Tokens
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11 - Minted Locked Tokens
-12 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+12 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                   123.456000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
-PASS 0x7455de3c886d40fddce407861ecaa4d737ee68b93c2733d8866cb13e9b67759b - owner mint(ac10, 123.456 tokens)
-mintTokens_Message status=0x1 Success gas=1000000 gasUsed=111626 costETH=0.000111626 costUSD=0.04481002518 @ ETH/USD=401.43 gasPrice=1 gwei block=23999 txIx=0 txId=0x7455de3c886d40fddce407861ecaa4d737ee68b93c2733d8866cb13e9b67759b @ 1526734036 Sat, 19 May 2018 12:47:16 UTC
-tokenContractAddress=0x1029670471248c1046263e47c431a061a7fa34ab
+PASS 0xe9c9155258aa5b566780bf55e5dc87439dbad29157b44ce6d223c982831ac7da - owner mint(ac10, 123.456 tokens)
+mintTokens_Message status=0x1 Success gas=1000000 gasUsed=111626 costETH=0.000111626 costUSD=0.04481002518 @ ETH/USD=401.43 gasPrice=1 gwei block=24751 txIx=0 txId=0xe9c9155258aa5b566780bf55e5dc87439dbad29157b44ce6d223c982831ac7da @ 1526734788 Sat, 19 May 2018 12:59:48 UTC
+tokenContractAddress=0x43ac93ca1533f31e82ae941b6f477096cf9a28e6
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -217,11 +217,11 @@ token.tokensIssuedTotal=123456000000000000000 123.456 tokens
 token.totalSupply=123.456 tokens
 token.LOCK_SLOTS=6
 token.MAX_LOCKING_PERIOD=157852800 432473.4246575342
-crowdsale.dateIcoPresale=1526734045 Sat, 19 May 2018 12:47:25 UTC Sat, 19 May 2018 22:47:25 AEST
-crowdsale.dateIcoMain=1526734075 Sat, 19 May 2018 12:47:55 UTC Sat, 19 May 2018 22:47:55 AEST
-crowdsale.dateIcoEnd=1526734105 Sat, 19 May 2018 12:48:25 UTC Sat, 19 May 2018 22:48:25 AEST
-crowdsale.dateIcoDeadline=1526734135 Sat, 19 May 2018 12:48:55 UTC Sat, 19 May 2018 22:48:55 AEST
-crowdsale.DATE_LIMIT=1526734165 Sat, 19 May 2018 12:49:25 UTC Sat, 19 May 2018 22:49:25 AEST
+crowdsale.dateIcoPresale=1526734796 Sat, 19 May 2018 12:59:56 UTC Sat, 19 May 2018 22:59:56 AEST
+crowdsale.dateIcoMain=1526734826 Sat, 19 May 2018 13:00:26 UTC Sat, 19 May 2018 23:00:26 AEST
+crowdsale.dateIcoEnd=1526734856 Sat, 19 May 2018 13:00:56 UTC Sat, 19 May 2018 23:00:56 AEST
+crowdsale.dateIcoDeadline=1526734886 Sat, 19 May 2018 13:01:26 UTC Sat, 19 May 2018 23:01:26 AEST
+crowdsale.DATE_LIMIT=1526734916 Sat, 19 May 2018 13:01:56 UTC Sat, 19 May 2018 23:01:56 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -354,6 +354,6 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - ethPending               : 0 ETH
 - ethContributed           : 0 ETH
 - refundClaimed            : false
-Transfer 0 #23999: _from=0x0000000000000000000000000000000000000000 _to=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 _value=123.456
-TokensMinted 0 #23999 account=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 tokens=123.456 term=0
+Transfer 0 #24751: _from=0x0000000000000000000000000000000000000000 _to=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 _value=123.456
+TokensMinted 0 #24751 account=0xaaaa9de1e6c564446ebca0fd102d8bd92093c756 tokens=123.456 term=0
 
