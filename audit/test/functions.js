@@ -372,6 +372,8 @@ function printTokenContractDetails(detailedAccounts) {
           ", " + contract.lockAmnt(e, 4).shift(-decimals) + ", " + contract.lockAmnt(e, 5).shift(-decimals));
       // mapping(address => uint[LOCK_SLOTS]) public lockTerm;
       // mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
+      // mapping(address => bool) public hasLockedTokens;
+      console.log("RESULT: - mayHaveLockedTokens      : " + contract.mayHaveLockedTokens(e));
 
       console.log("RESULT: - lockedTokens             : " + contract.lockedTokens(e).shift(-decimals) + " tokens");
       console.log("RESULT: - unlockedTokens           : " + contract.unlockedTokens(e).shift(-decimals) + " tokens");

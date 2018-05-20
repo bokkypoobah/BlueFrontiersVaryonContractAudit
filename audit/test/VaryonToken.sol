@@ -215,6 +215,7 @@ contract LockSlots is ERC20Token, Utils {
     uint8 public constant LOCK_SLOTS = 6;
     mapping(address => uint[LOCK_SLOTS]) public lockTerm;
     mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
+    mapping(address => bool) public mayHaveLockedTokens;
 
     event RegisteredLockedTokens(address indexed account, uint indexed idx, uint tokens, uint term);
     event IcoLockSet(address indexed account, uint term, uint tokens);
@@ -244,22 +245,23 @@ contract LockSlots is ERC20Token, Utils {
         // register locked tokens
         if (term[idx] == 0) term[idx] = _term;
         amnt[idx] = amnt[idx].add(_tokens);
+        mayHaveLockedTokens[_account] = true;
         emit RegisteredLockedTokens(_account, idx, _tokens, _term);
     }
 
-    function lockedTokens(address _account) public view returns (uint locked) {
-        uint[LOCK_SLOTS] storage term = lockTerm[_account];
-        uint[LOCK_SLOTS] storage amnt = lockAmnt[_account];
-        for (uint i = 0; i < LOCK_SLOTS; i++) {
-            if (term[i] > atNow()) locked = locked.add(amnt[i]);
-        }
+    // public view functions
+
+    function lockedTokens(address _account) public view returns (uint) {
+        if (!mayHaveLockedTokens[_account]) return 0;
+        return pNumberOfLockedTokens(_account);
     }
 
-    function unlockedTokens (address _account) public view returns (uint unlocked) {
-        unlocked = balances[_account].sub(lockedTokens(_account));
+    function unlockedTokens(address _account) public view returns (uint) {
+        return balances[_account].sub(lockedTokens(_account));
     }
 
     function isAvailableLockSlot(address _account, uint _term) public view returns (bool) {
+        if (!mayHaveLockedTokens[_account]) return true;
         if (_term < atNow()) return true;
         uint[LOCK_SLOTS] storage term = lockTerm[_account];
         // does not check ICO slot 0
@@ -274,6 +276,7 @@ contract LockSlots is ERC20Token, Utils {
     function setIcoLock(address _account, uint _term, uint _tokens) internal {
         lockTerm[_account][0] = _term;
         lockAmnt[_account][0] = _tokens;
+        mayHaveLockedTokens[_account] = true;
         emit IcoLockSet(_account, _term, _tokens);
     }
 
@@ -283,6 +286,24 @@ contract LockSlots is ERC20Token, Utils {
         uint term = lockTerm[_account][0];
         lockTerm[_account][0] = _unixts;
         emit IcoLockChanged(_account, term, _unixts);
+    }
+
+    // internal and private functions
+
+    function unlockedTokensInternal(address _account) internal returns (uint) {
+        // updates mayHaveLockedTokens if necessary
+        if (!mayHaveLockedTokens[_account]) return balances[_account];
+        uint locked = pNumberOfLockedTokens(_account);
+        if (locked == 0) mayHaveLockedTokens[_account] = false;
+        return balances[_account].sub(locked);
+    }
+
+    function pNumberOfLockedTokens(address _account) private view returns (uint locked) {
+        uint[LOCK_SLOTS] storage term = lockTerm[_account];
+        uint[LOCK_SLOTS] storage amnt = lockAmnt[_account];
+        for (uint i = 0; i < LOCK_SLOTS; i++) {
+            if (term[i] >= atNow()) locked = locked.add(amnt[i]);
+        }
     }
 
 }
@@ -335,7 +356,7 @@ contract WBList is Owned, Utils {
         for (uint i = 0; i < _accounts.length; i++) {
             pWhitelist(_accounts[i], _limits[i], _thresholds[i], _terms[i]);
         }
-    }    
+    }
 
     function pWhitelist(address _account, uint _limit, uint _threshold, uint _term) private {
         require(!whitelist[_account], "account is already whitelisted");
@@ -345,7 +366,7 @@ contract WBList is Owned, Utils {
         if (_threshold > 0 ) require(_threshold > _limit, "threshold not above limit");
         if (_term > 0) {
             require(_term > atNow(), "the locking period cannot be in the past");
-            require(_term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days");
+            require(_term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 5 years");
         }
 
         // add to whitelist
@@ -357,7 +378,7 @@ contract WBList is Owned, Utils {
 
         // actions linked to whitelisting
         processWhitelisting(_account);
-    } 
+    }
 
 
     function addToBlacklist(address _account) public onlyAdmin {
@@ -393,12 +414,12 @@ contract WBList is Owned, Utils {
 
 contract VaryonIcoDates is Owned, Utils {    
 
-    uint public dateIcoPresale  = 1526787467; // Sun May 20 13:37:47 2018
-    uint public dateIcoMain     = 1526787497; // Sun May 20 13:38:17 2018
-    uint public dateIcoEnd      = 1526787527; // Sun May 20 13:38:47 2018
-    uint public dateIcoDeadline = 1526787557; // Sun May 20 13:39:17 2018
+    uint public dateIcoPresale  = 1526829541; // Mon May 21 01:19:01 2018
+    uint public dateIcoMain     = 1526829571; // Mon May 21 01:19:31 2018
+    uint public dateIcoEnd      = 1526829601; // Mon May 21 01:20:01 2018
+    uint public dateIcoDeadline = 1526829631; // Mon May 21 01:20:31 2018
 
-    uint public constant DATE_LIMIT = 1526787587; // Sun May 20 13:39:47 2018
+    uint public constant DATE_LIMIT = 1526829661; // Mon May 21 01:21:01 2018
 
     event IcoDateUpdated(uint8 id, uint unixts);
 
@@ -459,13 +480,13 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     // Basic token data
 
-    string public constant name       = "Varyon Token";
-    string public constant symbol     = "VAR";
-    uint8    public constant decimals = 18;
+    string public constant name = "Varyon Token";
+    string public constant symbol = "VAR";
+    uint8 public constant decimals = 18;
 
     // Crowdsale parameters : token price, supply, caps and bonus
 
-    uint public constant TOKENS_PER_ETH = 10000; // test value, will be reset to 14750 before deployment
+    uint public constant TOKENS_PER_ETH = 10000; // test value, will be changed before deployment
 
     uint public constant TOKEN_TOTAL_SUPPLY = 1000000000 * E18; // VAR 1,000,000,000
 
@@ -618,7 +639,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
         // update
         balances[_account] = balances[_account].add(_tokens);
-        balancesMinted[_account] = balances[_account].add(_tokens);
+        balancesMinted[_account] = balancesMinted[_account].add(_tokens);
         tokensMinted = tokensMinted.add(_tokens);
         tokensIssuedTotal = tokensIssuedTotal.add(_tokens);
 
@@ -882,7 +903,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         emit Transfer(0x0, _account, tokens.add(tokens_bonus));
         emit WhitelistingEvent(_account, tokens, tokens_bonus, tokens_to_return, eth_to_contribute, eth_to_return);
     }
-    
+
     // Send ether to wallet if threshold reached
 
     function sendEtherToWallet() private {
@@ -897,7 +918,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     function processTokenIssue(address _account, uint _tokens_to_add) private returns (uint tokens, uint tokens_bonus) {
 
         tokens = _tokens_to_add;
-        uint balance = balances[msg.sender].sub(balancesBonus[msg.sender]).sub(balancesMinted[msg.sender]);
+        uint balance = balances[_account].sub(balancesBonus[_account]).sub(balancesMinted[_account]);
         uint balance_exp = balance.add(tokens);
         uint limit = whitelistLimit[_account];
         uint threshold = whitelistThreshold[_account];
@@ -934,7 +955,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
                 setIcoLock(_account, whitelistLockDate[_account], tokens_crowdsale);
             }
         }
-    }    
+    }
 
     // Cancel or Reclaim pending contributions ------------
 
@@ -1026,7 +1047,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     function transfer(address _to, uint _amount) public returns (bool success) {
         require(tradeable());
-        require(_amount <= unlockedTokens(msg.sender));
+        require(_amount <= unlockedTokensInternal(msg.sender));
         return super.transfer(_to, _amount);
     }
 
@@ -1034,7 +1055,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
 
     function transferFrom(address _from, address _to, uint _amount) public returns (bool success) {
         require(tradeable());
-        require(_amount <= unlockedTokens(_from)); 
+        require(_amount <= unlockedTokensInternal(_from)); 
         return super.transferFrom(_from, _to, _amount);
     }
 
@@ -1050,7 +1071,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         for (uint i = 0; i < _addresses.length; i++) {
             tokens_to_transfer = tokens_to_transfer.add(_amounts[i]);
         }
-        require(tokens_to_transfer <= unlockedTokens(msg.sender));
+        require(tokens_to_transfer <= unlockedTokensInternal(msg.sender));
 
         // do the transfers
         for (i = 0; i < _addresses.length; i++) {

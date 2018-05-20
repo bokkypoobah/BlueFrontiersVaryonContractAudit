@@ -307,7 +307,7 @@ contract LockSlots is ERC20Token, Utils {
     mapping(address => uint[LOCK_SLOTS]) public lockTerm;
     mapping(address => uint[LOCK_SLOTS]) public lockAmnt;
     // BK TODO
-    mapping(address => bool) public hasLockedTokens;
+    mapping(address => bool) public mayHaveLockedTokens;
 
     // BK Next 3 Ok - Events
     event RegisteredLockedTokens(address indexed account, uint indexed idx, uint tokens, uint term);
@@ -343,23 +343,25 @@ contract LockSlots is ERC20Token, Utils {
         // register locked tokens
         if (term[idx] == 0) term[idx] = _term;
         amnt[idx] = amnt[idx].add(_tokens);
-        hasLockedTokens[_account] = true;
+        mayHaveLockedTokens[_account] = true;
         emit RegisteredLockedTokens(_account, idx, _tokens, _term);
     }
 
-    function lockedTokens(address _account) public view returns (uint locked) {
-        if (!hasLockedTokens[_account]) return;
+    // public view functions
+
+    function lockedTokens(address _account) public view returns (uint) {
+        if (!mayHaveLockedTokens[_account]) return 0;
         return pNumberOfLockedTokens(_account);
     }
 
     // BK Ok - View function
-    function unlockedTokens(address _account) public view returns (uint unlocked) {
+    function unlockedTokens(address _account) public view returns (uint) {
         // BK Ok
-        unlocked = balances[_account].sub(lockedTokens(_account));
+        return balances[_account].sub(lockedTokens(_account));
     }
 
     function isAvailableLockSlot(address _account, uint _term) public view returns (bool) {
-        if (!hasLockedTokens[_account]) return true;
+        if (!mayHaveLockedTokens[_account]) return true;
         if (_term < atNow()) return true;
         uint[LOCK_SLOTS] storage term = lockTerm[_account];
         // does not check ICO slot 0
@@ -374,7 +376,7 @@ contract LockSlots is ERC20Token, Utils {
     function setIcoLock(address _account, uint _term, uint _tokens) internal {
         lockTerm[_account][0] = _term;
         lockAmnt[_account][0] = _tokens;
-        hasLockedTokens[_account] = true;
+        mayHaveLockedTokens[_account] = true;
         emit IcoLockSet(_account, _term, _tokens);
     }
 
@@ -386,16 +388,17 @@ contract LockSlots is ERC20Token, Utils {
         emit IcoLockChanged(_account, term, _unixts);
     }
 
-    // maintenance function
+    // internal and private functions
 
-    function updateHasLockedTokens(address _account) public {
-        require(hasLockedTokens[_account]); 
-        if (pNumberOfLockedTokens(_account) == 0) hasLockedTokens[_account] = false;
+    function unlockedTokensInternal(address _account) internal returns (uint) {
+        // updates mayHaveLockedTokens if necessary
+        if (!mayHaveLockedTokens[_account]) return balances[_account];
+        uint locked = pNumberOfLockedTokens(_account);
+        if (locked == 0) mayHaveLockedTokens[_account] = false;
+        return balances[_account].sub(locked);
     }
 
-    // private function
-
-    function pNumberOfLockedTokens(address _account) private returns (uint locked) {
+    function pNumberOfLockedTokens(address _account) private view returns (uint locked) {
         uint[LOCK_SLOTS] storage term = lockTerm[_account];
         uint[LOCK_SLOTS] storage amnt = lockAmnt[_account];
         for (uint i = 0; i < LOCK_SLOTS; i++) {
@@ -622,7 +625,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
     // Crowdsale parameters : token price, supply, caps and bonus
 
     // BK Ok
-    uint public constant TOKENS_PER_ETH = 10000; // test value, will be reset to 14750 before deployment
+    uint public constant TOKENS_PER_ETH = 10000; // test value, will be changed before deployment
 
     // BK Ok
     uint public constant TOKEN_TOTAL_SUPPLY = 1000000000 * E18; // VAR 1,000,000,000
@@ -1283,7 +1286,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         // BK Ok
         require(tradeable());
         // BK TODO - Check gas amount of transferring from the unlockedTokens logic
-        require(_amount <= unlockedTokens(msg.sender));
+        require(_amount <= unlockedTokensInternal(msg.sender));
         // BK Ok
         return super.transfer(_to, _amount);
     }
@@ -1295,7 +1298,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         // BK Ok
         require(tradeable());
         // BK TODO - Check gas amount of transferring from the unlockedTokens logic
-        require(_amount <= unlockedTokens(_from));
+        require(_amount <= unlockedTokensInternal(_from));
         // BK Ok 
         return super.transferFrom(_from, _to, _amount);
     }
@@ -1320,7 +1323,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
             tokens_to_transfer = tokens_to_transfer.add(_amounts[i]);
         }
         // BK TODO - Check gas amount of transferring from the unlockedTokens logic
-        require(tokens_to_transfer <= unlockedTokens(msg.sender));
+        require(tokens_to_transfer <= unlockedTokensInternal(msg.sender));
 
         // do the transfers
         // BK Ok
