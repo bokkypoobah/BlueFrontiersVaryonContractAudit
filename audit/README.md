@@ -8,8 +8,9 @@ Bok Consulting Pty Ltd was commissioned to perform an private audit on the Ether
 
 This audit has been conducted on Blue Frontiers's source code in commits
 [2edcced](https://github.com/Blue-Frontiers/varyon/commit/2edccedc46e66644058db50bb6e6652175bf09a6), 
-[66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a) and
-[d2e0b13](https://github.com/Blue-Frontiers/varyon/commit/d2e0b13e3e283a1dcde898e90daa2e70fb25d3f0).
+[66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a),
+[d2e0b13](https://github.com/Blue-Frontiers/varyon/commit/d2e0b13e3e283a1dcde898e90daa2e70fb25d3f0) and
+[2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8).
 
 TODO - CHeck that no potential vulnerabilities have been identified in the crowdsale and token contracts.
 
@@ -33,9 +34,7 @@ TODO - CHeck that no potential vulnerabilities have been identified in the crowd
 
 ## Recommendations
 
-* [ ] **MEDIUM IMPORTANCE** `buyOffline(...)` can only be executed by the admin, and this calls `buyOfflineWhitelist(...)` which calls `processTokenIssue(...)`. In `processTokenIssue(...)`, the statement `uint balance = balances[msg.sender].sub(balancesBonus[msg.sender]).sub(balancesMinted[msg.sender]);` checks the balance of `msg.sender` which will be the admin account
-* [ ] **MEDIUM IMPORTANCE** `VaryonToken.pMintTokens(...)` has the statement `balancesMinted[_account] = balances[_account].add(_tokens);` which should be `balancesMinted[_account] = balancesMinted[_account].add(_tokens);`
-* [ ] **LOW IMPORTANCE** Inconsistency between `uint public constant MAX_LOCKING_PERIOD = 1827 days; // max 5 years` and `require(_term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days");`
+None
 
 <br />
 
@@ -58,6 +57,12 @@ TODO - CHeck that no potential vulnerabilities have been identified in the crowd
   * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
 * [x] **LOW IMPORTANCE** `wallet.transfer(thisAddress.balance - totalEthPending);` should use the `sub(...)` function
   * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
+* [x] **MEDIUM IMPORTANCE** `buyOffline(...)` can only be executed by the admin, and this calls `buyOfflineWhitelist(...)` which calls `processTokenIssue(...)`. In `processTokenIssue(...)`, the statement `uint balance = balances[msg.sender].sub(balancesBonus[msg.sender]).sub(balancesMinted[msg.sender]);` checks the balance of `msg.sender` which will be the admin account
+  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
+* [x] **MEDIUM IMPORTANCE** `VaryonToken.pMintTokens(...)` has the statement `balancesMinted[_account] = balances[_account].add(_tokens);` which should be `balancesMinted[_account] = balancesMinted[_account].add(_tokens);`
+  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
+* [x] **LOW IMPORTANCE** Inconsistency between `uint public constant MAX_LOCKING_PERIOD = 1827 days; // max 5 years` and `require(_term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days");`
+  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
 
 <br />
 
