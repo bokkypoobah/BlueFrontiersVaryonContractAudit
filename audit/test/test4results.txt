@@ -34,14 +34,14 @@
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
-13 0xe7963e0ada5b8c83596b3076e719d6169e648dfb        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+13 0x1392b3306e6f307b829d2fe8ce130af106a8e143        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy Crowdsale Contract
-crowdsaleAddress=0xe7963e0ada5b8c83596b3076e719d6169e648dfb status=0x1 Success gas=6000000 gasUsed=5200233 costETH=0.005200233 costUSD=2.08752953319 @ ETH/USD=401.43 gasPrice=1 gwei block=14375 txIx=0 txId=0x6418c90dc4d730a3593c505dd4bda060be0a9505ca84a0432166baf609c31c27 @ 1526923503 Mon, 21 May 2018 17:25:03 UTC
-tokenContractAddress=0xe7963e0ada5b8c83596b3076e719d6169e648dfb
+crowdsaleAddress=0x1392b3306e6f307b829d2fe8ce130af106a8e143 status=0x1 Success gas=6000000 gasUsed=5200233 costETH=0.005200233 costUSD=2.08752953319 @ ETH/USD=401.43 gasPrice=1 gwei block=15749 txIx=0 txId=0x4aafba43bd6f8b09a454fc1d4d1b996f51025251ebd7f17230d2b998b317ab0f @ 1526924877 Mon, 21 May 2018 17:47:57 UTC
+tokenContractAddress=0x1392b3306e6f307b829d2fe8ce130af106a8e143
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -49,11 +49,11 @@ token.tokensIssuedTotal=0 tokens
 token.totalSupply=0 tokens
 lockSlots.LOCK_SLOTS=6
 wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
-icoDates.dateIcoPresale=1526923521 Mon, 21 May 2018 17:25:21 UTC Tue, 22 May 2018 03:25:21 AEST
-icoDates.dateIcoMain=1526923551 Mon, 21 May 2018 17:25:51 UTC Tue, 22 May 2018 03:25:51 AEST
-icoDates.dateIcoEnd=1526923580 Mon, 21 May 2018 17:26:20 UTC Tue, 22 May 2018 03:26:20 AEST
-icoDates.dateIcoDeadline=1526923581 Mon, 21 May 2018 17:26:21 UTC Tue, 22 May 2018 03:26:21 AEST
-icoDates.DATE_LIMIT=1526923611 Mon, 21 May 2018 17:26:51 UTC Tue, 22 May 2018 03:26:51 AEST
+icoDates.dateIcoPresale=1526924895 Mon, 21 May 2018 17:48:15 UTC Tue, 22 May 2018 03:48:15 AEST
+icoDates.dateIcoMain=1526924925 Mon, 21 May 2018 17:48:45 UTC Tue, 22 May 2018 03:48:45 AEST
+icoDates.dateIcoEnd=1526924954 Mon, 21 May 2018 17:49:14 UTC Tue, 22 May 2018 03:49:14 AEST
+icoDates.dateIcoDeadline=1526924955 Mon, 21 May 2018 17:49:15 UTC Tue, 22 May 2018 03:49:15 AEST
+icoDates.DATE_LIMIT=1526924985 Mon, 21 May 2018 17:49:45 UTC Tue, 22 May 2018 03:49:45 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -105,7 +105,7 @@ PASS tokensAvailableIco() == 44000000
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
-13 0xe7963e0ada5b8c83596b3076e719d6169e648dfb        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+13 0x1392b3306e6f307b829d2fe8ce130af106a8e143        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -114,11 +114,11 @@ PASS Whitelist + Blacklist Accounts - owner addToWhitelist(ac4)
 PASS Whitelist + Blacklist Accounts - owner addToWhitelistParamsMultiple([ac5], [60 ETH], [100 ETH])
 PASS Whitelist + Blacklist Accounts - owner addToBlacklist(ac6
 PASS Whitelist + Blacklist Accounts - owner addToWhitelist(ac7)
-whiteBlackList_1Tx status=0x1 Success gas=1000000 gasUsed=64061 costETH=0.000064061 costUSD=0.02571600723 @ ETH/USD=401.43 gasPrice=1 gwei block=14380 txIx=0 txId=0xa39a93017ecd8ae5460ac18738315028aa442ee514db7b305070ad770aa28054 @ 1526923508 Mon, 21 May 2018 17:25:08 UTC
-whiteBlackList_2Tx status=0x1 Success gas=1000000 gasUsed=112516 costETH=0.000112516 costUSD=0.04516729788 @ ETH/USD=401.43 gasPrice=1 gwei block=14380 txIx=1 txId=0xa029c5bf0e53a70a2be6bb0ea0f1706cf41f626311200ece5cef99adac3b612d @ 1526923508 Mon, 21 May 2018 17:25:08 UTC
-whiteBlackList_3Tx status=0x1 Success gas=1000000 gasUsed=46768 costETH=0.000046768 costUSD=0.01877407824 @ ETH/USD=401.43 gasPrice=1 gwei block=14380 txIx=2 txId=0x61587e7249286e87f1c9d04009ddaf2897645a04805dfd3a1e3de2fa68588a20 @ 1526923508 Mon, 21 May 2018 17:25:08 UTC
-whiteBlackList_4Tx status=0x1 Success gas=1000000 gasUsed=64061 costETH=0.000064061 costUSD=0.02571600723 @ ETH/USD=401.43 gasPrice=1 gwei block=14380 txIx=3 txId=0x66a41cd4674c151ef3352c0d27c1cff8f65f0f11c6feaf3a0770419a2d6379fe @ 1526923508 Mon, 21 May 2018 17:25:08 UTC
-tokenContractAddress=0xe7963e0ada5b8c83596b3076e719d6169e648dfb
+whiteBlackList_1Tx status=0x1 Success gas=1000000 gasUsed=64061 costETH=0.000064061 costUSD=0.02571600723 @ ETH/USD=401.43 gasPrice=1 gwei block=15754 txIx=0 txId=0x08467ce07dbea3c262663d8bade029265ca7e7c7e3cc27818e5bf0158d5bc91a @ 1526924882 Mon, 21 May 2018 17:48:02 UTC
+whiteBlackList_2Tx status=0x1 Success gas=1000000 gasUsed=112516 costETH=0.000112516 costUSD=0.04516729788 @ ETH/USD=401.43 gasPrice=1 gwei block=15754 txIx=1 txId=0xc1713a155183b8b0f0e7fbf8e3c354f4568eb3212b5d8b659d3b9308ab1d60be @ 1526924882 Mon, 21 May 2018 17:48:02 UTC
+whiteBlackList_3Tx status=0x1 Success gas=1000000 gasUsed=46768 costETH=0.000046768 costUSD=0.01877407824 @ ETH/USD=401.43 gasPrice=1 gwei block=15754 txIx=2 txId=0x3b05d6530f3c2e34b850156a042fbb988986d2b82abfc297fd74491a88547bab @ 1526924882 Mon, 21 May 2018 17:48:02 UTC
+whiteBlackList_4Tx status=0x1 Success gas=1000000 gasUsed=64061 costETH=0.000064061 costUSD=0.02571600723 @ ETH/USD=401.43 gasPrice=1 gwei block=15754 txIx=3 txId=0x8ac4cf2e88357da25953a41fd34f88577712c702b40329179018a6e0140b1683 @ 1526924882 Mon, 21 May 2018 17:48:02 UTC
+tokenContractAddress=0x1392b3306e6f307b829d2fe8ce130af106a8e143
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -126,11 +126,11 @@ token.tokensIssuedTotal=0 tokens
 token.totalSupply=0 tokens
 lockSlots.LOCK_SLOTS=6
 wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
-icoDates.dateIcoPresale=1526923521 Mon, 21 May 2018 17:25:21 UTC Tue, 22 May 2018 03:25:21 AEST
-icoDates.dateIcoMain=1526923551 Mon, 21 May 2018 17:25:51 UTC Tue, 22 May 2018 03:25:51 AEST
-icoDates.dateIcoEnd=1526923580 Mon, 21 May 2018 17:26:20 UTC Tue, 22 May 2018 03:26:20 AEST
-icoDates.dateIcoDeadline=1526923581 Mon, 21 May 2018 17:26:21 UTC Tue, 22 May 2018 03:26:21 AEST
-icoDates.DATE_LIMIT=1526923611 Mon, 21 May 2018 17:26:51 UTC Tue, 22 May 2018 03:26:51 AEST
+icoDates.dateIcoPresale=1526924895 Mon, 21 May 2018 17:48:15 UTC Tue, 22 May 2018 03:48:15 AEST
+icoDates.dateIcoMain=1526924925 Mon, 21 May 2018 17:48:45 UTC Tue, 22 May 2018 03:48:45 AEST
+icoDates.dateIcoEnd=1526924954 Mon, 21 May 2018 17:49:14 UTC Tue, 22 May 2018 03:49:14 AEST
+icoDates.dateIcoDeadline=1526924955 Mon, 21 May 2018 17:49:15 UTC Tue, 22 May 2018 03:49:15 AEST
+icoDates.DATE_LIMIT=1526924985 Mon, 21 May 2018 17:49:45 UTC Tue, 22 May 2018 03:49:45 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -194,7 +194,7 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - whitelist                : true
 - whitelistLimit           : 60000000000000000000
 - whitelistThreshold       : 100000000000000000000
-- whitelistLockDate        : 1526923596
+- whitelistLockDate        : 1526924970
 - blacklist                : false
 - balanceOf                : 0 tokens
 - balancesOffline          : 0 tokens
@@ -247,13 +247,13 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - ethPending               : 0 ETH
 - ethContributed           : 0 ETH
 - refundClaimed            : false
-Whitelisted 0 #14380 {"account":"0xa44a08d3f6933c69212114bb66e2df1813651844","limit":"0","term":"0","threshold":"0"}
-Whitelisted 1 #14380 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","limit":"60000000000000000000","term":"1526923596","threshold":"100000000000000000000"}
-Whitelisted 2 #14380 {"account":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","limit":"0","term":"0","threshold":"0"}
-Blacklisted 0 #14380 {"account":"0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9"}
+Whitelisted 0 #15754 {"account":"0xa44a08d3f6933c69212114bb66e2df1813651844","limit":"0","term":"0","threshold":"0"}
+Whitelisted 1 #15754 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","limit":"60000000000000000000","term":"1526924970","threshold":"100000000000000000000"}
+Whitelisted 2 #15754 {"account":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","limit":"0","term":"0","threshold":"0"}
+Blacklisted 0 #15754 {"account":"0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9"}
 
-Waiting until 'dateIcoMain' at 1526923551+1s=Tue, 22 May 2018 03:25:53 AEST now=Tue, 22 May 2018 03:25:15 AEST
-Waited until 'dateIcoMain' at at 1526923551+1s=Tue, 22 May 2018 03:25:53 AEST now=Tue, 22 May 2018 03:25:53 AEST
+Waiting until 'dateIcoMain' at 1526924925+1s=Tue, 22 May 2018 03:48:47 AEST now=Tue, 22 May 2018 03:48:08 AEST
+Waited until 'dateIcoMain' at at 1526924925+1s=Tue, 22 May 2018 03:48:47 AEST now=Tue, 22 May 2018 03:48:47 AEST
 
 ---------- Send Contribution #1 ----------
  # Account                                             EtherBalanceChange                          Token Name
@@ -262,8 +262,8 @@ Waited until 'dateIcoMain' at at 1526923551+1s=Tue, 22 May 2018 03:25:53 AEST no
  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005487639000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0     -100.000108947000000000           0.000000000000000000 Account #3 - Not Whitelisted
- 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000166367000000000     2000000.000000000000000000 Account #4 - Whitelisted
- 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000169000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000106367000000000     2000000.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000229000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000022139000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7 - Contributed
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2     -500.000078947000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
@@ -271,7 +271,7 @@ Waited until 'dateIcoMain' at at 1526923551+1s=Tue, 22 May 2018 03:25:53 AEST no
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
-13 0xe7963e0ada5b8c83596b3076e719d6169e648dfb     1100.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+13 0x1392b3306e6f307b829d2fe8ce130af106a8e143     1100.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                               5000000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -281,12 +281,12 @@ PASS Send Contribution #1 - Whitelisted contribution ac4 200 ETH
 PASS Send Contribution #1 - Whitelisted contribution ac5 300 ETH
 PASS Send Contribution #1 - Blacklisted contribution ac6 400 ETH
 PASS Send Contribution #1 - Not Whitelisted contribution ac8 500 ETH - To reclaim ETH
-sendContribution1_1Tx status=0x1 Success gas=400000 gasUsed=108947 costETH=0.000108947 costUSD=0.04373459421 @ ETH/USD=401.43 gasPrice=1 gwei block=14427 txIx=1 txId=0x907ac71e49748627278f3304e296a2df244e0cbc4624e445a4828a627ea86e92 @ 1526923555 Mon, 21 May 2018 17:25:55 UTC
-sendContribution1_2Tx status=0x1 Success gas=400000 gasUsed=166367 costETH=0.000166367 costUSD=0.06678470481 @ ETH/USD=401.43 gasPrice=1 gwei block=14427 txIx=0 txId=0x762082be504e2c125462c4836c5e45e30c76f94be0e9ce789439a7f2b8fd7e0a @ 1526923555 Mon, 21 May 2018 17:25:55 UTC
-sendContribution1_3Tx status=0x1 Success gas=400000 gasUsed=169000 costETH=0.000169 costUSD=0.06784167 @ ETH/USD=401.43 gasPrice=1 gwei block=14427 txIx=4 txId=0x5e2dd4920829075568a03f167ce4abb799216afc0c9094452051b77cd6a1ffae @ 1526923555 Mon, 21 May 2018 17:25:55 UTC
-sendContribution1_4Tx status=0x0 Failure gas=400000 gasUsed=22139 costETH=0.000022139 costUSD=0.00888725877 @ ETH/USD=401.43 gasPrice=1 gwei block=14427 txIx=3 txId=0x1506145d78925c32aa8de0a732a6b1dc05b92f00ae3952c3c1ce7895032fadfc @ 1526923555 Mon, 21 May 2018 17:25:55 UTC
-sendContribution1_4Tx status=0x1 Success gas=400000 gasUsed=78947 costETH=0.000078947 costUSD=0.03169169421 @ ETH/USD=401.43 gasPrice=1 gwei block=14427 txIx=2 txId=0x7d00d3982e26fefa10969664bcc9de8dc68541af0b3c7ce75c4b04063dc9e4f2 @ 1526923555 Mon, 21 May 2018 17:25:55 UTC
-tokenContractAddress=0xe7963e0ada5b8c83596b3076e719d6169e648dfb
+sendContribution1_1Tx status=0x1 Success gas=400000 gasUsed=108947 costETH=0.000108947 costUSD=0.04373459421 @ ETH/USD=401.43 gasPrice=1 gwei block=15801 txIx=0 txId=0x6bb4476f922ce0e32d58d5d5c4dcec6769244022e5e49f82af342520aced6f61 @ 1526924929 Mon, 21 May 2018 17:48:49 UTC
+sendContribution1_2Tx status=0x1 Success gas=400000 gasUsed=106367 costETH=0.000106367 costUSD=0.04269890481 @ ETH/USD=401.43 gasPrice=1 gwei block=15801 txIx=4 txId=0xb2179ef8205a1d7d281ea4349d7768bdf5860a6e4620b9e1d74e77c727117d42 @ 1526924929 Mon, 21 May 2018 17:48:49 UTC
+sendContribution1_3Tx status=0x1 Success gas=400000 gasUsed=229000 costETH=0.000229 costUSD=0.09192747 @ ETH/USD=401.43 gasPrice=1 gwei block=15801 txIx=3 txId=0xd0105f206f1dea64bdd56ba8864b6d16bd1cac661a5b17d1a74a0f41d6ca0a70 @ 1526924929 Mon, 21 May 2018 17:48:49 UTC
+sendContribution1_4Tx status=0x0 Failure gas=400000 gasUsed=22139 costETH=0.000022139 costUSD=0.00888725877 @ ETH/USD=401.43 gasPrice=1 gwei block=15801 txIx=2 txId=0xf3bfa84b2710d5294f555122be09eec4b8a5f29cf7ee95940391d7b6d9739153 @ 1526924929 Mon, 21 May 2018 17:48:49 UTC
+sendContribution1_4Tx status=0x1 Success gas=400000 gasUsed=78947 costETH=0.000078947 costUSD=0.03169169421 @ ETH/USD=401.43 gasPrice=1 gwei block=15801 txIx=1 txId=0xb5b420e25c44f80dc3a703894d26c44fba80f2af95fe434f7e4132175124567e @ 1526924929 Mon, 21 May 2018 17:48:49 UTC
+tokenContractAddress=0x1392b3306e6f307b829d2fe8ce130af106a8e143
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -294,11 +294,11 @@ token.tokensIssuedTotal=5000000 tokens
 token.totalSupply=5000000 tokens
 lockSlots.LOCK_SLOTS=6
 wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
-icoDates.dateIcoPresale=1526923521 Mon, 21 May 2018 17:25:21 UTC Tue, 22 May 2018 03:25:21 AEST
-icoDates.dateIcoMain=1526923551 Mon, 21 May 2018 17:25:51 UTC Tue, 22 May 2018 03:25:51 AEST
-icoDates.dateIcoEnd=1526923580 Mon, 21 May 2018 17:26:20 UTC Tue, 22 May 2018 03:26:20 AEST
-icoDates.dateIcoDeadline=1526923581 Mon, 21 May 2018 17:26:21 UTC Tue, 22 May 2018 03:26:21 AEST
-icoDates.DATE_LIMIT=1526923611 Mon, 21 May 2018 17:26:51 UTC Tue, 22 May 2018 03:26:51 AEST
+icoDates.dateIcoPresale=1526924895 Mon, 21 May 2018 17:48:15 UTC Tue, 22 May 2018 03:48:15 AEST
+icoDates.dateIcoMain=1526924925 Mon, 21 May 2018 17:48:45 UTC Tue, 22 May 2018 03:48:45 AEST
+icoDates.dateIcoEnd=1526924954 Mon, 21 May 2018 17:49:14 UTC Tue, 22 May 2018 03:49:14 AEST
+icoDates.dateIcoDeadline=1526924955 Mon, 21 May 2018 17:49:15 UTC Tue, 22 May 2018 03:49:15 AEST
+icoDates.DATE_LIMIT=1526924985 Mon, 21 May 2018 17:49:45 UTC Tue, 22 May 2018 03:49:45 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -374,7 +374,7 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - ethContributed           : 200 ETH
 - refundClaimed            : false
 --- 0xa55a151eb00fded1634d27d1127b4be4627079ea Account #5 - Whitelisted With Limit, Threshold and Term ---
-- lockTerm                 : 1526923596, 0, 0, 0, 0, 0
+- lockTerm                 : 1526924970, 0, 0, 0, 0, 0
 - lockAmnt                 : 3000000, 0, 0, 0, 0, 0
 - mayHaveLockedTokens      : true
 - lockedTokens             : 3000000 tokens
@@ -383,7 +383,7 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - whitelist                : true
 - whitelistLimit           : 60000000000000000000
 - whitelistThreshold       : 100000000000000000000
-- whitelistLockDate        : 1526923596
+- whitelistLockDate        : 1526924970
 - blacklist                : false
 - balanceOf                : 3000000 tokens
 - balancesOffline          : 0 tokens
@@ -436,13 +436,13 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - ethPending               : 500 ETH
 - ethContributed           : 0 ETH
 - refundClaimed            : false
-Transfer 0 #14427: _from=0x0000000000000000000000000000000000000000 _to=0xa44a08d3f6933c69212114bb66e2df1813651844 _value=2000000
-Transfer 1 #14427: _from=0x0000000000000000000000000000000000000000 _to=0xa55a151eb00fded1634d27d1127b4be4627079ea _value=3000000
-IcoLockSet 0 #14427 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","term":"1526923596","tokens":"3e+24"}
-RegisterContribution 0 #14427 {"account":"0xa44a08d3f6933c69212114bb66e2df1813651844","ethContributed":"200000000000000000000","ethReturned":"0","tokens":"2e+24","tokensBonus":"0"}
-RegisterContribution 1 #14427 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","ethContributed":"300000000000000000000","ethReturned":"0","tokens":"3e+24","tokensBonus":"0"}
-RegisterPending 0 #14427 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","ethContributed":"100000000000000000000","ethReturned":"0","tokens":"1e+24"}
-RegisterPending 1 #14427 {"account":"0xa88a05d2b88283ce84c8325760b72a64591279a2","ethContributed":"500000000000000000000","ethReturned":"0","tokens":"5e+24"}
+Transfer 0 #15801: _from=0x0000000000000000000000000000000000000000 _to=0xa55a151eb00fded1634d27d1127b4be4627079ea _value=3000000
+Transfer 1 #15801: _from=0x0000000000000000000000000000000000000000 _to=0xa44a08d3f6933c69212114bb66e2df1813651844 _value=2000000
+IcoLockSet 0 #15801 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","term":"1526924970","tokens":"3e+24"}
+RegisterContribution 0 #15801 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","ethContributed":"300000000000000000000","ethReturned":"0","tokens":"3e+24","tokensBonus":"0"}
+RegisterContribution 1 #15801 {"account":"0xa44a08d3f6933c69212114bb66e2df1813651844","ethContributed":"200000000000000000000","ethReturned":"0","tokens":"2e+24","tokensBonus":"0"}
+RegisterPending 0 #15801 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","ethContributed":"100000000000000000000","ethReturned":"0","tokens":"1e+24"}
+RegisterPending 1 #15801 {"account":"0xa88a05d2b88283ce84c8325760b72a64591279a2","ethContributed":"500000000000000000000","ethReturned":"0","tokens":"5e+24"}
 
 ---------- Whitelist Accounts ----------
  # Account                                             EtherBalanceChange                          Token Name
@@ -451,8 +451,8 @@ RegisterPending 1 #14427 {"account":"0xa88a05d2b88283ce84c8325760b72a64591279a2"
  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005636895000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0     -100.000108947000000000     1000000.000000000000000000 Account #3 - Not Whitelisted
- 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000166367000000000     2000000.000000000000000000 Account #4 - Whitelisted
- 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000169000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000106367000000000     2000000.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000229000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000022139000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7 - Contributed
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2     -500.000078947000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
@@ -460,14 +460,14 @@ RegisterPending 1 #14427 {"account":"0xa88a05d2b88283ce84c8325760b72a64591279a2"
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
-13 0xe7963e0ada5b8c83596b3076e719d6169e648dfb     1100.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+13 0x1392b3306e6f307b829d2fe8ce130af106a8e143     1100.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                               6000000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Whitelist Accounts - owner addToWhitelist(ac3)
-whitelist_1Tx status=0x1 Success gas=1000000 gasUsed=149256 costETH=0.000149256 costUSD=0.05991583608 @ ETH/USD=401.43 gasPrice=1 gwei block=14437 txIx=0 txId=0xfcd2699629a5ce36514356506c8dc5c12fbb537dc106b34748ceb787f12c5825 @ 1526923565 Mon, 21 May 2018 17:26:05 UTC
-tokenContractAddress=0xe7963e0ada5b8c83596b3076e719d6169e648dfb
+whitelist_1Tx status=0x1 Success gas=1000000 gasUsed=149256 costETH=0.000149256 costUSD=0.05991583608 @ ETH/USD=401.43 gasPrice=1 gwei block=15811 txIx=0 txId=0x435fccad73d5cbca85b4fccacbf5d4a2452fd2737e72b59501263062e740279b @ 1526924939 Mon, 21 May 2018 17:48:59 UTC
+tokenContractAddress=0x1392b3306e6f307b829d2fe8ce130af106a8e143
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
@@ -475,11 +475,11 @@ token.tokensIssuedTotal=6000000 tokens
 token.totalSupply=6000000 tokens
 lockSlots.LOCK_SLOTS=6
 wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
-icoDates.dateIcoPresale=1526923521 Mon, 21 May 2018 17:25:21 UTC Tue, 22 May 2018 03:25:21 AEST
-icoDates.dateIcoMain=1526923551 Mon, 21 May 2018 17:25:51 UTC Tue, 22 May 2018 03:25:51 AEST
-icoDates.dateIcoEnd=1526923580 Mon, 21 May 2018 17:26:20 UTC Tue, 22 May 2018 03:26:20 AEST
-icoDates.dateIcoDeadline=1526923581 Mon, 21 May 2018 17:26:21 UTC Tue, 22 May 2018 03:26:21 AEST
-icoDates.DATE_LIMIT=1526923611 Mon, 21 May 2018 17:26:51 UTC Tue, 22 May 2018 03:26:51 AEST
+icoDates.dateIcoPresale=1526924895 Mon, 21 May 2018 17:48:15 UTC Tue, 22 May 2018 03:48:15 AEST
+icoDates.dateIcoMain=1526924925 Mon, 21 May 2018 17:48:45 UTC Tue, 22 May 2018 03:48:45 AEST
+icoDates.dateIcoEnd=1526924954 Mon, 21 May 2018 17:49:14 UTC Tue, 22 May 2018 03:49:14 AEST
+icoDates.dateIcoDeadline=1526924955 Mon, 21 May 2018 17:49:15 UTC Tue, 22 May 2018 03:49:15 AEST
+icoDates.DATE_LIMIT=1526924985 Mon, 21 May 2018 17:49:45 UTC Tue, 22 May 2018 03:49:45 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -533,46 +533,46 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - ethPending               : 0 ETH
 - ethContributed           : 100 ETH
 - refundClaimed            : false
-Transfer 0 #14437: _from=0x0000000000000000000000000000000000000000 _to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 _value=1000000
-Whitelisted 0 #14437 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","limit":"0","term":"0","threshold":"0"}
-WhitelistingEvent 0 #14437 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","ethContributed":"100000000000000000000","ethReturned":"0","tokens":"1e+24","tokensBonus":"0","tokensReturned":"0"}
+Transfer 0 #15811: _from=0x0000000000000000000000000000000000000000 _to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 _value=1000000
+Whitelisted 0 #15811 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","limit":"0","term":"0","threshold":"0"}
+WhitelistingEvent 0 #15811 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","ethContributed":"100000000000000000000","ethReturned":"0","tokens":"1e+24","tokensBonus":"0","tokensReturned":"0"}
 
 ---------- Send Contribution #1 ----------
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.006297819000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433     3999.994363105000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.006288662000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005636895000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0     -100.000108947000000000     1000000.000000000000000000 Account #3 - Not Whitelisted
- 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000166367000000000     2000000.000000000000000000 Account #4 - Whitelisted
- 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000169000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000106367000000000     2000000.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000229000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000022139000000000           0.000000000000000000 Account #6
- 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec    -3400.000115524000000000    34000000.000000000000000000 Account #7 - Contributed
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec    -1400.000106367000000000    14000000.000000000000000000 Account #7 - Contributed
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2     -500.000078947000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
 10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
 11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
 12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
-13 0xe7963e0ada5b8c83596b3076e719d6169e648dfb      500.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+13 0x1392b3306e6f307b829d2fe8ce130af106a8e143     2500.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-                                                                             40000000.000000000000000000 Total Token Balances
+                                                                             20000000.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
-PASS Send Contribution #1 - ac7 3,400 ETH
-sendContributions2_1Tx status=0x1 Success gas=400000 gasUsed=115524 costETH=0.000115524 costUSD=0.04637479932 @ ETH/USD=401.43 gasPrice=1 gwei block=14442 txIx=0 txId=0xcb301e290073339b7855b3802908abd0489b79ad66cdd3fa0c8f8d7e94ed7077 @ 1526923570 Mon, 21 May 2018 17:26:10 UTC
-tokenContractAddress=0xe7963e0ada5b8c83596b3076e719d6169e648dfb
+PASS Send Contribution #1 - ac7 1,400 ETH
+sendContributions2_1Tx status=0x1 Success gas=400000 gasUsed=106367 costETH=0.000106367 costUSD=0.04269890481 @ ETH/USD=401.43 gasPrice=1 gwei block=15816 txIx=0 txId=0x6bc930a9b46256cf527577e4c8e0d4a8501b2912bea3a5fd9977006383c54ab2 @ 1526924944 Mon, 21 May 2018 17:49:04 UTC
+tokenContractAddress=0x1392b3306e6f307b829d2fe8ce130af106a8e143
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 token.newOwner=0x0000000000000000000000000000000000000000
 token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-token.tokensIssuedTotal=40000000 tokens
-token.totalSupply=40000000 tokens
+token.tokensIssuedTotal=20000000 tokens
+token.totalSupply=20000000 tokens
 lockSlots.LOCK_SLOTS=6
 wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
-icoDates.dateIcoPresale=1526923521 Mon, 21 May 2018 17:25:21 UTC Tue, 22 May 2018 03:25:21 AEST
-icoDates.dateIcoMain=1526923551 Mon, 21 May 2018 17:25:51 UTC Tue, 22 May 2018 03:25:51 AEST
-icoDates.dateIcoEnd=1526923580 Mon, 21 May 2018 17:26:20 UTC Tue, 22 May 2018 03:26:20 AEST
-icoDates.dateIcoDeadline=1526923581 Mon, 21 May 2018 17:26:21 UTC Tue, 22 May 2018 03:26:21 AEST
-icoDates.DATE_LIMIT=1526923611 Mon, 21 May 2018 17:26:51 UTC Tue, 22 May 2018 03:26:51 AEST
+icoDates.dateIcoPresale=1526924895 Mon, 21 May 2018 17:48:15 UTC Tue, 22 May 2018 03:48:15 AEST
+icoDates.dateIcoMain=1526924925 Mon, 21 May 2018 17:48:45 UTC Tue, 22 May 2018 03:48:45 AEST
+icoDates.dateIcoEnd=1526924954 Mon, 21 May 2018 17:49:14 UTC Tue, 22 May 2018 03:49:14 AEST
+icoDates.dateIcoDeadline=1526924955 Mon, 21 May 2018 17:49:15 UTC Tue, 22 May 2018 03:49:15 AEST
+icoDates.DATE_LIMIT=1526924985 Mon, 21 May 2018 17:49:45 UTC Tue, 22 May 2018 03:49:45 AEST
 token.name=Varyon Token
 token.symbol=VAR
 token.decimals=18
@@ -587,17 +587,17 @@ crowdsale.MIN_PURCHASE_PRESALE=400000 tokens
 crowdsale.MIN_PURCHASE_MAIN=10000 tokens
 crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
 crowdsale.tokensIcoPending=5000000 tokens
-crowdsale.tokensIcoIssued=40000000 tokens
-crowdsale.tokensIcoCrowd=40000000 tokens
+crowdsale.tokensIcoIssued=20000000 tokens
+crowdsale.tokensIcoCrowd=20000000 tokens
 crowdsale.tokensIcoOffline=0 tokens
 crowdsale.tokensIcoBonus=0 tokens
 crowdsale.tokensMinted=0 tokens
 crowdsale.totalEthPending=500 ETH
-crowdsale.totalEthContributed=4000 ETH
+crowdsale.totalEthContributed=2000 ETH
 crowdsale.tradeable=false
-crowdsale.thresholdReached=true
+crowdsale.thresholdReached=false
 crowdsale.availableToMint=751400000 tokens
-crowdsale.tokensAvailableIco=197000000 tokens
+crowdsale.tokensAvailableIco=217000000 tokens
 crowdsale.ethToTokens(1/3 ETH)=3333.33333333333333 tokens
 crowdsale.ethToTokens(1 ETH)=10000 tokens
 crowdsale.ethToTokens(100 ETH)=1000000 tokens
@@ -610,22 +610,128 @@ crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
 - lockAmnt                 : 0, 0, 0, 0, 0, 0
 - mayHaveLockedTokens      : false
 - lockedTokens             : 0 tokens
-- unlockedTokens           : 34000000 tokens
+- unlockedTokens           : 14000000 tokens
 - isAvailableLockSlot(2035): true
 - whitelist                : true
 - whitelistLimit           : 0
 - whitelistThreshold       : 0
 - whitelistLockDate        : 0
 - blacklist                : false
-- balanceOf                : 34000000 tokens
+- balanceOf                : 14000000 tokens
 - balancesOffline          : 0 tokens
 - balancesPending          : 0 tokens
 - balancesPendingOffline   : 0 tokens
 - balancesMinted           : 0 tokens
 - balancesBonus            : 0 tokens
 - ethPending               : 0 ETH
-- ethContributed           : 3400 ETH
+- ethContributed           : 1400 ETH
 - refundClaimed            : false
-Transfer 0 #14442: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=34000000
-RegisterContribution 0 #14442 {"account":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","ethContributed":"3.4e+21","ethReturned":"0","tokens":"3.4e+25","tokensBonus":"0"}
+Transfer 0 #15816: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=14000000
+RegisterContribution 0 #15816 {"account":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","ethContributed":"1.4e+21","ethReturned":"0","tokens":"1.4e+25","tokensBonus":"0"}
+
+Waiting until 'dateIcoDeadline' at 1526924955+1s=Tue, 22 May 2018 03:49:17 AEST now=Tue, 22 May 2018 03:49:07 AEST
+Waited until 'dateIcoDeadline' at at 1526924955+1s=Tue, 22 May 2018 03:49:17 AEST now=Tue, 22 May 2018 03:49:17 AEST
+
+---------- Reclaim ETH #1 ----------
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.006564185000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005636895000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0       -0.000164122000000000     1000000.000000000000000000 Account #3 - Not Whitelisted
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844       -0.000161542000000000     2000000.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea       -0.000284175000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000022139000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec       -0.000161542000000000    14000000.000000000000000000 Account #7 - Contributed
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2       -0.000133770000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
+13 0x1392b3306e6f307b829d2fe8ce130af106a8e143        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                             20000000.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Reclaim ETH #1 - ac3 Reclaim 100 ETH
+PASS Reclaim ETH #1 - ac4 Reclaim 200 ETH
+PASS Reclaim ETH #1 - ac5 Reclaim 300 ETH
+PASS Reclaim ETH #1 - ac7 Reclaim 1,400 ETH
+PASS Reclaim ETH #1 - ac8 Reclaim 500 ETH
+reclaimEth1_1Tx status=0x1 Success gas=1000000 gasUsed=55175 costETH=0.000055175 costUSD=0.02214890025 @ ETH/USD=401.43 gasPrice=1 gwei block=15831 txIx=0 txId=0xec757609ccede5a3b579977554d207ec49b59f5b5ccc6dc99f353d71e9e933d8 @ 1526924959 Mon, 21 May 2018 17:49:19 UTC
+reclaimEth1_2Tx status=0x1 Success gas=1000000 gasUsed=55175 costETH=0.000055175 costUSD=0.02214890025 @ ETH/USD=401.43 gasPrice=1 gwei block=15831 txIx=4 txId=0x84adf97cef148a4edd09c3796292c842cd6ab0e1218473ac0d8be475864c2fc1 @ 1526924959 Mon, 21 May 2018 17:49:19 UTC
+reclaimEth1_3Tx status=0x1 Success gas=1000000 gasUsed=55175 costETH=0.000055175 costUSD=0.02214890025 @ ETH/USD=401.43 gasPrice=1 gwei block=15831 txIx=3 txId=0x6de7ad7bb5b8a2dc24e882dc0c52b586b01f73c0ae9991d6165e616b22d1622e @ 1526924959 Mon, 21 May 2018 17:49:19 UTC
+reclaimEth1_4Tx status=0x1 Success gas=1000000 gasUsed=55175 costETH=0.000055175 costUSD=0.02214890025 @ ETH/USD=401.43 gasPrice=1 gwei block=15831 txIx=2 txId=0xe269d9ba446471d48ac577f8c65b52bf00b21353990254616be5bfbef2f0d44b @ 1526924959 Mon, 21 May 2018 17:49:19 UTC
+reclaimEth1_5Tx status=0x1 Success gas=1000000 gasUsed=54823 costETH=0.000054823 costUSD=0.02200759689 @ ETH/USD=401.43 gasPrice=1 gwei block=15831 txIx=1 txId=0x3a037be0b95064cb3dcecb52b02dd016ea1ddfd0e9b813c1ae354c5161064e8a @ 1526924959 Mon, 21 May 2018 17:49:19 UTC
+tokenContractAddress=0x1392b3306e6f307b829d2fe8ce130af106a8e143
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.tokensIssuedTotal=20000000 tokens
+token.totalSupply=20000000 tokens
+lockSlots.LOCK_SLOTS=6
+wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
+icoDates.dateIcoPresale=1526924895 Mon, 21 May 2018 17:48:15 UTC Tue, 22 May 2018 03:48:15 AEST
+icoDates.dateIcoMain=1526924925 Mon, 21 May 2018 17:48:45 UTC Tue, 22 May 2018 03:48:45 AEST
+icoDates.dateIcoEnd=1526924954 Mon, 21 May 2018 17:49:14 UTC Tue, 22 May 2018 03:49:14 AEST
+icoDates.dateIcoDeadline=1526924955 Mon, 21 May 2018 17:49:15 UTC Tue, 22 May 2018 03:49:15 AEST
+icoDates.DATE_LIMIT=1526924985 Mon, 21 May 2018 17:49:45 UTC Tue, 22 May 2018 03:49:45 AEST
+token.name=Varyon Token
+token.symbol=VAR
+token.decimals=18
+crowdsale.TOKENS_PER_ETH=10000 tokens/ETH
+crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
+crowdsale.TOKEN_THRESHOLD=40000000 tokens
+crowdsale.TOKEN_PRESALE_CAP=44000000 tokens
+crowdsale.TOKEN_ICO_CAP=242000000 tokens
+crowdsale.BONUS=15%
+crowdsale.MAX_BONUS_TOKENS=6600000 tokens
+crowdsale.MIN_PURCHASE_PRESALE=400000 tokens
+crowdsale.MIN_PURCHASE_MAIN=10000 tokens
+crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
+crowdsale.tokensIcoPending=5000000 tokens
+crowdsale.tokensIcoIssued=20000000 tokens
+crowdsale.tokensIcoCrowd=20000000 tokens
+crowdsale.tokensIcoOffline=0 tokens
+crowdsale.tokensIcoBonus=0 tokens
+crowdsale.tokensMinted=0 tokens
+crowdsale.totalEthPending=500 ETH
+crowdsale.totalEthContributed=2000 ETH
+crowdsale.tradeable=false
+crowdsale.thresholdReached=false
+crowdsale.availableToMint=980000000 tokens
+crowdsale.tokensAvailableIco=217000000 tokens
+crowdsale.ethToTokens(1/3 ETH)=3333.33333333333333 tokens
+crowdsale.ethToTokens(1 ETH)=10000 tokens
+crowdsale.ethToTokens(100 ETH)=1000000 tokens
+crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.491666666666666666 ETH
+crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
+crowdsale.tokensToEth(14750 tokens)=1.475 ETH
+crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
+--- 0xa88a05d2b88283ce84c8325760b72a64591279a2 Account #8 - Not Whitelisted - To Reclaim Eth ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 5000000 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 500 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : true
+RefundFailedIco 0 #15831 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","ethReturned":"100000000000000000000"}
+RefundFailedIco 1 #15831 {"account":"0xa88a05d2b88283ce84c8325760b72a64591279a2","ethReturned":"500000000000000000000"}
+RefundFailedIco 2 #15831 {"account":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","ethReturned":"1.4e+21"}
+RefundFailedIco 3 #15831 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","ethReturned":"300000000000000000000"}
+RefundFailedIco 4 #15831 {"account":"0xa44a08d3f6933c69212114bb66e2df1813651844","ethReturned":"200000000000000000000"}
 

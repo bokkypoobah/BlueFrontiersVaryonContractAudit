@@ -168,6 +168,18 @@ in [test/test3results.txt](test/test3results.txt) and the detailed output saved 
 * [x] Whitelist, whitelist with parameters and blacklist accounts
 * [x] Send contributions
 * [x] Whitelist contributing account that has yet to be whitelisted
+
+<br />
+
+### Reclaim ETH
+
+The following functions were tested using the script [test/04_testReclaimEth.sh](test/04_testReclaimEth.sh) with the summary results saved
+in [test/test4results.txt](test/test4results.txt) and the detailed output saved in [test/test4output.txt](test/test4output.txt):
+
+* [x] Deploy crowdsale/token contract
+* [x] Whitelist, whitelist with parameters and blacklist accounts
+* [x] Send contributions
+* [x] Whitelist contributing account that has yet to be whitelisted
 * [x] Reclaim ETH (have to uncomment test and reduce contribution amount below the threshold)
 
 <br />
@@ -176,7 +188,7 @@ in [test/test3results.txt](test/test3results.txt) and the detailed output saved 
 
 ## Code Review
 
-* [ ] [code-review/VaryonToken.md](code-review/VaryonToken.md)
+* [x] [code-review/VaryonToken.md](code-review/VaryonToken.md)
   * [x] library SafeMath
   * [x] contract Utils
   * [x] contract Owned
