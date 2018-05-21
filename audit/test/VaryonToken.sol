@@ -414,12 +414,12 @@ contract WBList is Owned, Utils {
 
 contract VaryonIcoDates is Owned, Utils {    
 
-    uint public dateIcoPresale  = 1526829541; // Mon May 21 01:19:01 2018
-    uint public dateIcoMain     = 1526829571; // Mon May 21 01:19:31 2018
-    uint public dateIcoEnd      = 1526829601; // Mon May 21 01:20:01 2018
-    uint public dateIcoDeadline = 1526829631; // Mon May 21 01:20:31 2018
+    uint public dateIcoPresale  = 1526913295; // Tue May 22 00:34:55 2018
+    uint public dateIcoMain     = 1526913325; // Tue May 22 00:35:25 2018
+    uint public dateIcoEnd      = 1526913340; // Tue May 22 00:35:40 2018
+    uint public dateIcoDeadline = 1526913355; // Tue May 22 00:35:55 2018
 
-    uint public constant DATE_LIMIT = 1526829661; // Mon May 21 01:21:01 2018
+    uint public constant DATE_LIMIT = 1526913385; // Tue May 22 00:36:25 2018
 
     event IcoDateUpdated(uint8 id, uint unixts);
 

@@ -12,7 +12,7 @@ This audit has been conducted on Blue Frontiers's source code in commits
 [d2e0b13](https://github.com/Blue-Frontiers/varyon/commit/d2e0b13e3e283a1dcde898e90daa2e70fb25d3f0) and
 [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8).
 
-TODO - CHeck that no potential vulnerabilities have been identified in the crowdsale and token contracts.
+TODO - Check that no potential vulnerabilities have been identified in the crowdsale and token contracts.
 
 <br />
 
@@ -34,7 +34,7 @@ TODO - CHeck that no potential vulnerabilities have been identified in the crowd
 
 ## Recommendations
 
-None
+n/a
 
 <br />
 
@@ -127,6 +127,39 @@ TODO
 
 Details of the testing environment can be found in [test](test).
 
+### MintTokens And MintTokensLocked
+
+The following functions were tested using the script [test/01_testMinted.sh](test/01_testMinted.sh) with the summary results saved
+in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
+
+* [x] Deploy crowdsale/token contract
+* [x] Whitelist accounts
+* [x] Contribute just below minimum threshold - `crowdsale.thresholdReached=false`
+* [x] Contribute just above minimum threshold - `crowdsale.thresholdReached=true`
+* [x] `mintTokens(...)`
+* [x] `mintTokensMultiple(...)`
+* [x] `mintTokensLocked(...)`
+* [x] `mintTokensLockedMultiple(...)`
+* [x] `transfer(...)`, `approve(...)` and `transferFrom(...)`
+* [x] `transfer(...)` tokens after unlock dates
+
+<br />
+
+### OfflineWhitelisted And OfflinePending
+
+The following functions were tested using the script [test/02_testOffline.sh](test/02_testOffline.sh) with the summary results saved
+in [test/test2results.txt](test/test2results.txt) and the detailed output saved in [test/test2output.txt](test/test2output.txt):
+
+* [x] Deploy crowdsale/token contract
+* [x] Whitelist accounts
+* [x] Buy offline for whitelisted account
+* [x] Buy offline for non-whitelisted account
+* [x] Whitelist an offline account
+* [x] Blacklist an offline account
+
+<br />
+
+
 The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
 in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
 
@@ -134,6 +167,7 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
 * [ ] Contribute
 * [ ] Finalise crowdsale
 * [ ] `transfer(...)`, `approve(...)` and `transferFrom(...)`
+
 
 <br />
 

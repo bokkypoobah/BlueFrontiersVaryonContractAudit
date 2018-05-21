@@ -20,6 +20,7 @@ addAccount(eth.accounts[8], "Account #8 - Not Whitelisted, Pending");
 addAccount(eth.accounts[9], "Account #9");
 addAccount(eth.accounts[10], "Account #10 - Minted Tokens");
 addAccount(eth.accounts[11], "Account #11 - Minted Locked Tokens");
+addAccount(eth.accounts[12], "Account #12");
 
 var minerAccount = eth.accounts[0];
 var contractOwnerAccount = eth.accounts[1];
@@ -33,6 +34,7 @@ var account8 = eth.accounts[8];
 var account9 = eth.accounts[9];
 var account10 = eth.accounts[10];
 var account11 = eth.accounts[11];
+var account12 = eth.accounts[12];
 
 var baseBlock = eth.blockNumber;
 
