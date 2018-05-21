@@ -1,0 +1,631 @@
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.000000000000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Not Whitelisted
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7 - Contributed
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+
+---------- Deploy Crowdsale Contract ----------
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005200233000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005200233000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Not Whitelisted
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7 - Contributed
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
+13 0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Deploy Crowdsale Contract
+crowdsaleAddress=0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7 status=0x1 Success gas=6000000 gasUsed=5200233 costETH=0.005200233 costUSD=2.08752953319 @ ETH/USD=401.43 gasPrice=1 gwei block=12154 txIx=0 txId=0x71d8e9409567fa37d2ad5596811fdc89d05c8d7db0224e03e326511aabf4c78b @ 1526921282 Mon, 21 May 2018 16:48:02 UTC
+tokenContractAddress=0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.tokensIssuedTotal=0 tokens
+token.totalSupply=0 tokens
+lockSlots.LOCK_SLOTS=6
+wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
+icoDates.dateIcoPresale=1526921300 Mon, 21 May 2018 16:48:20 UTC Tue, 22 May 2018 02:48:20 AEST
+icoDates.dateIcoMain=1526921330 Mon, 21 May 2018 16:48:50 UTC Tue, 22 May 2018 02:48:50 AEST
+icoDates.dateIcoEnd=1526921359 Mon, 21 May 2018 16:49:19 UTC Tue, 22 May 2018 02:49:19 AEST
+icoDates.dateIcoDeadline=1526921360 Mon, 21 May 2018 16:49:20 UTC Tue, 22 May 2018 02:49:20 AEST
+icoDates.DATE_LIMIT=1526921390 Mon, 21 May 2018 16:49:50 UTC Tue, 22 May 2018 02:49:50 AEST
+token.name=Varyon Token
+token.symbol=VAR
+token.decimals=18
+crowdsale.TOKENS_PER_ETH=10000 tokens/ETH
+crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
+crowdsale.TOKEN_THRESHOLD=40000000 tokens
+crowdsale.TOKEN_PRESALE_CAP=44000000 tokens
+crowdsale.TOKEN_ICO_CAP=242000000 tokens
+crowdsale.BONUS=15%
+crowdsale.MAX_BONUS_TOKENS=6600000 tokens
+crowdsale.MIN_PURCHASE_PRESALE=400000 tokens
+crowdsale.MIN_PURCHASE_MAIN=10000 tokens
+crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
+crowdsale.tokensIcoPending=0 tokens
+crowdsale.tokensIcoIssued=0 tokens
+crowdsale.tokensIcoCrowd=0 tokens
+crowdsale.tokensIcoOffline=0 tokens
+crowdsale.tokensIcoBonus=0 tokens
+crowdsale.tokensMinted=0 tokens
+crowdsale.totalEthPending=0 ETH
+crowdsale.totalEthContributed=0 ETH
+crowdsale.tradeable=false
+crowdsale.thresholdReached=false
+crowdsale.availableToMint=751400000 tokens
+crowdsale.tokensAvailableIco=44000000 tokens
+crowdsale.ethToTokens(1/3 ETH)=3333.33333333333333 tokens
+crowdsale.ethToTokens(1 ETH)=10000 tokens
+crowdsale.ethToTokens(100 ETH)=1000000 tokens
+crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.491666666666666666 ETH
+crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
+crowdsale.tokensToEth(14750 tokens)=1.475 ETH
+crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
+
+PASS availableToMint() == 751400000
+PASS tokensAvailableIco() == 44000000
+---------- Whitelist + Blacklist Accounts ----------
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.005487639000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005487639000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3 - Not Whitelisted
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7 - Contributed
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
+13 0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7        0.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Whitelist + Blacklist Accounts - owner addToWhitelist(ac4)
+PASS Whitelist + Blacklist Accounts - owner addToWhitelistParamsMultiple([ac5], [60 ETH], [100 ETH])
+PASS Whitelist + Blacklist Accounts - owner addToBlacklist(ac6
+PASS Whitelist + Blacklist Accounts - owner addToWhitelist(ac7)
+whiteBlackList_1Tx status=0x1 Success gas=1000000 gasUsed=64061 costETH=0.000064061 costUSD=0.02571600723 @ ETH/USD=401.43 gasPrice=1 gwei block=12159 txIx=0 txId=0xbd3681669a7aeed318780c29f0890a999874e8861db312665bc85be2158bdbf1 @ 1526921287 Mon, 21 May 2018 16:48:07 UTC
+whiteBlackList_2Tx status=0x1 Success gas=1000000 gasUsed=112516 costETH=0.000112516 costUSD=0.04516729788 @ ETH/USD=401.43 gasPrice=1 gwei block=12159 txIx=1 txId=0xb604e6bfd6ee2f7973f60c9da2b6fe7dba368d389f49a2eda91b30c11f602023 @ 1526921287 Mon, 21 May 2018 16:48:07 UTC
+whiteBlackList_3Tx status=0x1 Success gas=1000000 gasUsed=46768 costETH=0.000046768 costUSD=0.01877407824 @ ETH/USD=401.43 gasPrice=1 gwei block=12159 txIx=2 txId=0x8a959f9c6790cb1848166b82dc6fdf67561d054fab912967585fb341bccbf62d @ 1526921287 Mon, 21 May 2018 16:48:07 UTC
+whiteBlackList_4Tx status=0x1 Success gas=1000000 gasUsed=64061 costETH=0.000064061 costUSD=0.02571600723 @ ETH/USD=401.43 gasPrice=1 gwei block=12159 txIx=3 txId=0x8d4cec2621f79be95a445f21bc8816fa125b8ed513e30d150f1d1f30e05c9df6 @ 1526921287 Mon, 21 May 2018 16:48:07 UTC
+tokenContractAddress=0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.tokensIssuedTotal=0 tokens
+token.totalSupply=0 tokens
+lockSlots.LOCK_SLOTS=6
+wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
+icoDates.dateIcoPresale=1526921300 Mon, 21 May 2018 16:48:20 UTC Tue, 22 May 2018 02:48:20 AEST
+icoDates.dateIcoMain=1526921330 Mon, 21 May 2018 16:48:50 UTC Tue, 22 May 2018 02:48:50 AEST
+icoDates.dateIcoEnd=1526921359 Mon, 21 May 2018 16:49:19 UTC Tue, 22 May 2018 02:49:19 AEST
+icoDates.dateIcoDeadline=1526921360 Mon, 21 May 2018 16:49:20 UTC Tue, 22 May 2018 02:49:20 AEST
+icoDates.DATE_LIMIT=1526921390 Mon, 21 May 2018 16:49:50 UTC Tue, 22 May 2018 02:49:50 AEST
+token.name=Varyon Token
+token.symbol=VAR
+token.decimals=18
+crowdsale.TOKENS_PER_ETH=10000 tokens/ETH
+crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
+crowdsale.TOKEN_THRESHOLD=40000000 tokens
+crowdsale.TOKEN_PRESALE_CAP=44000000 tokens
+crowdsale.TOKEN_ICO_CAP=242000000 tokens
+crowdsale.BONUS=15%
+crowdsale.MAX_BONUS_TOKENS=6600000 tokens
+crowdsale.MIN_PURCHASE_PRESALE=400000 tokens
+crowdsale.MIN_PURCHASE_MAIN=10000 tokens
+crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
+crowdsale.tokensIcoPending=0 tokens
+crowdsale.tokensIcoIssued=0 tokens
+crowdsale.tokensIcoCrowd=0 tokens
+crowdsale.tokensIcoOffline=0 tokens
+crowdsale.tokensIcoBonus=0 tokens
+crowdsale.tokensMinted=0 tokens
+crowdsale.totalEthPending=0 ETH
+crowdsale.totalEthContributed=0 ETH
+crowdsale.tradeable=false
+crowdsale.thresholdReached=false
+crowdsale.availableToMint=751400000 tokens
+crowdsale.tokensAvailableIco=44000000 tokens
+crowdsale.ethToTokens(1/3 ETH)=3333.33333333333333 tokens
+crowdsale.ethToTokens(1 ETH)=10000 tokens
+crowdsale.ethToTokens(100 ETH)=1000000 tokens
+crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.491666666666666666 ETH
+crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
+crowdsale.tokensToEth(14750 tokens)=1.475 ETH
+crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
+--- 0xa44a08d3f6933c69212114bb66e2df1813651844 Account #4 - Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : true
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : false
+--- 0xa55a151eb00fded1634d27d1127b4be4627079ea Account #5 - Whitelisted With Limit, Threshold and Term ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : true
+- whitelistLimit           : 60000000000000000000
+- whitelistThreshold       : 100000000000000000000
+- whitelistLockDate        : 1526921375
+- blacklist                : false
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : false
+--- 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9 Account #6 ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : true
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : false
+--- 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec Account #7 - Contributed ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : true
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : false
+Whitelisted 0 #12159 {"account":"0xa44a08d3f6933c69212114bb66e2df1813651844","limit":"0","term":"0","threshold":"0"}
+Whitelisted 1 #12159 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","limit":"60000000000000000000","term":"1526921375","threshold":"100000000000000000000"}
+Whitelisted 2 #12159 {"account":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","limit":"0","term":"0","threshold":"0"}
+Blacklisted 0 #12159 {"account":"0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9"}
+
+Waiting until 'dateIcoMain' at 1526921330+1s=Tue, 22 May 2018 02:48:52 AEST now=Tue, 22 May 2018 02:48:14 AEST
+Waited until 'dateIcoMain' at at 1526921330+1s=Tue, 22 May 2018 02:48:52 AEST now=Tue, 22 May 2018 02:48:52 AEST
+
+---------- Send Contribution #1 ----------
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.006033039000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005487639000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0     -100.000108947000000000           0.000000000000000000 Account #3 - Not Whitelisted
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000166367000000000     2000000.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000169000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000022139000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7 - Contributed
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2     -500.000078947000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
+13 0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7     1100.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                              5000000.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Send Contribution #1 - Not Whitelisted contribution ac3 100 ETH
+PASS Send Contribution #1 - Whitelisted contribution ac4 200 ETH
+PASS Send Contribution #1 - Whitelisted contribution ac5 300 ETH
+FAIL Send Contribution #1 - Blacklisted contribution ac6 400 ETH
+PASS Send Contribution #1 - Not Whitelisted contribution ac8 500 ETH - To reclaim ETH
+sendContribution1_1Tx status=0x1 Success gas=400000 gasUsed=108947 costETH=0.000108947 costUSD=0.04373459421 @ ETH/USD=401.43 gasPrice=1 gwei block=12206 txIx=1 txId=0x1d34d7a1e98ba491f4d6c4cba8b58ea70833e5b44d861a5d9c6ebfc5613c3cc6 @ 1526921334 Mon, 21 May 2018 16:48:54 UTC
+sendContribution1_2Tx status=0x1 Success gas=400000 gasUsed=166367 costETH=0.000166367 costUSD=0.06678470481 @ ETH/USD=401.43 gasPrice=1 gwei block=12206 txIx=0 txId=0xfcf079b1e44cdb1b6ae8b87d25bbefcec984bdc718c96cba7571b2d9e584a5d5 @ 1526921334 Mon, 21 May 2018 16:48:54 UTC
+sendContribution1_3Tx status=0x1 Success gas=400000 gasUsed=169000 costETH=0.000169 costUSD=0.06784167 @ ETH/USD=401.43 gasPrice=1 gwei block=12206 txIx=4 txId=0x381f62abbdc71dc08c244f745fe404acbce432d7ce3a9f2be28f3555f0f8c035 @ 1526921334 Mon, 21 May 2018 16:48:54 UTC
+sendContribution1_4Tx status=0x0 Failure gas=400000 gasUsed=22139 costETH=0.000022139 costUSD=0.00888725877 @ ETH/USD=401.43 gasPrice=1 gwei block=12206 txIx=3 txId=0xc38e22ac32cac22e46bec3a0e4f37a3220d650b91734c27c7feb0db203fa4b85 @ 1526921334 Mon, 21 May 2018 16:48:54 UTC
+sendContribution1_4Tx status=0x1 Success gas=400000 gasUsed=78947 costETH=0.000078947 costUSD=0.03169169421 @ ETH/USD=401.43 gasPrice=1 gwei block=12206 txIx=2 txId=0xba7f9fff3219ac6a1f43885bd6fa10207a6bee563cf4c2ac0f95f5d514bdcea5 @ 1526921334 Mon, 21 May 2018 16:48:54 UTC
+tokenContractAddress=0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.tokensIssuedTotal=5000000 tokens
+token.totalSupply=5000000 tokens
+lockSlots.LOCK_SLOTS=6
+wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
+icoDates.dateIcoPresale=1526921300 Mon, 21 May 2018 16:48:20 UTC Tue, 22 May 2018 02:48:20 AEST
+icoDates.dateIcoMain=1526921330 Mon, 21 May 2018 16:48:50 UTC Tue, 22 May 2018 02:48:50 AEST
+icoDates.dateIcoEnd=1526921359 Mon, 21 May 2018 16:49:19 UTC Tue, 22 May 2018 02:49:19 AEST
+icoDates.dateIcoDeadline=1526921360 Mon, 21 May 2018 16:49:20 UTC Tue, 22 May 2018 02:49:20 AEST
+icoDates.DATE_LIMIT=1526921390 Mon, 21 May 2018 16:49:50 UTC Tue, 22 May 2018 02:49:50 AEST
+token.name=Varyon Token
+token.symbol=VAR
+token.decimals=18
+crowdsale.TOKENS_PER_ETH=10000 tokens/ETH
+crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
+crowdsale.TOKEN_THRESHOLD=40000000 tokens
+crowdsale.TOKEN_PRESALE_CAP=44000000 tokens
+crowdsale.TOKEN_ICO_CAP=242000000 tokens
+crowdsale.BONUS=15%
+crowdsale.MAX_BONUS_TOKENS=6600000 tokens
+crowdsale.MIN_PURCHASE_PRESALE=400000 tokens
+crowdsale.MIN_PURCHASE_MAIN=10000 tokens
+crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
+crowdsale.tokensIcoPending=6000000 tokens
+crowdsale.tokensIcoIssued=5000000 tokens
+crowdsale.tokensIcoCrowd=5000000 tokens
+crowdsale.tokensIcoOffline=0 tokens
+crowdsale.tokensIcoBonus=0 tokens
+crowdsale.tokensMinted=0 tokens
+crowdsale.totalEthPending=600 ETH
+crowdsale.totalEthContributed=500 ETH
+crowdsale.tradeable=false
+crowdsale.thresholdReached=false
+crowdsale.availableToMint=751400000 tokens
+crowdsale.tokensAvailableIco=231000000 tokens
+crowdsale.ethToTokens(1/3 ETH)=3333.33333333333333 tokens
+crowdsale.ethToTokens(1 ETH)=10000 tokens
+crowdsale.ethToTokens(100 ETH)=1000000 tokens
+crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.491666666666666666 ETH
+crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
+crowdsale.tokensToEth(14750 tokens)=1.475 ETH
+crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
+--- 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 Account #3 - Not Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 1000000 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 100 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : false
+--- 0xa44a08d3f6933c69212114bb66e2df1813651844 Account #4 - Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 2000000 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : true
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 2000000 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 200 ETH
+- refundClaimed            : false
+--- 0xa55a151eb00fded1634d27d1127b4be4627079ea Account #5 - Whitelisted With Limit, Threshold and Term ---
+- lockTerm                 : 1526921375, 0, 0, 0, 0, 0
+- lockAmnt                 : 3000000, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : true
+- lockedTokens             : 3000000 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : true
+- whitelistLimit           : 60000000000000000000
+- whitelistThreshold       : 100000000000000000000
+- whitelistLockDate        : 1526921375
+- blacklist                : false
+- balanceOf                : 3000000 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 300 ETH
+- refundClaimed            : false
+--- 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9 Account #6 ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : true
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : false
+--- 0xa88a05d2b88283ce84c8325760b72a64591279a2 Account #8 - Not Whitelisted - To Reclaim Eth ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 0 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : false
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 0 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 5000000 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 500 ETH
+- ethContributed           : 0 ETH
+- refundClaimed            : false
+Transfer 0 #12206: _from=0x0000000000000000000000000000000000000000 _to=0xa44a08d3f6933c69212114bb66e2df1813651844 _value=2000000
+Transfer 1 #12206: _from=0x0000000000000000000000000000000000000000 _to=0xa55a151eb00fded1634d27d1127b4be4627079ea _value=3000000
+IcoLockSet 0 #12206 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","term":"1526921375","tokens":"3e+24"}
+RegisterContribution 0 #12206 {"account":"0xa44a08d3f6933c69212114bb66e2df1813651844","ethContributed":"200000000000000000000","ethReturned":"0","tokens":"2e+24","tokensBonus":"0"}
+RegisterContribution 1 #12206 {"account":"0xa55a151eb00fded1634d27d1127b4be4627079ea","ethContributed":"300000000000000000000","ethReturned":"0","tokens":"3e+24","tokensBonus":"0"}
+RegisterPending 0 #12206 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","ethContributed":"100000000000000000000","ethReturned":"0","tokens":"1e+24"}
+RegisterPending 1 #12206 {"account":"0xa88a05d2b88283ce84c8325760b72a64591279a2","ethContributed":"500000000000000000000","ethReturned":"0","tokens":"5e+24"}
+
+---------- Whitelist Accounts ----------
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.006182295000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005636895000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0     -100.000108947000000000     1000000.000000000000000000 Account #3 - Not Whitelisted
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000166367000000000     2000000.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000169000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000022139000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7 - Contributed
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2     -500.000078947000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
+13 0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7     1100.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                              6000000.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Whitelist Accounts - owner addToWhitelist(ac3)
+whitelist_1Tx status=0x1 Success gas=1000000 gasUsed=149256 costETH=0.000149256 costUSD=0.05991583608 @ ETH/USD=401.43 gasPrice=1 gwei block=12216 txIx=0 txId=0xd081d53899b25b658285550006f02acbc8a4123d3556a806b22dbbe4d68aa157 @ 1526921344 Mon, 21 May 2018 16:49:04 UTC
+tokenContractAddress=0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.tokensIssuedTotal=6000000 tokens
+token.totalSupply=6000000 tokens
+lockSlots.LOCK_SLOTS=6
+wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
+icoDates.dateIcoPresale=1526921300 Mon, 21 May 2018 16:48:20 UTC Tue, 22 May 2018 02:48:20 AEST
+icoDates.dateIcoMain=1526921330 Mon, 21 May 2018 16:48:50 UTC Tue, 22 May 2018 02:48:50 AEST
+icoDates.dateIcoEnd=1526921359 Mon, 21 May 2018 16:49:19 UTC Tue, 22 May 2018 02:49:19 AEST
+icoDates.dateIcoDeadline=1526921360 Mon, 21 May 2018 16:49:20 UTC Tue, 22 May 2018 02:49:20 AEST
+icoDates.DATE_LIMIT=1526921390 Mon, 21 May 2018 16:49:50 UTC Tue, 22 May 2018 02:49:50 AEST
+token.name=Varyon Token
+token.symbol=VAR
+token.decimals=18
+crowdsale.TOKENS_PER_ETH=10000 tokens/ETH
+crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
+crowdsale.TOKEN_THRESHOLD=40000000 tokens
+crowdsale.TOKEN_PRESALE_CAP=44000000 tokens
+crowdsale.TOKEN_ICO_CAP=242000000 tokens
+crowdsale.BONUS=15%
+crowdsale.MAX_BONUS_TOKENS=6600000 tokens
+crowdsale.MIN_PURCHASE_PRESALE=400000 tokens
+crowdsale.MIN_PURCHASE_MAIN=10000 tokens
+crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
+crowdsale.tokensIcoPending=5000000 tokens
+crowdsale.tokensIcoIssued=6000000 tokens
+crowdsale.tokensIcoCrowd=6000000 tokens
+crowdsale.tokensIcoOffline=0 tokens
+crowdsale.tokensIcoBonus=0 tokens
+crowdsale.tokensMinted=0 tokens
+crowdsale.totalEthPending=500 ETH
+crowdsale.totalEthContributed=600 ETH
+crowdsale.tradeable=false
+crowdsale.thresholdReached=false
+crowdsale.availableToMint=751400000 tokens
+crowdsale.tokensAvailableIco=231000000 tokens
+crowdsale.ethToTokens(1/3 ETH)=3333.33333333333333 tokens
+crowdsale.ethToTokens(1 ETH)=10000 tokens
+crowdsale.ethToTokens(100 ETH)=1000000 tokens
+crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.491666666666666666 ETH
+crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
+crowdsale.tokensToEth(14750 tokens)=1.475 ETH
+crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
+--- 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 Account #3 - Not Whitelisted ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 1000000 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : true
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 1000000 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 100 ETH
+- refundClaimed            : false
+Transfer 0 #12216: _from=0x0000000000000000000000000000000000000000 _to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 _value=1000000
+Whitelisted 0 #12216 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","limit":"0","term":"0","threshold":"0"}
+WhitelistingEvent 0 #12216 {"account":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","ethContributed":"100000000000000000000","ethReturned":"0","tokens":"1e+24","tokensBonus":"0","tokensReturned":"0"}
+
+---------- Send Contribution #1 ----------
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.006297819000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433     3999.994363105000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Wallet
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0     -100.000108947000000000     1000000.000000000000000000 Account #3 - Not Whitelisted
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844     -200.000166367000000000     2000000.000000000000000000 Account #4 - Whitelisted
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea     -300.000169000000000000     3000000.000000000000000000 Account #5 - Whitelisted With Limit, Threshold and Term
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000022139000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec    -3400.000115524000000000    34000000.000000000000000000 Account #7 - Contributed
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2     -500.000078947000000000           0.000000000000000000 Account #8 - Not Whitelisted - To Reclaim Eth
+ 9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9
+10 0xaaaa9de1e6c564446ebca0fd102d8bd92093c756        0.000000000000000000           0.000000000000000000 Account #10
+11 0xabba43e7594e3b76afb157989e93c6621497fd4b        0.000000000000000000           0.000000000000000000 Account #11
+12 0xacca534c9f62ab495bd986e002ddf0f054caae4f        0.000000000000000000           0.000000000000000000 Account #12
+13 0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7      500.000000000000000000           0.000000000000000000 Varyone Crowdsale + Token 'VAR' 'Varyon Token'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                             40000000.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Send Contribution #1 - ac7 3,400 ETH
+sendContributions2_1Tx status=0x1 Success gas=400000 gasUsed=115524 costETH=0.000115524 costUSD=0.04637479932 @ ETH/USD=401.43 gasPrice=1 gwei block=12221 txIx=0 txId=0x7d589765885709caaa8a6e0c1debc4e9edce5eb92afdc1ab01ef8bb581612e1f @ 1526921349 Mon, 21 May 2018 16:49:09 UTC
+tokenContractAddress=0x7f3caaa41b649ae4a478bc2f29b2e81ed6484fe7
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.wallet=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.tokensIssuedTotal=40000000 tokens
+token.totalSupply=40000000 tokens
+lockSlots.LOCK_SLOTS=6
+wbList.MAX_LOCKING_PERIOD=157852800 5.005479452054795 years
+icoDates.dateIcoPresale=1526921300 Mon, 21 May 2018 16:48:20 UTC Tue, 22 May 2018 02:48:20 AEST
+icoDates.dateIcoMain=1526921330 Mon, 21 May 2018 16:48:50 UTC Tue, 22 May 2018 02:48:50 AEST
+icoDates.dateIcoEnd=1526921359 Mon, 21 May 2018 16:49:19 UTC Tue, 22 May 2018 02:49:19 AEST
+icoDates.dateIcoDeadline=1526921360 Mon, 21 May 2018 16:49:20 UTC Tue, 22 May 2018 02:49:20 AEST
+icoDates.DATE_LIMIT=1526921390 Mon, 21 May 2018 16:49:50 UTC Tue, 22 May 2018 02:49:50 AEST
+token.name=Varyon Token
+token.symbol=VAR
+token.decimals=18
+crowdsale.TOKENS_PER_ETH=10000 tokens/ETH
+crowdsale.TOKEN_TOTAL_SUPPLY=1000000000 tokens
+crowdsale.TOKEN_THRESHOLD=40000000 tokens
+crowdsale.TOKEN_PRESALE_CAP=44000000 tokens
+crowdsale.TOKEN_ICO_CAP=242000000 tokens
+crowdsale.BONUS=15%
+crowdsale.MAX_BONUS_TOKENS=6600000 tokens
+crowdsale.MIN_PURCHASE_PRESALE=400000 tokens
+crowdsale.MIN_PURCHASE_MAIN=10000 tokens
+crowdsale.MINIMUM_ETH_CONTRIBUTION=0.01 ETH
+crowdsale.tokensIcoPending=5000000 tokens
+crowdsale.tokensIcoIssued=40000000 tokens
+crowdsale.tokensIcoCrowd=40000000 tokens
+crowdsale.tokensIcoOffline=0 tokens
+crowdsale.tokensIcoBonus=0 tokens
+crowdsale.tokensMinted=0 tokens
+crowdsale.totalEthPending=500 ETH
+crowdsale.totalEthContributed=4000 ETH
+crowdsale.tradeable=false
+crowdsale.thresholdReached=true
+crowdsale.availableToMint=751400000 tokens
+crowdsale.tokensAvailableIco=197000000 tokens
+crowdsale.ethToTokens(1/3 ETH)=3333.33333333333333 tokens
+crowdsale.ethToTokens(1 ETH)=10000 tokens
+crowdsale.ethToTokens(100 ETH)=1000000 tokens
+crowdsale.tokensToEth(4916.66666666666666666666666666666666666666 tokens)=0.491666666666666666 ETH
+crowdsale.tokensToEth(4916.666667 tokens)=0.4916666667 ETH
+crowdsale.tokensToEth(14750 tokens)=1.475 ETH
+crowdsale.tokensToEth(1475000 tokens)=147.5 ETH
+--- 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec Account #7 - Contributed ---
+- lockTerm                 : 0, 0, 0, 0, 0, 0
+- lockAmnt                 : 0, 0, 0, 0, 0, 0
+- mayHaveLockedTokens      : false
+- lockedTokens             : 0 tokens
+- unlockedTokens           : 34000000 tokens
+- isAvailableLockSlot(2035): true
+- whitelist                : true
+- whitelistLimit           : 0
+- whitelistThreshold       : 0
+- whitelistLockDate        : 0
+- blacklist                : false
+- balanceOf                : 34000000 tokens
+- balancesOffline          : 0 tokens
+- balancesPending          : 0 tokens
+- balancesPendingOffline   : 0 tokens
+- balancesMinted           : 0 tokens
+- balancesBonus            : 0 tokens
+- ethPending               : 0 ETH
+- ethContributed           : 3400 ETH
+- refundClaimed            : false
+Transfer 0 #12221: _from=0x0000000000000000000000000000000000000000 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=34000000
+RegisterContribution 0 #12221 {"account":"0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec","ethContributed":"3.4e+21","ethReturned":"0","tokens":"3.4e+25","tokensBonus":"0"}
+

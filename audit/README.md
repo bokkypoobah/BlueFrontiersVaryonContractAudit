@@ -12,7 +12,7 @@ This audit has been conducted on Blue Frontiers's source code in commits
 [d2e0b13](https://github.com/Blue-Frontiers/varyon/commit/d2e0b13e3e283a1dcde898e90daa2e70fb25d3f0) and
 [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8).
 
-TODO - Check that no potential vulnerabilities have been identified in the crowdsale and token contracts.
+No potential vulnerabilities have been identified in the crowdsale/token contract.
 
 <br />
 
@@ -70,7 +70,7 @@ n/a
 
 ## Potential Vulnerabilities
 
-TODO - Check that no potential vulnerabilities have been identified in the crowdsale and token contracts.
+No potential vulnerabilities have been identified in the crowdsale/token contract.
 
 <br />
 
@@ -117,7 +117,7 @@ matches the audited source code, and that the deployment parameters are correctl
 
 ## Risks
 
-TODO
+Ethers (ETH) contributed to the crowdsale/token contract remain in the contract until the minimum threshold is reached, after which the ETH is transferred into the crowdsale wallet. This is to enable contributors to execute their refunds if the minimum threshold is not reached. During this period when ETH is accummulating in the crowdsale/token contract, the ETH will be a target for hacking.
 
 <br />
 
@@ -159,15 +159,16 @@ in [test/test2results.txt](test/test2results.txt) and the detailed output saved 
 
 <br />
 
+### Whitelisted And Blacklisted
 
-The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
-in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
+The following functions were tested using the script [test/03_test3.sh](test/03_test3.sh) with the summary results saved
+in [test/test3results.txt](test/test3results.txt) and the detailed output saved in [test/test3output.txt](test/test3output.txt):
 
 * [x] Deploy crowdsale/token contract
-* [ ] Contribute
-* [ ] Finalise crowdsale
-* [ ] `transfer(...)`, `approve(...)` and `transferFrom(...)`
-
+* [x] Whitelist, whitelist with parameters and blacklist accounts
+* [x] Send contributions
+* [x] Whitelist contributing account that has yet to be whitelisted
+* [x] Reclaim ETH (have to uncomment test and reduce contribution amount below the threshold)
 
 <br />
 
@@ -183,123 +184,15 @@ in [test/test1results.txt](test/test1results.txt) and the detailed output saved 
   * [x] contract ERC20Interface
   * [x] contract ERC20Token is ERC20Interface, Owned
     * [x] using SafeMath for uint;
-  * [ ] contract LockSlots is ERC20Token, Utils
-    * [ ] using SafeMath for uint;
-  * [ ] contract WBList is Owned, Utils
-    * [ ] using SafeMath for uint;
+  * [x] contract LockSlots is ERC20Token, Utils
+    * [x] using SafeMath for uint;
+  * [x] contract WBList is Owned, Utils
+    * [x] using SafeMath for uint;
   * [x] contract VaryonIcoDates is Owned, Utils  
-  * [ ] contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates
-
-### Structure Using Surya
-
-Using `surya describe VaryonToken.sol` from https://github.com/GNSPS/soli :
-
-```
- + [Lib] SafeMath 
-    - [Int] add 
-    - [Int] sub 
-    - [Int] mul 
-
- +  Utils 
-    - [Pub] atNow 
-
- +  Owned 
-    - [Pub] <fallback> 
-    - [Pub] transferOwnership 
-    - [Pub] acceptOwnership 
-    - [Pub] addAdmin 
-    - [Pub] removeAdmin 
-
- +  Wallet (Owned)
-    - [Pub] <fallback> 
-    - [Pub] setWallet 
-
- +  ERC20Interface 
-    - [Pub] totalSupply 
-    - [Pub] balanceOf 
-    - [Pub] transfer 
-    - [Pub] transferFrom 
-    - [Pub] approve 
-    - [Pub] allowance 
-
- +  ERC20Token (ERC20Interface, Owned)
-    - [Pub] totalSupply 
-    - [Pub] balanceOf 
-    - [Pub] transfer 
-    - [Pub] approve 
-    - [Pub] transferFrom 
-    - [Pub] allowance 
-
- +  LockSlots (ERC20Token, Utils)
-    - [Int] registerLockedTokens 
-    - [Pub] lockedTokens 
-    - [Pub] unlockedTokens 
-    - [Pub] isAvailableLockSlot 
-    - [Int] setIcoLock 
-    - [Pub] modifyIcoLock 
-
- +  WBList (Owned, Utils)
-    - [Int] processWhitelisting 
-    - [Int] processBlacklisting 
-    - [Pub] addToWhitelist 
-    - [Pub] addToWhitelistParams 
-    - [Pub] addToWhitelistMultiple 
-    - [Pub] addToWhitelistParamsMultiple 
-    - [Prv] pWhitelist 
-    - [Pub] addToBlacklist 
-    - [Pub] addToBlacklistMultiple 
-    - [Prv] pBlacklist 
-
- +  VaryonIcoDates (Owned, Utils)
-    - [Pub] <fallback> 
-    - [Pub] setDateIcoPresale 
-    - [Pub] setDateIcoMain 
-    - [Pub] setDateIcoEnd 
-    - [Pub] setDateIcoDeadline 
-
- +  VaryonToken (ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates)
-    - [Pub] <fallback> 
-    - [Pub] <fallback> ($)
-    - [Pub] tradeable 
-    - [Pub] thresholdReached 
-    - [Pub] availableToMint 
-    - [Pub] tokensAvailableIco 
-    - [Prv] minimumInvestment 
-    - [Pub] ethToTokens 
-    - [Pub] tokensToEth 
-    - [Prv] getBonus 
-    - [Pub] mintTokens 
-    - [Pub] mintTokensMultiple 
-    - [Prv] pMintTokens 
-    - [Pub] mintTokensLocked 
-    - [Pub] mintTokensLockedMultiple 
-    - [Prv] pMintTokensLocked 
-    - [Pub] buyOffline 
-    - [Prv] buyOfflineWhitelist 
-    - [Prv] buyOfflinePending 
-    - [Prv] buyTokens 
-    - [Prv] buyTokensPending 
-    - [Prv] buyTokensWhitelist 
-    - [Int] processWhitelisting 
-    - [Prv] sendEtherToWallet 
-    - [Prv] processTokenIssue 
-    - [Int] processBlacklisting 
-    - [Pub] cancelPending 
-    - [Pub] cancelPendingMultiple 
-    - [Pub] reclaimPending 
-    - [Prv] pRevertPending 
-    - [Pub] reclaimEth 
-    - [Pub] reclaimEthAdmin 
-    - [Pub] reclaimEthAdminMultiple 
-    - [Prv] pReclaimEth 
-    - [Pub] transferAnyERC20Token 
-    - [Pub] transfer 
-    - [Pub] transferFrom 
-    - [Ext] transferMultiple 
-```
+  * [x] contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates
 
 <br />
 
 <br />
 
-(c) BokkyPooBah / Bok Consulting Pty Ltd for Blue Frontier - May 12 2018. The MIT Licence.
+(c) BokkyPooBah / Bok Consulting Pty Ltd for Blue Frontier - May 22 2018. The MIT Licence.
