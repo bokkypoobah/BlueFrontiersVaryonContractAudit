@@ -252,8 +252,7 @@ contract ERC20Token is ERC20Interface, Owned {
 
     // BK Ok
     function approve(address _spender, uint _amount) public returns (bool success) {
-        // BK Ok
-        require(balances[msg.sender] >= _amount);
+        // require(balances[msg.sender] >= _amount);
         // BK Ok
         allowed[msg.sender][_spender] = _amount;
         // BK Ok - Log event
@@ -1106,6 +1105,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         // BK Ok
         totalEthPending = totalEthPending.add(eth_contributed);
         // return any unused ether
+        // BK NOTE - Transfer out of ETH only active when caps hit, and the max here is the amount sent by the contributor
         // BK Ok
         if (eth_returned > 0) msg.sender.transfer(eth_returned);
         // log
@@ -1170,6 +1170,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         ethContributed[msg.sender] = ethContributed[msg.sender].add(eth_to_contribute);
         // BK Ok
         totalEthContributed = totalEthContributed.add(eth_to_contribute);
+        // BK NOTE - Transfer out of ETH only active when caps hit, and the max here is the amount sent by the contributor
         // BK Ok
         if (eth_to_return > 0) { msg.sender.transfer(eth_to_return); }
 
@@ -1275,6 +1276,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         totalEthContributed = totalEthContributed.add(eth_to_contribute);
 
         // return any unused ether
+        // BK NOTE - Transfer out of ETH only executed by the admin
         // BK Ok
         if (eth_to_return > 0) { _account.transfer(eth_to_return); }
 
@@ -1419,10 +1421,12 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         tokensIcoPending = tokensIcoPending.sub(tokens_to_cancel);
 
         //eth
-        // BK Next 4 Ok
+        // BK Next 3 Ok
         uint eth_to_return = ethPending[_account];
         ethPending[_account] = 0;
         totalEthPending = totalEthPending.sub(eth_to_return);
+        // BK NOTE - Transfer out of ETH has a max amount of ETH contributed by the contributing account
+        // BK Ok
         if (eth_to_return > 0) { _account.transfer(eth_to_return); }
 
         // log
@@ -1465,6 +1469,7 @@ contract VaryonToken is ERC20Token, Wallet, LockSlots, WBList, VaryonIcoDates {
         uint eth_to_return = ethPending[_account].add(ethContributed[_account]);
         // BK Ok
         refundClaimed[_account] = true;
+        // BK NOTE - Transfer out of ETH has a max amount of ETH contributed by the contributing account, and the refund can only be claimed once
         // BK Ok
         if (eth_to_return > 0) { _account.transfer(eth_to_return); }
         // BK Ok - Log event

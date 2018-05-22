@@ -9,8 +9,9 @@ Bok Consulting Pty Ltd was commissioned to perform an private audit on the Ether
 This audit has been conducted on Blue Frontiers's source code in commits
 [2edcced](https://github.com/Blue-Frontiers/varyon/commit/2edccedc46e66644058db50bb6e6652175bf09a6), 
 [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a),
-[d2e0b13](https://github.com/Blue-Frontiers/varyon/commit/d2e0b13e3e283a1dcde898e90daa2e70fb25d3f0) and
-[2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8).
+[d2e0b13](https://github.com/Blue-Frontiers/varyon/commit/d2e0b13e3e283a1dcde898e90daa2e70fb25d3f0),
+[2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8) and
+[eaa0ed1](https://github.com/Blue-Frontiers/varyon/commit/eaa0ed1cb38af2c23a69c9024c201e08ba05b34a).
 
 No potential vulnerabilities have been identified in the crowdsale/token contract.
 
@@ -34,35 +35,29 @@ No potential vulnerabilities have been identified in the crowdsale/token contrac
 
 ## Recommendations
 
-n/a
-
-<br />
-
-### Completed
-
 * [x] **MEDIUM IMPORTANCE** `Solc 0.4.23+commit.124ca40d.Darwin.appleclang` has an internal error when compiling the smart contract code. This error
   disappears when the line `require( TOKEN_PRESALE_CAP.mul(BONUS) / 100 == MAX_BONUS_TOKENS );` is commented out. Note that the same code works
   in Remix with Solidity 0.4.23. My suggestion is to define `uint public constant MAX_BONUS_TOKENS   = TOKEN_PRESALE_CAP * BONUS / 100;` and
   skip the `require(...)` check. Add a comment next to the constant if you want the calculated number
   * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
+* [x] **MEDIUM IMPORTANCE** `buyOffline(...)` can only be executed by the admin, and this calls `buyOfflineWhitelist(...)` which calls `processTokenIssue(...)`. In `processTokenIssue(...)`, the statement `uint balance = balances[msg.sender].sub(balancesBonus[msg.sender]).sub(balancesMinted[msg.sender]);` checks the balance of `msg.sender` which will be the admin account
+  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
+* [x] **MEDIUM IMPORTANCE** `VaryonToken.pMintTokens(...)` has the statement `balancesMinted[_account] = balances[_account].add(_tokens);` which should be `balancesMinted[_account] = balancesMinted[_account].add(_tokens);`
+  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
 * [x] **LOW IMPORTANCE** `uint public BONUS = 15;` can be made constant
   * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
 * [x] **LOW IMPORTANCE** `uint public constant MINIMUM_ETH_CONTRIBUTION  = 1 ether / 100; // 0.01 ether` can be specified as
   `uint public constant MINIMUM_ETH_CONTRIBUTION  = 0.01 ether;`
   * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
+* [x] **LOW IMPORTANCE** `wallet.transfer(thisAddress.balance - totalEthPending);` should use the `sub(...)` function
+  * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
+* [x] **LOW IMPORTANCE** Inconsistency between `uint public constant MAX_LOCKING_PERIOD = 1827 days; // max 5 years` and `require(_term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days");`
+  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
 * [x] **VERY LOW IMPORTANCE** `// event Returned(address indexed _account, uint _tokens);` can be removed
   * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
 * [x] **VERY LOW IMPORTANCE** Your sub-indentation of the `/* Keep track of tokens */` and `/* Keep track of ether received */` blocks are not
   standard formatting
   * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
-* [x] **LOW IMPORTANCE** `wallet.transfer(thisAddress.balance - totalEthPending);` should use the `sub(...)` function
-  * [x] Updated in [66ef18e](https://github.com/Blue-Frontiers/varyon/commit/66ef18ec538500ea7ecf83905f6f53063dcf923a)
-* [x] **MEDIUM IMPORTANCE** `buyOffline(...)` can only be executed by the admin, and this calls `buyOfflineWhitelist(...)` which calls `processTokenIssue(...)`. In `processTokenIssue(...)`, the statement `uint balance = balances[msg.sender].sub(balancesBonus[msg.sender]).sub(balancesMinted[msg.sender]);` checks the balance of `msg.sender` which will be the admin account
-  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
-* [x] **MEDIUM IMPORTANCE** `VaryonToken.pMintTokens(...)` has the statement `balancesMinted[_account] = balances[_account].add(_tokens);` which should be `balancesMinted[_account] = balancesMinted[_account].add(_tokens);`
-  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
-* [x] **LOW IMPORTANCE** Inconsistency between `uint public constant MAX_LOCKING_PERIOD = 1827 days; // max 5 years` and `require(_term < atNow() + MAX_LOCKING_PERIOD, "the locking period cannot exceed 720 days");`
-  * [x] Fixed in [2c03503](https://github.com/Blue-Frontiers/varyon/commit/2c03503794c527346526bfcf92118e949c29acf8)
 
 <br />
 
@@ -118,6 +113,43 @@ matches the audited source code, and that the deployment parameters are correctl
 ## Risks
 
 Ethers (ETH) contributed to the crowdsale/token contract remain in the contract until the minimum threshold is reached, after which the ETH is transferred into the crowdsale wallet. This is to enable contributors to execute their refunds if the minimum threshold is not reached. During this period when ETH is accummulating in the crowdsale/token contract, the ETH will be a target for hacking.
+
+The exit points for ETH from the crowdsale/token contract, in the reverse hierarchy of functions calls follow, along with a statement on the restrictions preventing the unauthorised withdrawal of the ETH:
+
+* `function buyTokensPending() private` only sends funds for the return of excess ETH sent by contributors
+  * `function buyTokens() private`
+    * `function () public payable`
+* `function buyTokensWhitelist() private` only sends funds for the return of excess ETH sent by contributors
+  * `function buyTokens() private`
+    * `function () public payable`
+* `function processWhitelisting(address _account) internal` can only be executed by admins, and only sends funds for the return of excess ETH sent by contributors
+  * `function pWhitelist(address _account, uint _limit, uint _threshold, uint _term) private`
+    * `function addToWhitelist(address _account) public onlyAdmin`
+    * `function addToWhitelistParams(address _account, uint _limit, uint _threshold, uint _term) public onlyAdmin`
+    * `function addToWhitelistMultiple(address[] _accounts) public onlyAdmin`
+    * `function addToWhitelistParamsMultiple(address[] _accounts, uint[] _limits, uint[] _thresholds, uint[] _terms) public onlyAdmin`
+* `function sendEtherToWallet() private` only sends funds to the crowdsale wallet
+  * `function buyTokensWhitelist() private`
+    * `function buyTokens() private`
+      * `function () public payable`
+  * `function processWhitelisting(address _account) internal`
+    * `function pWhitelist(address _account, uint _limit, uint _threshold, uint _term) private`
+      * `function addToWhitelist(address _account) public onlyAdmin`
+      * `function addToWhitelistParams(address _account, uint _limit, uint _threshold, uint _term) public onlyAdmin`
+      * `function addToWhitelistMultiple(address[] _accounts) public onlyAdmin`
+      * `function addToWhitelistParamsMultiple(address[] _accounts, uint[] _limits, uint[] _thresholds, uint[] _terms) public onlyAdmin`
+* `function pRevertPending(address _account) private` can only return funds with a value recorded in `ethPending[_account]`
+  * `function processBlacklisting(address _account) internal`
+    * `function pBlacklist(address _account) private` called by
+      * `function addToBlacklist(address _account) public onlyAdmin`
+      * `function addToBlacklistMultiple(address[] _accounts) public onlyAdmin`
+  * `function cancelPending(address _account) public onlyAdmin`
+  * `function cancelPendingMultiple(address[] _accounts) public onlyAdmin`
+  * `function reclaimPending() public`
+* `function pReclaimEth(address _account) private` can only returns funds with a value recorded in `ethPending[_account].add(ethContributed[_account])`
+  * `function reclaimEth() public`
+  * `function reclaimEthAdmin(address _account) public onlyAdmin`
+  * `function reclaimEthAdminMultiple(address[] _accounts) public onlyAdmin`
 
 <br />
 
