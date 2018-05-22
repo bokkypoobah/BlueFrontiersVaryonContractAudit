@@ -179,7 +179,7 @@ contract ERC20Token is ERC20Interface, Owned {
     }
 
     function approve(address _spender, uint _amount) public returns (bool success) {
-        require(balances[msg.sender] >= _amount);
+        // require(balances[msg.sender] >= _amount);
         allowed[msg.sender][_spender] = _amount;
         emit Approval(msg.sender, _spender, _amount);
         return true;
@@ -414,12 +414,12 @@ contract WBList is Owned, Utils {
 
 contract VaryonIcoDates is Owned, Utils {    
 
-    uint public dateIcoPresale  = 1526924895; // Tue May 22 03:48:15 2018
-    uint public dateIcoMain     = 1526924925; // Tue May 22 03:48:45 2018
-    uint public dateIcoEnd      = 1526924954; // Tue May 22 03:49:14 2018
-    uint public dateIcoDeadline = 1526924955; // Tue May 22 03:49:15 2018
+    uint public dateIcoPresale  = 1526955449; // Tue May 22 12:17:29 2018
+    uint public dateIcoMain     = 1526955479; // Tue May 22 12:17:59 2018
+    uint public dateIcoEnd      = 1526955508; // Tue May 22 12:18:28 2018
+    uint public dateIcoDeadline = 1526955509; // Tue May 22 12:18:29 2018
 
-    uint public constant DATE_LIMIT = 1526924985; // Tue May 22 03:49:45 2018
+    uint public constant DATE_LIMIT = 1526955539; // Tue May 22 12:18:59 2018
 
     event IcoDateUpdated(uint8 id, uint unixts);
 

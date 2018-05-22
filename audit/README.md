@@ -114,7 +114,7 @@ matches the audited source code, and that the deployment parameters are correctl
 
 Ethers (ETH) contributed to the crowdsale/token contract remain in the contract until the minimum threshold is reached, after which the ETH is transferred into the crowdsale wallet. This is to enable contributors to execute their refunds if the minimum threshold is not reached. During this period when ETH is accummulating in the crowdsale/token contract, the ETH will be a target for hacking.
 
-The exit points for ETH from the crowdsale/token contract, in the reverse hierarchy of functions calls follow, along with a statement on the restrictions preventing the unauthorised withdrawal of the ETH:
+The exit points for ETH from the crowdsale/token contract, in the reverse hierarchy of functions calls follow, along with a statement on the restrictions intended to prevent the unauthorised withdrawal of the ETH:
 
 * `function buyTokensPending() private` only sends funds for the return of excess ETH sent by contributors
   * `function buyTokens() private`
@@ -150,6 +150,8 @@ The exit points for ETH from the crowdsale/token contract, in the reverse hierar
   * `function reclaimEth() public`
   * `function reclaimEthAdmin(address _account) public onlyAdmin`
   * `function reclaimEthAdminMultiple(address[] _accounts) public onlyAdmin`
+
+The mathematical expressions within this crowdsale/token contract use the *SafeMath* function `add(...)`, `sub(...)` and `mul(...)`. Division by zero errors are automatically thrown by the Ethereum Virtual Machine.
 
 <br />
 
@@ -203,16 +205,29 @@ in [test/test3results.txt](test/test3results.txt) and the detailed output saved 
 
 <br />
 
-### Reclaim ETH
+### Reclaim ETH For Failed Crowdsale
 
 The following functions were tested using the script [test/04_testReclaimEth.sh](test/04_testReclaimEth.sh) with the summary results saved
 in [test/test4results.txt](test/test4results.txt) and the detailed output saved in [test/test4output.txt](test/test4output.txt):
 
 * [x] Deploy crowdsale/token contract
 * [x] Whitelist, whitelist with parameters and blacklist accounts
-* [x] Send contributions
+* [x] Send contributions below the threshold limit
 * [x] Whitelist contributing account that has yet to be whitelisted
-* [x] Reclaim ETH (have to uncomment test and reduce contribution amount below the threshold)
+* [x] Reclaim ETH
+
+<br />
+
+### Revert Pending ETH For Successful Crowdsale
+
+The following functions were tested using the script [test/05_testRevertEth.sh](test/05_testRevertEth.sh) with the summary results saved
+in [test/test5results.txt](test/test5results.txt) and the detailed output saved in [test/test5output.txt](test/test5output.txt):
+
+* [x] Deploy crowdsale/token contract
+* [x] Whitelist, whitelist with parameters and blacklist accounts
+* [x] Send contributions above the threshold limit
+* [x] Whitelist contributing account that has yet to be whitelisted
+* [x] Revert Pending ETH
 
 <br />
 

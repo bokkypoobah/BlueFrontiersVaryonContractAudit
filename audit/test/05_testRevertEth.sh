@@ -18,8 +18,8 @@ CROWDSALEJS=`grep ^CROWDSALEJS= settings.txt | sed "s/^.*=//"`
 DEPLOYMENTDATA=`grep ^DEPLOYMENTDATA= settings.txt | sed "s/^.*=//"`
 
 INCLUDEJS=`grep ^INCLUDEJS= settings.txt | sed "s/^.*=//"`
-TEST4OUTPUT=`grep ^TEST4OUTPUT= settings.txt | sed "s/^.*=//"`
-TEST4RESULTS=`grep ^TEST4RESULTS= settings.txt | sed "s/^.*=//"`
+TEST5OUTPUT=`grep ^TEST5OUTPUT= settings.txt | sed "s/^.*=//"`
+TEST5RESULTS=`grep ^TEST5RESULTS= settings.txt | sed "s/^.*=//"`
 JSONSUMMARY=`grep ^JSONSUMMARY= settings.txt | sed "s/^.*=//"`
 JSONEVENTS=`grep ^JSONEVENTS= settings.txt | sed "s/^.*=//"`
 
@@ -49,29 +49,29 @@ LOCK_TERM_5_DATE_S=`perl -le "print scalar localtime $LOCK_TERM_5_DATE"`
 
 CURRENTTIMES=`perl -le "print scalar localtime $CURRENTTIME"`
 
-printf "MODE               = '$MODE'\n" | tee $TEST4OUTPUT
-printf "GETHATTACHPOINT    = '$GETHATTACHPOINT'\n" | tee -a $TEST4OUTPUT
-printf "PASSWORD           = '$PASSWORD'\n" | tee -a $TEST4OUTPUT
-printf "SOURCEDIR          = '$SOURCEDIR'\n" | tee -a $TEST4OUTPUT
-printf "CROWDSALESOL       = '$CROWDSALESOL'\n" | tee -a $TEST4OUTPUT
-printf "CROWDSALEJS        = '$CROWDSALEJS'\n" | tee -a $TEST4OUTPUT
-printf "DEPLOYMENTDATA     = '$DEPLOYMENTDATA'\n" | tee -a $TEST4OUTPUT
-printf "INCLUDEJS          = '$INCLUDEJS'\n" | tee -a $TEST4OUTPUT
-printf "TEST4OUTPUT        = '$TEST4OUTPUT'\n" | tee -a $TEST4OUTPUT
-printf "TEST4RESULTS       = '$TEST4RESULTS'\n" | tee -a $TEST4OUTPUT
-printf "JSONSUMMARY        = '$JSONSUMMARY'\n" | tee -a $TEST4OUTPUT
-printf "JSONEVENTS         = '$JSONEVENTS'\n" | tee -a $TEST4OUTPUT
-printf "CURRENTTIME        = '$CURRENTTIME' '$CURRENTTIMES'\n" | tee -a $TEST4OUTPUT
-printf "ICO_PRESALE_DATE   = '$ICO_PRESALE_DATE' '$ICO_PRESALE_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "ICO_MAIN_DATE      = '$ICO_MAIN_DATE' '$ICO_MAIN_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "ICO_END_DATE       = '$ICO_END_DATE' '$ICO_END_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "ICO_DEADLINE_DATE  = '$ICO_DEADLINE_DATE' '$ICO_DEADLINE_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "DATE_LIMIT_DATE    = '$DATE_LIMIT_DATE' '$DATE_LIMIT_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "LOCK_TERM_1_DATE   = '$LOCK_TERM_1_DATE' '$LOCK_TERM_1_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "LOCK_TERM_2_DATE   = '$LOCK_TERM_2_DATE' '$LOCK_TERM_2_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "LOCK_TERM_3_DATE   = '$LOCK_TERM_3_DATE' '$LOCK_TERM_3_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "LOCK_TERM_4_DATE   = '$LOCK_TERM_4_DATE' '$LOCK_TERM_4_DATE_S'\n" | tee -a $TEST4OUTPUT
-printf "LOCK_TERM_5_DATE   = '$LOCK_TERM_5_DATE' '$LOCK_TERM_5_DATE_S'\n" | tee -a $TEST4OUTPUT
+printf "MODE               = '$MODE'\n" | tee $TEST5OUTPUT
+printf "GETHATTACHPOINT    = '$GETHATTACHPOINT'\n" | tee -a $TEST5OUTPUT
+printf "PASSWORD           = '$PASSWORD'\n" | tee -a $TEST5OUTPUT
+printf "SOURCEDIR          = '$SOURCEDIR'\n" | tee -a $TEST5OUTPUT
+printf "CROWDSALESOL       = '$CROWDSALESOL'\n" | tee -a $TEST5OUTPUT
+printf "CROWDSALEJS        = '$CROWDSALEJS'\n" | tee -a $TEST5OUTPUT
+printf "DEPLOYMENTDATA     = '$DEPLOYMENTDATA'\n" | tee -a $TEST5OUTPUT
+printf "INCLUDEJS          = '$INCLUDEJS'\n" | tee -a $TEST5OUTPUT
+printf "TEST5OUTPUT        = '$TEST5OUTPUT'\n" | tee -a $TEST5OUTPUT
+printf "TEST5RESULTS       = '$TEST5RESULTS'\n" | tee -a $TEST5OUTPUT
+printf "JSONSUMMARY        = '$JSONSUMMARY'\n" | tee -a $TEST5OUTPUT
+printf "JSONEVENTS         = '$JSONEVENTS'\n" | tee -a $TEST5OUTPUT
+printf "CURRENTTIME        = '$CURRENTTIME' '$CURRENTTIMES'\n" | tee -a $TEST5OUTPUT
+printf "ICO_PRESALE_DATE   = '$ICO_PRESALE_DATE' '$ICO_PRESALE_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "ICO_MAIN_DATE      = '$ICO_MAIN_DATE' '$ICO_MAIN_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "ICO_END_DATE       = '$ICO_END_DATE' '$ICO_END_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "ICO_DEADLINE_DATE  = '$ICO_DEADLINE_DATE' '$ICO_DEADLINE_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "DATE_LIMIT_DATE    = '$DATE_LIMIT_DATE' '$DATE_LIMIT_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "LOCK_TERM_1_DATE   = '$LOCK_TERM_1_DATE' '$LOCK_TERM_1_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "LOCK_TERM_2_DATE   = '$LOCK_TERM_2_DATE' '$LOCK_TERM_2_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "LOCK_TERM_3_DATE   = '$LOCK_TERM_3_DATE' '$LOCK_TERM_3_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "LOCK_TERM_4_DATE   = '$LOCK_TERM_4_DATE' '$LOCK_TERM_4_DATE_S'\n" | tee -a $TEST5OUTPUT
+printf "LOCK_TERM_5_DATE   = '$LOCK_TERM_5_DATE' '$LOCK_TERM_5_DATE_S'\n" | tee -a $TEST5OUTPUT
 
 # Make copy of SOL file and modify start and end times ---
 `cp $SOURCEDIR/$CROWDSALESOL .`
@@ -85,14 +85,14 @@ printf "LOCK_TERM_5_DATE   = '$LOCK_TERM_5_DATE' '$LOCK_TERM_5_DATE_S'\n" | tee 
 `perl -pi -e "s/DATE_LIMIT \= 1538316000;.*$/DATE_LIMIT \= $DATE_LIMIT_DATE; \/\/ $DATE_LIMIT_DATE_S/" $CROWDSALESOL`
 
 DIFFS1=`diff $SOURCEDIR/$CROWDSALESOL $CROWDSALESOL`
-echo "--- Differences $SOURCEDIR/$CROWDSALESOL $CROWDSALESOL ---" | tee -a $TEST4OUTPUT
-echo "$DIFFS1" | tee -a $TEST4OUTPUT
+echo "--- Differences $SOURCEDIR/$CROWDSALESOL $CROWDSALESOL ---" | tee -a $TEST5OUTPUT
+echo "$DIFFS1" | tee -a $TEST5OUTPUT
 
-solc_0.4.23 --version | tee -a $TEST4OUTPUT
+solc_0.4.23 --version | tee -a $TEST5OUTPUT
 
 echo "var crowdsaleOutput=`solc_0.4.23 --optimize --pretty-json --combined-json abi,bin,interface $CROWDSALESOL`;" > $CROWDSALEJS
 
-geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST4OUTPUT
+geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST5OUTPUT
 loadScript("$CROWDSALEJS");
 loadScript("functions.js");
 
@@ -221,11 +221,11 @@ console.log("RESULT: ");
 var sendContributions2Message = "Send Contribution #1";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ---------- " + sendContributions2Message + " ----------");
-var sendContributions2_1Tx = eth.sendTransaction({from: account7, to: crowdsaleAddress, gas: 400000, value: web3.toWei("1400", "ether")});
+var sendContributions2_1Tx = eth.sendTransaction({from: account7, to: crowdsaleAddress, gas: 400000, value: web3.toWei("3400", "ether")});
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfTxStatusError(sendContributions2_1Tx, sendContributions2Message + " - ac7 1,400 ETH");
+failIfTxStatusError(sendContributions2_1Tx, sendContributions2Message + " - ac7 3,400 ETH");
 printTxData("sendContributions2_1Tx", sendContributions2_1Tx);
 printTokenContractDetails([account7]);
 console.log("RESULT: ");
@@ -235,35 +235,23 @@ waitUntil("dateIcoDeadline", crowdsale.dateIcoDeadline(), 1);
 
 
 // -----------------------------------------------------------------------------
-var reclaimEth1Message = "Reclaim ETH #1";
+var reclaimEth1Message = "Reclaim Pending ETH #1";
 // -----------------------------------------------------------------------------
 console.log("RESULT: ---------- " + reclaimEth1Message + " ----------");
-var reclaimEth1_1Tx = crowdsale.reclaimEth({from: account3, gas: 1000000, gasPrice: defaultGasPrice});
-var reclaimEth1_2Tx = crowdsale.reclaimEth({from: account4, gas: 1000000, gasPrice: defaultGasPrice});
-var reclaimEth1_3Tx = crowdsale.reclaimEth({from: account5, gas: 1000000, gasPrice: defaultGasPrice});
-var reclaimEth1_4Tx = crowdsale.reclaimEth({from: account7, gas: 1000000, gasPrice: defaultGasPrice});
-var reclaimEth1_5Tx = crowdsale.reclaimEth({from: account8, gas: 1000000, gasPrice: defaultGasPrice});
+var reclaimEth1_1Tx = crowdsale.reclaimPending({from: account8, gas: 1000000, gasPrice: defaultGasPrice});
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfTxStatusError(reclaimEth1_1Tx, reclaimEth1Message + " - ac3 Reclaim 100 ETH");
-failIfTxStatusError(reclaimEth1_2Tx, reclaimEth1Message + " - ac4 Reclaim 200 ETH");
-failIfTxStatusError(reclaimEth1_3Tx, reclaimEth1Message + " - ac5 Reclaim 300 ETH");
-failIfTxStatusError(reclaimEth1_4Tx, reclaimEth1Message + " - ac7 Reclaim 1,400 ETH");
-failIfTxStatusError(reclaimEth1_5Tx, reclaimEth1Message + " - ac8 Reclaim 500 ETH");
+failIfTxStatusError(reclaimEth1_1Tx, reclaimEth1Message + " - ac8 Reclaim 500 ETH");
 printTxData("reclaimEth1_1Tx", reclaimEth1_1Tx);
-printTxData("reclaimEth1_2Tx", reclaimEth1_2Tx);
-printTxData("reclaimEth1_3Tx", reclaimEth1_3Tx);
-printTxData("reclaimEth1_4Tx", reclaimEth1_4Tx);
-printTxData("reclaimEth1_5Tx", reclaimEth1_5Tx);
-printTokenContractDetails([account3, account4, account5, account7, account8]);
+printTokenContractDetails([account8]);
 console.log("RESULT: ");
 
 
 EOF
-grep "DATA: " $TEST4OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
+grep "DATA: " $TEST5OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
 cat $DEPLOYMENTDATA
-grep "RESULT: " $TEST4OUTPUT | sed "s/RESULT: //" > $TEST4RESULTS
-cat $TEST4RESULTS
-# grep "JSONSUMMARY: " $TEST4OUTPUT | sed "s/JSONSUMMARY: //" > $JSONSUMMARY
+grep "RESULT: " $TEST5OUTPUT | sed "s/RESULT: //" > $TEST5RESULTS
+cat $TEST5RESULTS
+# grep "JSONSUMMARY: " $TEST5OUTPUT | sed "s/JSONSUMMARY: //" > $JSONSUMMARY
 # cat $JSONSUMMARY
